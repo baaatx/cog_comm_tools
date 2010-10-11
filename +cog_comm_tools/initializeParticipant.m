@@ -35,7 +35,6 @@ function participantId = initializeParticipant(window)
     mkdir ('images');
     mkdir ('text');
     mkdir ('eyeTracker');
-    mkdir ('stimuli');
     mkdir ('debriefing');
     
     % change the directory to where we started at
@@ -43,9 +42,9 @@ function participantId = initializeParticipant(window)
     
     % basic logging goes here.
     myLog = cog_comm_tools.TDFLog([ 'participants/' participantId '/ExpLog.txt']);
-    myLog.add('participantId');
-    myLog.add('experimenterId');
-    myLog.add('timestamp');
+    myLog.add('partId');
+    myLog.add('experId');
+    myLog.add('timestmp');
     myLog.nextRow();
     myLog.add(participantId);
     myLog.add(experimenterId);
