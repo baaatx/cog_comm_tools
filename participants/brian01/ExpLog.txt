@@ -1,2 +1,0 @@
-participantId	experimenterId	timestamp	
-brian01	baa434	October 07, 2010  4:09:27.481 PM	
