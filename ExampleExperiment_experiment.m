@@ -54,13 +54,13 @@ try
 
     % DEFINE STIMULI
     % create image stimuli objects (encapsulates data for image stimuli)
-    s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', 1, 0, 0);
-    s2 = ImageStim('x1', 'stimuli/images/blueTriangle.jpg', 1, 0, 0);
-    s3 = ImageStim('x2', 'stimuli/images/pinkSquare.jpg', 0, 0, 0);
-    s4 = ImageStim('x3', 'stimuli/images/orangeHexagon.jpg', 1, 0, 0);
-    s5 = ImageStim('x4', 'stimuli/images/silverInfinity.jpg', 1, 0, 0);
-    s6 = ImageStim('x6', 'stimuli/images/blackSix.jpg', 0, 0, 0);
-    s7 = ImageStim('x7', 'stimuli/images/redCross.jpg', 1, 0, 0);
+    s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', 0, 0 , 'ball');
+    s2 = ImageStim('x1', 'stimuli/images/blueTriangle.jpg', 0, 0 , 'triangle');
+    s3 = ImageStim('x2', 'stimuli/images/pinkSquare.jpg', 0, 0, 'square');
+    s4 = ImageStim('x3', 'stimuli/images/orangeHexagon.jpg', 0, 0, 'hexagon');
+    s5 = ImageStim('x4', 'stimuli/images/silverInfinity.jpg', 0, 0, 'infinity');
+    s6 = ImageStim('x6', 'stimuli/images/blackSix.jpg', 0, 0, 'six');
+    s7 = ImageStim('x7', 'stimuli/images/redCross.jpg', 0, 0, 'cross');
     
     % the array of image stimuli objects
     imageStimList = [s1 s2 s3 s4 s5 s6];
@@ -106,8 +106,10 @@ try
         
         % record audio - the function returns the response time (to reach
         % minimum audio loudness (amplitude)
-        responseTime = recordAudioFromMicrophone(participantId, recordingLength, [imageKeyCode '.wav']);
+        responseTime = recordAudioFromMicrophone(participantId, recordingLength, imageKeyCode);
 
+        displayTextCentered(window, 'Stop Speaking!');
+        
         % clear the window (make blank and white)
         clearWindow(window);
         
@@ -131,9 +133,6 @@ try
 
     questionText2 = 'Did you have to think much before speaking the first thing that came to your mind?';
     askQuestionAndSaveAnswer(window, questionFile, 'q2', questionText2, participantId );
-
-    questionText3 = 'Would you be willing to participant in similar experiments in the future?';
-    askQuestionAndSaveAnswer(window, questionFile, 'q3', questionText3, participantId );
     
     % say goodbye
     displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
