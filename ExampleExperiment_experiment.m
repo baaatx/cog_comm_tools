@@ -34,9 +34,8 @@ try
     startTime = GetSecs();
     
     % initilze the participant
-    %participantId = initializeParticipant(window);
-    
-    participantId = 'example';
+    participantId = initializeParticipant(window);
+    %participantId = 'example';
     
     % run the full sound check since we are recording audio from the
     % participant with a microphone
@@ -127,14 +126,14 @@ try
     
     % DEBRIEFING
     questionFile = 'SeeImageQuestions';
-    questionText = 'Did You Enjoy Participating in This Experiment?';
-    askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
+    questionText1 = 'Did You Enjoy Participating in This Experiment?';
+    askQuestionAndSaveAnswer(window, questionFile, 'q1', questionText1, participantId );
 
-    questionText = 'Did you have to think much before speaking the first thing that came to your mind?';
-    askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
+    questionText2 = 'Did you have to think much before speaking the first thing that came to your mind?';
+    askQuestionAndSaveAnswer(window, questionFile, 'q2', questionText2, participantId );
 
-    questionText = 'Would you be willing to participant in similar experiments in the future?';
-    askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
+    questionText3 = 'Would you be willing to participant in similar experiments in the future?';
+    askQuestionAndSaveAnswer(window, questionFile, 'q3', questionText3, participantId );
     
     % say goodbye
     displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
