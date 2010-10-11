@@ -1,0 +1,1 @@
+This folder is an example experiment folder to use with cog_comm_tools.
