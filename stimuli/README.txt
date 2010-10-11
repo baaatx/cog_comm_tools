@@ -1,0 +1,1 @@
+This folder is where all of the stimuli data should be saved, in the appropriate subfolder.
