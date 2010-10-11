@@ -1,4 +1,4 @@
-function audioinput(sid, line, voicetrigger, startsecs, recordingLength)
+function responseTime = audioinput(sid, line, voicetrigger, startsecs, recordingLength)
 % 
 % This is an archived audio recording function used in the SlipSol
 % experiment.
@@ -65,13 +65,10 @@ while (level < voicetrigger && (GetSecs() - startsecs) < .8)
 end
 
 % If past one second with no response, beep
-if (GetSecs() - startsecs) > .8
-    Beeper();
-    WaitSecs(1);
-else
-    % Should wait until finished speaking, but for now just wait a while
-    WaitSecs(recordingLength-(GetSecs()-startsecs));
-end
+responseTime = (GetSecs() - startsecs);
+
+% Should wait until finished speaking, but for now just wait a while
+WaitSecs(recordingLength-(GetSecs()-startsecs));
 
 % Stop capture:
 PsychPortAudio('Stop', pahandle);

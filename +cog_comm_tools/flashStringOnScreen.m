@@ -9,6 +9,6 @@
 % displaying the string.
 
 function flashStringOnScreen(window, str , displayDelay, blankDelay)
-    cog_comm_tools.DrawAndWait(window, '', blankDelay);
-    cog_comm_tools.DrawAndWait(window, str, displayDelay);
-    cog_comm_tools.DrawAndWait(window, '', blankDelay);
+    cog_comm_tools.displayTextCenteredAndWait(window, '', blankDelay);
+    cog_comm_tools.displayTextCenteredAndWait(window, str, displayDelay);
+    cog_comm_tools.displayTextCenteredAndWait(window, '', blankDelay);

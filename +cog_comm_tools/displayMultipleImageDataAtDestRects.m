@@ -12,7 +12,7 @@ function displayMultipleImageDataAtDestRects(window, imagesData, destinationRect
     % make sure the sizes match (same num of images as rows in
     % destinationRects
     arraySize = size(destinationRects);
-    if (length(imagesData) ~= arraySize(2))
+    if (~length(imagesData) == arraySize(2))
         error('Must have same number of image data elements as columns in destinationRects to use this function.');
     end
     
@@ -22,7 +22,7 @@ function displayMultipleImageDataAtDestRects(window, imagesData, destinationRect
     % for each imageFile, create textures
     for i=1:length(imagesData)
         % make texture image out of image matrix 'imdata'
-        myTextures(i)=Screen('MakeTexture', window, imagesData{1});
+        myTextures(i)=Screen('MakeTexture', window, imagesData{i});
     end
     
     % Draw texture images to backbuffer at locations destinationRects. 

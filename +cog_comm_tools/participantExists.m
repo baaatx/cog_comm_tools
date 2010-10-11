@@ -2,9 +2,9 @@
 %
 % Author: Brian Armstrong
 %
-function participantExists = participantExists(participantId)
-    participantExists = false;
+function exists = participantExists(participantId)
+    exists = false;
     participants =  cog_comm_tools.listParticipantFolders();
     if (cog_comm_tools.cellArrayContains(participants, participantId))
-        participantExists = true;
+        exists = true;
     end

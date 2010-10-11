@@ -5,7 +5,7 @@ function askQuestionAndSaveAnswer(window, questionFile, questionText, participan
     % get the answer
     answer = cog_comm_tools.GetEchoStringCentered(window, ['\n\n' questionText '\n\n' 'Please Type Your Answer, ending with ENTER:\n\n'] , 'center', 'center');
 
-    % write it to file
+    % write it to file, tab delimited
     outputFile = cog_comm_tools.openFileForAppend(['participants/' participantId '/debriefing/' questionFile '.txt']);
-    fprintf(outputFile, ['\n\nQ:' questionText '\nA:' answer]);
+    fprintf(outputFile, [questionText '\t' answer '\n']);
     fclose(outputFile);

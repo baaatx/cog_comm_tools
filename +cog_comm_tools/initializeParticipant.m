@@ -8,32 +8,26 @@
 %
 function participantId = initializeParticipant(window)
     
-    needId = true;
-
+    % get RA info
     experimenterId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Experimenter EID: ', 'center', 'center');
+
+    participantId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Participant id: ', 'center', 'center');
     
-    while (needId)
-        participantId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Participant id: ', 'center', 'center');
-        if (cog_comm_tools.participantExists(participantId))
+    while (cog_comm_tools.participantExists(participantId))
+        if(~cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, overwrite?'))
             participantId = cog_comm_tools.GetEchoStringCentered(window,'Participant ID already exists. Please enter another: ','center','center');
         else
-            needId = false;
+            break;
         end
     end
-        
-    % TODO: do basic logging here...
-    myLog = TDFLog(['participants/' participantId '/ExpLog.txt']);
-    myLog.add(participantId);
-    myLog.add(experimenterId);
-    myLog.add(datestr(now, 'mm/dd/yy'));
-    myLog.nextRow();
     
     % change the current folder to the subjects folder
     startDir = cd ('participants');
     
     % make a new folder for this subject (in the subjects folder)
     mkdir(participantId);
-        
+    
+    % now we need to create the appropriate sub-directories
     cd (participantId);
     
     % make a subdirectories for collected data
@@ -46,3 +40,14 @@ function participantId = initializeParticipant(window)
     
     % change the directory to where we started at
     cd (startDir);
+    
+    % basic logging goes here.
+    myLog = cog_comm_tools.TDFLog([ 'participants/' participantId '/ExpLog.txt']);
+    myLog.add('participantId');
+    myLog.add('experimenterId');
+    myLog.add('timestamp');
+    myLog.nextRow();
+    myLog.add(participantId);
+    myLog.add(experimenterId);
+    myLog.add(datestr(now, 'mmmm dd, yyyy HH:MM:SS.FFF AM'));
+    myLog.nextRow();

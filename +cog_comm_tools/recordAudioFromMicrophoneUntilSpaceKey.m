@@ -1,23 +1,28 @@
-% Function that records audio from the microphone into a wavFile by
-% participantId - waits until space key is pressed to stop, or records for 'maxRecordingLength' seconds.
+function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, bufferLength, fileName, voiceTrigger)
+% 
+% Parameters:
 %
-% participantId   = participantId
+% participantId = unique participantId
 %
-% wavfilename = Name of a .wav sound file to store the recorded sound to.
+% recordingLength = how long to record for
 %
-% recordingLength = How long to record for.
+% fileName = full path filename for saved file
 %
-% Authors: Brian Armstrong, Dylan Bumford
+% voiceTrigger (optional) = the amplitude below which is considered to be
+%                           silence. (between 0 and 1)
 %
-function recordAudioFromMicrophoneUntilSpaceKey(participantId, wavFileName, maxRecordingLength)
-% set default max recording time to 10 seconds
-if (nargin < 3)
-    maxRecordingLength = 10.00;
+% returns the responceTime (time before amplitude voiceTrigger is acheived)
+%
+% Author: Brian Armstrong, Dylan Bumford
+%
+
+% voiceTrigger is optional
+if (nargin <4)
+    voiceTrigger = .01;
 end
 
-startTime = GetSecs();
+% define the space key
 spaceKey = KbName('space');
-dt = 0.1;
 
 % Open the default audio device [], with mode 2 (== Only audio capture),
 % and a required latencyclass of zero 0 == no low-latency mode, as well as
@@ -27,30 +32,62 @@ freq = 44100;
 pahandle = PsychPortAudio('Open', [], 2, 0, freq, 1);
 
 % Preallocate an internal audio recording  buffer with a capacity of 10 seconds:
-PsychPortAudio('GetAudioData', pahandle, 10);
+PsychPortAudio('GetAudioData', pahandle, bufferLength);
 
 % Start audio capture immediately and wait for the capture to start.
 % We set the number of 'repetitions' to zero,
 % i.e. record until recording is manually stopped.
 PsychPortAudio('Start', pahandle, 0, 0, 1);
 
+% get start time
+startsecs = GetSecs();
+
+level = 0;
+recordedAudio = [];  
+
+% Repeat as long as below trigger-threshold:
+while (level < voiceTrigger && (GetSecs() - startsecs) < bufferLength)
+    % Fetch current audiodata:
+    audiodata = PsychPortAudio('GetAudioData', pahandle);
+
+    % Compute maximum signal amplitude in this chunk of data:
+    if ~isempty(audiodata)
+        level = max(abs(audiodata(1,:)));
+    else
+        level = 0;
+    end
+        
+    % Below trigger-threshold?
+    if (level < voiceTrigger)
+        % Wait for a millisecond before next scan
+        WaitSecs(0.0001);
+    end
+    recordedAudio = [recordedAudio audiodata];
+end
+
+% Record the response time
+responseTime = (GetSecs() - startsecs);
+
 proceed = false;
 
-while (proceed == false && (GetSecs() - startTime < maxRecordingLength))
+dt = 0.10;
+
+while (proceed == false && (GetSecs() - startsecs < bufferLength))
     if (cog_comm_tools.checkForKeyPress(spaceKey))
         proceed = true;
     end
     WaitSecs(dt);
 end
 
-% Fetch current audiodata:
-audiodata = PsychPortAudio('GetAudioData', pahandle);
-
-% Stop capture:
+% Stop capture
 PsychPortAudio('Stop', pahandle);
 
-% Close the audio device:
+% last fetch operation to get remaining data from the capture engine
+audiodata = PsychPortAudio('GetAudioData', pahandle);
+recordedAudio = [recordedAudio audiodata];
+
+% Close the audio device
 PsychPortAudio('Close', pahandle);
 
-% write out the wav file
-wavwrite(transpose(audiodata), 44100, 16, ['participants/' participantId '/audio/' wavFileName]);
+% Store recorded sound to wavfile
+wavwrite(transpose(recordedAudio), 44100, 16, ['participants' '/' participantId '/' 'audio' '/' fileName '.wav']);

@@ -17,9 +17,9 @@ freq = 44100;
 level = 0;
 
 for i=1:5
-    cog_comm_tools.DrawAndWait(window, '', .4);
-    cog_comm_tools.DrawAndWait(window, '*', 1);
-    cog_comm_tools.DrawAndWait(window, '', .4);
+    cog_comm_tools.displayTextCenteredAndWait(window, '', .4);
+    cog_comm_tools.displayTextCenteredAndWait(window, '*', 1);
+    cog_comm_tools.displayTextCenteredAndWait(window, '', .4);
     DrawFormattedText(window, num2str(floor(9*rand+1)), 'center', 'center', 0);
     Screen('Flip',window);
     cog_comm_tools.checkForEscapeKeyToHalt();
