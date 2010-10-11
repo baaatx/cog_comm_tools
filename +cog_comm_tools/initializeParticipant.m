@@ -14,7 +14,7 @@ function participantId = initializeParticipant(window)
     participantId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Participant id: ', 'center', 'center');
     
     while (cog_comm_tools.participantExists(participantId))
-        if(~cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, overwrite?'))
+        if(~cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, are you sure\n\nyou want to overwrite their data?'))
             participantId = cog_comm_tools.GetEchoStringCentered(window,'Participant ID already exists. Please enter another: ','center','center');
         else
             break;

@@ -12,7 +12,7 @@
 function fullSoundCheck(window , participantId)
 
 soundCheckInstructions = 'We''ll begin with a sound check.\n\nRead the sentence presented while speaking into the microphone.\n\nWhenever you''re ready the experimenter will press a\nbutton to begin the sound check.';
-cog_comm_tools.showInstructions(window, soundCheckInstructions, 1);
+cog_comm_tools.displayInstructions(window, soundCheckInstructions);
 
 % define varibles
 spaceKey = KbName('space');
@@ -40,7 +40,7 @@ while (true)
     DrawFormattedText(window, [recordingMessage '\n\n\n' soundCheckSentence], 'center', 'center', 0);
     Screen('Flip',window);
     
-    cog_comm_tools.recordAudioFromMicrophone(participantId, 'soundCheck', recordingLength);
+    cog_comm_tools.recordAudioFromMicrophone(participantId, recordingLength, 'soundCheck');
 
     DrawFormattedText(window, [doneRecordingMessage '\n\n\n' soundCheckSentence], 'center', 'center', 0);
     Screen('Flip',window);
@@ -61,14 +61,14 @@ while (true)
     KbWait();
     
     % Let the RA accept the sound check.
-    cog_comm_tools.showInstructions(window, 'Experimenter: Does the sound check look okay? If so, hold the SPACEBAR to continue to the experiment. Press any other key to run the soundcheck again.', 1.0);
+    cog_comm_tools.displayInstructions(window, 'Experimenter: Does the sound check look okay? If so, hold the SPACEBAR to continue to the experiment. Press any other key to run the soundcheck again.', 1.0);
             
     % check for spaceKey Hold down
     if (cog_comm_tools.checkForKeyPress(spaceKey))
         break;
     end
     
-    cog_comm_tools.showInstructions(window, 'Let''s try the sound check again.', 0.2);
+    cog_comm_tools.displayInstructions(window, 'Let''s try the sound check again.', 0.2);
 end
 
 % signal that the soundcheck has completed.

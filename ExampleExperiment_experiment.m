@@ -20,9 +20,6 @@ fontStyle = 1;
 % define the screen resolution the experiment is going to run on. [x y]
 screenResolution = [800 600];
 
-% store start time
-startTime = GetSecs();
-
 % a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
 try
     % SETUP EXPERIMENT
@@ -32,23 +29,29 @@ try
     % initilize the window, set font style, unify keyboard for various OS -
     % save the window pointer and the resolution structure
     [window, resolution ] = initializeWindow(fontFace, fontSize, fontStyle, screenResolution );
+
+    % store start time for start of experiment
+    startTime = GetSecs();
     
     % initilze the participant
-    participantId = initializeParticipant(window);
+    %participantId = initializeParticipant(window);
+    
+    participantId = 'example';
     
     % run the full sound check since we are recording audio from the
     % participant with a microphone
-    fullSoundCheck(window, participantId);
+    %fullSoundCheck(window, participantId);
     
-    % Setup our log.  
-    myLog = TDFLog(['participants/' participantId '/imageSayLog.txt']);
-    myLog.add('Image');
-    myLog.add('StartTime');
-    myLog.add('StopTime');
+    % Setup our trials log.  
+    myLog = TDFLog(['participants/' participantId '/exampleTrialsLog.txt']);
+    myLog.add('ImgCode');
+    myLog.add('StrTime');
+    myLog.add('StpTime');
+    myLog.add('RspTime');
     myLog.nextRow();
         
     % DISPLAY INSTRUCTIONS
-    displayInstructions(window, 'You will see a series of images displayed on the screen.\n\nWhen you see ''Go!'' flash on the screen, say the first word that comes to your mind.\n\nWhen you are finished speaking, press the space bar on the keyboard. This will continue until the experiment has completed.\n\n Do you have any questions?  ' , 1);
+    displayInstructions(window, 'You will see a series of images displayed on the screen.\n\nWhen you see ''Speak Now!'' flash on the screen, say the first word that comes to your mind.\n\nWhen you are finished speaking, press the space bar on the keyboard. This will continue until the experiment has completed.\n\n Do you have any questions?  ' , 1);
 
     % DEFINE STIMULI
     % create image stimuli objects (encapsulates data for image stimuli)
@@ -76,29 +79,41 @@ try
     for i=1:length(imageStimList)
         % Get the ith stim
         imageStim = imageStimList(i);
-        imageData = imageStim.imageData;
-        imageKey = imageStim.key;
+        imageKeyCode = imageStim.keyCode;
         
         % logging
-        myLog.add(imageKey);
+        myLog.add(imageKeyCode);
 
         % flash to prompt for audio input
-        flashStringOnScreen(window, imageStim.key, dt, dt);
+        flashStringOnScreen(window, imageStim.keyCode, dt, dt);
+                
+        % display it for 'imageDisplayTime' seconds.
+        drawImageStimCentered (window, imageStim);
+        
+        % update the screen
+        drawWindow(window);
         
         % log display start time
         myLog.add(num2str(getSecs()-startTime));
-                
-        % display it for 'imageDisplayTime' seconds.
-        displayImageDataCenteredAndWait (window, imageData, imageDisplayTime);
-                
-        % flash to prompt for audio input
-        flashStringOnScreen(window, 'Go!', dt, dt);
-        
-        % record audio
-        recordAudioFromMicrophoneUntilSpaceKey(participantId, [imageKey '.wav'] , recordingLength);
 
+        % short pause
+        WaitSecs(imageDisplayTime);
+        
         % log display stop time
         myLog.add(num2str(getSecs()-startTime));
+        
+        % prompt the participant to start speaking
+        displayTextCentered(window, 'Speak Now!');
+        
+        % record audio - the function returns the response time (to reach
+        % minimum audio loudness (amplitude)
+        responseTime = recordAudioFromMicrophone(participantId, recordingLength, [imageKeyCode '.wav']);
+
+        % clear the window (make blank and white)
+        clearWindow(window);
+        
+        % log audio response time
+        myLog.add(num2str(responseTime));
         
         % moves log to next row of tab delmited strings
         myLog.nextRow();
@@ -122,7 +137,7 @@ try
     askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
     
     % say goodbye
-    showInstructions(window, 'That is all! Thanks for your participation! ' , 1);
+    displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
     
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();

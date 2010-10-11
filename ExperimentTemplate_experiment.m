@@ -10,10 +10,10 @@ import cog_comm_tools.*;
 % amount of time images are displayed.
 imageDisplayTime = 2.0;
 
-% time for a short pause
+% time for a short pause in seconds
 dt = 0.2;
 
-% how long to record for
+% how long to record for in seconds
 recordingLength = 2.00; 
 
 % font settings
@@ -54,7 +54,7 @@ try
     displayInstructions(window, 'Here are some instructions ' , 1);
 
     % DEFINE STIMULI
-    % create image stimuli objects (encapsulates data for image stimuli)
+    % create image stimuli objects (encapsulates data for still image stimuli)
     s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', 0, 0, 'red ball');
     s2 = ImageStim('x1', 'stimuli/images/blackSix.jpg', 0, 0, 'black six');    
     
@@ -94,7 +94,7 @@ try
     askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
     
     % say goodbye
-    showInstructions(window, 'That is all! Thanks for your participation! ' , 1);
+    displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
     
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();

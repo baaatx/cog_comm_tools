@@ -18,5 +18,7 @@ Brian Armstrong <baa.atx@gmail.com>
 Dylan Bumford <dbumford@gmail.com>
 
 
+These tools expect a directory structure for your experiment folder.  An example of this structure is the root 
+folder for this package on the git repository.
 
-These tools expect a directory structure for your experiment folder.
+

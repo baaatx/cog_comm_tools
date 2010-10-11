@@ -1,3 +1,8 @@
+% This is a class that represents a Tab-Delimited Log file. To be used for
+% logging textual data during an experiment.
+%
+% Author: Brian Armstrong
+%
 classdef TDFLog
    properties (SetAccess = private)
       fileName
@@ -10,7 +15,7 @@ classdef TDFLog
     end
     
     function add(obj,msg)
-        fprintf(obj.fileHandle,'%s\t',msg);
+        fprintf(obj.fileHandle,'%s\t',char(msg));
     end
 
     function nextRow(obj)
