@@ -1,0 +1,2 @@
+participantId	experimenterId	timestamp	
+example	raid	October 07, 2010  4:09:27.481 PM	
