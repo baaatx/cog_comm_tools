@@ -1,0 +1,37 @@
+classdef TDFLog
+   properties (SetAccess = public, GetAccess = public)
+      fileName
+      columns
+      fileHandle
+      curCol = 1
+      curRow = 1
+   end
+   methods
+
+    function obj = TDFLog(fileName, columns)
+        obj.fileName = fileName;
+        obj.columns = columns;
+        obj.fileHandle = cog_comm_tools.openFileForAppend(['logs/' obj.fileName]);
+    end
+    
+    function addNext(obj,msg)
+        fprintf(obj.fileHandle,'%s\t',msg);
+        if (obj.curCol == obj.columns)
+            nextRow(obj);
+        end
+        set.curCol(obj, 5);
+    end
+
+    function obj = set.PropertyName(obj,value)
+        
+    end
+    
+    function nextRow(obj)
+        fprintf(obj.fileHandle,'\n');
+        set.curRow(obj.curRow + 1);
+        set.curCol(0);
+    end
+  
+   end % methods
+end % classdef
+
