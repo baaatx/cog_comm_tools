@@ -32,8 +32,6 @@ function participantId = initializeParticipant(window)
     
     % make a subdirectories for collected data
     mkdir ('audio');
-    mkdir ('images');
-    mkdir ('text');
     mkdir ('eyeTracker');
     mkdir ('debriefing');
     
