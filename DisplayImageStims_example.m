@@ -1,4 +1,4 @@
-%  TestBed.m has snippets of code testing the latest new features.
+% DisplayImageStims_example.m - Displays some imageStims...
 %
 % Author: Brian Armstrong
 %
