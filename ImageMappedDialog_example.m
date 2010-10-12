@@ -1,4 +1,4 @@
-%  ImageMappedDialog.m - A clickable image map example.
+%  ImageMappedDialog_example.m - A clickable image map example.
 %
 % Author: Brian Armstrong
 %
