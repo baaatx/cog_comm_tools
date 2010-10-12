@@ -1,2 +1,2 @@
 partId	experId	timestmp	
-exampleParticipantId	test	October 11, 2010  3:09:15.254 PM	
+exampleParticipantId	test	October 12, 2010 12:43:27.548 PM	
