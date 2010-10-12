@@ -23,13 +23,18 @@ try
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
+    % here we create 3 imageStim objects, which encapsulate the data needed
+    % to present stimuli images.
+    %
+    % Constructor Call:
+    %
+    % function obj = ImageStim(keyCode, fileName, xPos, yPos, title)
+    %
     s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', 150,70, 'Red Ball');
-        
     s2 = ImageStim('x1', 'stimuli/images/babyChicken.jpg', 700,300, 'Baby Chicken');
-        
     s3 = ImageStim('x2', 'stimuli/images/redFinch.jpg', 150,550, 'Red Finch');
       
-    % put the image stims into a list
+    % put the image stims into a single list
     imageStims = [s1 s2 s3];
     
     % draw and display them (with one function call)
