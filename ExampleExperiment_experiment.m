@@ -36,6 +36,7 @@ try
     % initilze the participant
     participantId = initializeParticipant(window);
     %participantId = 'example';
+    error (' '); 
     
     % run the full sound check since we are recording audio from the
     % participant with a microphone
