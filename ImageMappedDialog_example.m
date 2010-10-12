@@ -1,4 +1,4 @@
-%  TestBed.m has snippets of code testing the latest new features.
+%  ImageMappedDialog.m - A clickable image map example.
 %
 % Author: Brian Armstrong
 %
