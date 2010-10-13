@@ -1,6 +1,6 @@
 The cog_comm_tools MATLab package is currently maintained by Brian Armstrong. (baa.atx@gmail.com)
 
-This MATLAb package requires Psychophysics Toolbox.
+This MATLAb package requires Psychophysics Toolbox (http://psychtoolbox.org/)
 
 To import this library, type:
 
