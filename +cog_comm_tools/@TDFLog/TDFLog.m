@@ -9,9 +9,17 @@ classdef TDFLog
       fileHandle
    end
    methods
-    function obj = TDFLog(fileName)
+    %
+    % fileName = full path string of filename for your new log file
+    % overwrite = boolean for overwrite mode (otherwise append mode is
+    % used)
+    function obj = TDFLog(fileName, overwrite)
         obj.fileName = fileName;
-        obj.fileHandle = cog_comm_tools.openFileForAppend([obj.fileName]);
+        if (nargin < 2 || overwrite ~= true)
+            obj.fileHandle = cog_comm_tools.openFileForAppend([obj.fileName]);
+        else
+            obj.fileHandle = cog_comm_tools.openFileForOverwrite([obj.fileName]);
+        end
     end
     
     function add(obj,msg)
