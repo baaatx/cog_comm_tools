@@ -1,15 +1,8 @@
-% Displays image file 'imageFileName' on the screen for 'delay' seconds.
+% Function that displays image file 'imageFileName' on the screen until the space key is
+% pressed.
+%
+% Author: Brian Armstrong
 %
 function displayImageCenteredUntilSpaceKey(window, imageFileName)
-    spaceKey = KbName('space');
-    
-    cog_comm_tools.displayImageCentered(window , imageFileName);
-
-    proceed = false;
-    
-    while (proceed == false)
-        KBWait();
-        if (cog_comm_tools.checkForKeyPress(spaceKey))
-            break;
-        end
-    end
+    cog_comm_tools.displayImageCentered(window, imageFileName);
+    cog_comm_tools.waitUntilKeyPressed('space'); 
