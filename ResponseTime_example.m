@@ -24,13 +24,13 @@ try
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
     %participantId = initializeParticipant(window);
-    participantId = 'example'; % use the default example participant
+    participantId = 'exampleParticipantId'; % use the default example participant
     recordingLength = 3;
     fileName = 'response_time_example_recording';
     voiceTrigger = 0.01;
     
     % present some instructions
-    displayInstructions(window, 'When you see ''Speak Now!'' appear on the screen, speak as quickly as possible! \n\n(We will calculate your response time.)', 1);
+    displayInstructions(window, 'When you see ''Speak Now!''\nappear on the screen, speak as quickly\n as possible!\n\n(We will calculate your response time.)', 1);
     
     % clear the screen
     clearWindow(window);
