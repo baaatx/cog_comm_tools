@@ -33,6 +33,9 @@ end
 
 FlushEvents('keyDown');
 
+% Supress text to MatLab windows
+ListenChar(2);
+
 % Write the message
 DrawFormattedText(windowPtr, msg, x, y, textColor, bgColor);
 Screen('Flip', windowPtr, 0, 1);
@@ -59,3 +62,7 @@ while true
 end
 
 FlushEvents('keyDown');
+
+% unSupress text to MatLab windows
+ListenChar(1);
+
