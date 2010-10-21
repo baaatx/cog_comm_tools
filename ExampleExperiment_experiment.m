@@ -34,13 +34,15 @@ try
     startTime = GetSecs();
     
     % initilze the participant
+    
     participantId = initializeParticipant(window);
-    %participantId = 'example';
-    error (' '); 
+    %participantId = 'exampleParticipantId';
+    
+    error(' ');
     
     % run the full sound check since we are recording audio from the
     % participant with a microphone
-    %fullSoundCheck(window, participantId);
+    fullSoundCheck(window, participantId);
     
     % Setup our trials log.  
     myLog = TDFLog(['participants/' participantId '/exampleTrialsLog.txt']);
@@ -107,10 +109,11 @@ try
         
         % record audio - the function returns the response time (to reach
         % minimum audio loudness (amplitude)
-        responseTime = recordAudioFromMicrophone(participantId, recordingLength, imageKeyCode);
+        responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, recordingLength, imageKeyCode);
 
         displayTextCentered(window, 'Stop Speaking!');
-        
+        WaitSecs(0.2);
+                
         % clear the window (make blank and white)
         clearWindow(window);
         
