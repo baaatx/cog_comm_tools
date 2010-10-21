@@ -25,6 +25,9 @@ function answer = multipleChoiceDialog(window, questionMessage , choiceList)
         
     answerInvalid = true;
     
+    % supress text from matlab window
+    ListenChar(2);
+    
     % wait for a valid choice to be selected from the keyboard
     while (answerInvalid)
         KbWait();
@@ -36,3 +39,7 @@ function answer = multipleChoiceDialog(window, questionMessage , choiceList)
         end
         cog_comm_tools.checkForEscapeKeyToHalt();
     end
+    
+    % un-supress text from matlab window
+    ListenChar(1);
+    
