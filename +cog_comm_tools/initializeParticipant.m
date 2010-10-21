@@ -1,7 +1,7 @@
 % Function that gets the id for a participant, and makes sure there is not
 % already a folder for this participant.
 %
-% Creates the participants's data folder in the subjects folder, and creates
+% Creates the participants's data folder in the 'participants' folder, and creates
 % required subdirectories.
 %
 % Author: Brian Armstrong
@@ -24,20 +24,36 @@ function participantId = initializeParticipant(window)
     % change the current folder to the subjects folder
     startDir = cd ('participants');
     
-    % make a new folder for this subject (in the subjects folder)
-    mkdir(participantId);
+    % make a new folder for this participant(in the participants folder) 
+    % if it does not exist.
+    if (isdir(participantId) == 0)
+        mkdir(participantId);
+    end
     
     % now we need to create the appropriate sub-directories
     cd (participantId);
     
-    % make a subdirectories for collected data
-    mkdir ('audio');
-    mkdir ('debriefing');
+    % make subdirectories (if they don't exist) for data that will be collected
+    if (isdir('audio') == 0)
+        mkdir ('audio')
+    end
+    
+    if (isdir('images') == 0)
+        mkdir('images')
+    end
+    
+    if (isdir('debriefing')==0)
+        mkdir ('debriefing');
+    end
+    
+    if (isdir('eyelink')==0)
+        mkdir ('eyelink');
+    end
     
     % change the directory to where we started at
     cd (startDir);
     
-    % basic logging goes here.
+    % Create a simple log with time stamp and experimenter id.
     myLog = cog_comm_tools.TDFLog([ 'participants/' participantId '/ExpLog.txt']);
     myLog.add('partId');
     myLog.add('experId');
