@@ -17,4 +17,4 @@ function initializeEyelink(resolution)
     status = cog_comm_tools.EyelinkSetResolution(resolution.width,resolution.height);
     
     % make sure that we get gaze data from the Eyelink (from ETB)
-    Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');   
+    Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');  
