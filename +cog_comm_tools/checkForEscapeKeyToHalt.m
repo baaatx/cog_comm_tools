@@ -8,5 +8,4 @@ function checkForEscapeKeyToHalt()
     if cog_comm_tools.checkForKeyPress(escapeKey)
         cog_comm_tools.shutDownExperiment();
         error('Experiment Halted with Escape Key');
-    end
-    
+    end    
