@@ -27,5 +27,5 @@ function shutDownExperiment()
     ShowCursor;
     
     % make sure MATLAB window gets key presses after we close
-    ListenChar(1);
+    ListenChar();
     

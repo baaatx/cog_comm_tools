@@ -16,7 +16,7 @@
 function stringArray = textFileToStringArrays(filename, linesPerArray)
     
     % open file for reading
-    fileHandle = cog_comm_tools.openFileForReading(filename);
+    fileHandle = cog_comm_tools.openFileForRead(filename);
     
     % first, count total lines in the file by using textscan
     arrSize = textscan(fileHandle, '%s', 'delimiter', '\n', 'whitespace', '');
