@@ -1,10 +1,12 @@
-% Wrapper to initialize EyeLink Equipment
+% Wrapper Function to initialize EyeLink Equipment.
 %
 % Author: Brian Armstrong
 %
-function initializeEyelink(resolution)
-    % call initialize
-    %status = Eyelink('Initialize');
+function el = initializeEyelink(resolution)
+    % stuff from etb examples I assume we should do
+    ListenChar(2);
+    commandwindow;
+    
     % EyelinkInit is an 'Eyelink oneliner'
     [result, dummy ] = EyelinkInit(0, 1);
     
@@ -17,4 +19,7 @@ function initializeEyelink(resolution)
     status = cog_comm_tools.EyelinkSetResolution(resolution.width,resolution.height);
     
     % make sure that we get gaze data from the Eyelink (from ETB)
-    Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');  
+    Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
+    
+    % init and return default values
+    el = EyelinkInitDefaults(window);
