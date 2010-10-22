@@ -24,10 +24,20 @@ try
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
     % define the choice options
-    A = Choice('a', KbName('a'), 'Apple');
-    B = Choice('p', KbName('p'), 'Pear');
-    C = Choice('k', KbName('k'), 'Kiwi');
-    D = Choice('d', KbName('d'), 'Durian');
+    % Choice(keyString, keyValue, value)
+    %
+    %
+    %    NOTE: keyValue is which key they press to choose that option
+    %          and it must represent a valid key on the keyboard.
+    %          Normally just use the lowercase version of letters.
+    %          (Whatever results from just pressing that key.)
+    %          or 'ESCAPE', 'SPACE', etc.  If the key is invalid
+    %          you'll get an error message.
+    %
+    A = Choice('a', 'Apple');
+    B = Choice('p', 'Pear');
+    C = Choice('k', 'Kiwi');
+    D = Choice('d', 'Durian');
     
     % the choice list
     choiceList = [A B C D];
