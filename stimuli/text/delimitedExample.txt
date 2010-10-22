@@ -1,0 +1,6 @@
+XXX
+group1 group1 group1 | group2 group2 group2 | group3 group3 group3
+XXX
+group1 group1 group1 | group2 group2 group2
+XXX
+group1 group1 group1 | group2 group2 group2 | group3 group3 group3 | group4 group4 group4

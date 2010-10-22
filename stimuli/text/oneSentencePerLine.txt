@@ -1,0 +1,4 @@
+The horse eats grass.
+The bear eats salmon.
+The cow eats hay.
+The man eats cow.
