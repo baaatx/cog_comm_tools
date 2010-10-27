@@ -4,8 +4,8 @@
 % Author: Brian Armstrong
 
 function checkForEscapeKeyToHalt()
-    escapeKey = KbName('ESCAPE');
-    if cog_comm_tools.checkForKeyPress(escapeKey)
+    escape = 'ESCAPE';
+    if cog_comm_tools.checkForKeyPress(escape)
         cog_comm_tools.shutDownExperiment();
         error('Experiment Halted with Escape Key');
     end    

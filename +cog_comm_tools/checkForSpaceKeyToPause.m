@@ -4,7 +4,7 @@
 %
 function checkForSpaceKeyToPause()
     spaceKey = KbName('space');
-    if cog_comm_tools.checkForKeyPress(spaceKey)
+    if cog_comm_tools.checkForKeyPress('space')
         WaitSecs(2);
         while true
             [ keyIsDown, seconds, keyCode ] = KbCheck;
