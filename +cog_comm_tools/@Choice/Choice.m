@@ -5,17 +5,13 @@
 %
 classdef Choice
    properties
-      keyString
-      keyValue
+      keyCode
       value
    end
    methods
-       function obj = Choice(keyValue, value)
+       function obj = Choice(keyCode, value)
            % just the string we show for that option
-           obj.keyString = keyValue;
-
-           % get the key object for that key
-           obj.keyValue = KbName(keyValue);
+           obj.keyCode = keyCode;
            
            % This is the value we return if this choice is selected.
            obj.value = value;
