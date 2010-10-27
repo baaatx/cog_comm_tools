@@ -16,7 +16,7 @@ function answer = multipleChoiceDialog(window, questionMessage , choiceList)
     
     % append the text that displays the choices
     for i=1:length(choiceList)
-        formattedText = [formattedText '\n\n' choiceList(i).keyString ' : ' choiceList(i).value];
+        formattedText = [formattedText '\n\n' choiceList(i).keyCode ' : ' choiceList(i).value];
     end
     
     % display the text
@@ -32,7 +32,7 @@ function answer = multipleChoiceDialog(window, questionMessage , choiceList)
     while (answerInvalid)
         KbWait();
         for i=1:length(choiceList)
-            if (cog_comm_tools.checkForKeyPress(choiceList(i).keyValue))
+            if (cog_comm_tools.checkForKeyPress(choiceList(i).keyCode))
                 answerInvalid = false;
                 answer = choiceList(i).value;
             end
