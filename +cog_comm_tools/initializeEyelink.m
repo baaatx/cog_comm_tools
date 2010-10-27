@@ -2,7 +2,7 @@
 %
 % Author: Brian Armstrong
 %
-function el = initializeEyelink(resolution)
+function el = initializeEyelink(window, resolution)
     % stuff from etb examples I assume we should do
     ListenChar(2);
     commandwindow;
