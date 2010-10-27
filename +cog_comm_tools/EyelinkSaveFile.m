@@ -7,6 +7,6 @@ function status = EyelinkSaveFile(filename, participantId)
     status = Eyelink('ReceiveFile', [] , ['participants/' participantId '/eyelink/' filename]);
     
     % handle error
-    if (status <= 0)
+    if (status < 0)
         error (['There was an error receiving file ' filename ' for ' participantId ]);
     end    
