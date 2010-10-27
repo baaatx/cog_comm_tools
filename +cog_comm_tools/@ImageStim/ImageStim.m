@@ -54,6 +54,9 @@ classdef ImageStim
            maxX = (xPos + (obj.width / 2));
            maxY = (yPos + (obj.height / 2));
            obj.destRect = [minX minY maxX maxY];
+
+           % round to nearest integer values
+           obj.destRect = round(obj.destRect);
        end
    end
 end % classdef
