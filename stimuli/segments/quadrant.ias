@@ -1,0 +1,5 @@
+# EyeLink Interest Area Set created on Wed Oct 27 13:38:33 CDT 2010
+RECTANGLE	1	0	0	573	441	TopLeft
+RECTANGLE	2	575	0	1149	443	TopRight
+RECTANGLE	3	0	441	573	863	BottomLeft
+RECTANGLE	4	578	443	1150	862	BottomRight
