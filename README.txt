@@ -6,3 +6,7 @@ See the _example.m MATLAB scripts for some example function usage.
 
 See the ExampleExperiment_experiment.m for an example of an entire (simple) experiment that uses the code.
 
+The MATLAB package is contained in the +cog_comm_tools folder.
+
+
+
