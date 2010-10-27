@@ -9,8 +9,12 @@
 function participantId = initializeParticipant(window)
     
     % get RA info
-    experimenterId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Experimenter EID: ', 'center', 'center');
+    experimenterId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Experimenter ID: ', 'center', 'center');
 
+    % get room ID
+    roomId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Lab Room ID: ', 'center', 'center');
+
+    % get unique participantId
     participantId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Participant id: ', 'center', 'center');
     
     while (cog_comm_tools.participantExists(participantId))
@@ -24,7 +28,7 @@ function participantId = initializeParticipant(window)
     % change the current folder to the subjects folder
     startDir = cd ('participants');
     
-    % make a new folder for this participant(in the participants folder) 
+    % make a new folder for this participant (in the 'participants' folder) 
     % if it does not exist.
     if (isdir(participantId) == 0)
         mkdir(participantId);
@@ -57,9 +61,10 @@ function participantId = initializeParticipant(window)
     myLog = cog_comm_tools.TDFLog([ 'participants/' participantId '/ExpLog.txt']);
     myLog.add('partId');
     myLog.add('experId');
+    myLog.add('roomId');
     myLog.add('timestmp');
     myLog.nextRow();
     myLog.add(participantId);
     myLog.add(experimenterId);
-    myLog.add(datestr(now, 'mmmm dd, yyyy HH:MM:SS.FFF AM'));
-    myLog.nextRow();
+    myLog.add(roomId);
+    myLog.add(datestr(now, 'mmmm dd, yyyy HH:MM:SS.FFF AM'));    
