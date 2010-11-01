@@ -17,13 +17,16 @@ function [answer, responseTime] = joystickLeftRightDialog()
         responseTime = GetSecs() - startTime();
         
         % the 32 bit is set if the left button is pressed down
-        if (result == 32 )
+        checkbits = bitand(result, 32);
+        if (checkbits == 32 )
            answer = 'left';
            validPress = true;
         end
+        
+        checkbits = bitand(result, 64);
         % the 64 bit is set if the right button is pressed down
-        if (result == 64 )
+        if (checkbits == 64 )
            answer = 'right';
            validPress = true;
         end
-    end    
+    end
