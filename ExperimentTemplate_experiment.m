@@ -86,12 +86,12 @@ try
     displayInstructions(window, 'That completes the experiment! Thanks for your participation! Now we have a few quick exit questions for you to anwser. Your feedback is important to us.' , 1);
     
     % DEBRIEFING
-    questionFile = 'ExmapleQuestions';
-    questionText = 'Did You Enjoy Participating in This Experiment?';
-    askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
+    questionFile = 'SeeImageQuestions';
+    questionText1 = 'Did You Enjoy Participating in This Experiment?';
+    askQuestionAndSaveAnswer(window, questionFile, 'q1', questionText1, participantId );
 
-    questionText = 'Did you have to think much before speaking the first thing that came to your mind?';
-    askQuestionAndSaveAnswer(window, questionFile, questionText, participantId);
+    questionText2 = 'Did you have to think much before speaking the first thing that came to your mind?';
+    askQuestionAndSaveAnswer(window, questionFile, 'q2', questionText2, participantId );
     
     % say goodbye
     displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
