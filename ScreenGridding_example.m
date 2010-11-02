@@ -1,14 +1,14 @@
-%  ScreenGridding_example.m - shows how screen gridding works
+%  ScreenGridding_example.m - shows how screen gridding works with image
+%  stims...
 %
 % Author: Brian Armstrong
 %
-
 % import our lab's custom package so we can use its functions.
 import cog_comm_tools.*;
 
 % font settings
 fontFace = 'Arial';
-fontSize = 30;
+fontSize = 24;
 fontStyle = 1;
 
 % here we are specifying what screen resolution we want
@@ -23,48 +23,50 @@ try
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
-    displayInstructions(window, ['Screen Width:' num2str(resolution.width)]);
-    displayInstructions(window, ['Screen Height:' num2str(resolution.height)]);
+    displayInstructions(window, ['Selected Screen Width:' num2str(resolution.width)]);
+    displayInstructions(window, ['Selected Screen Height:' num2str(resolution.height)]);
+    displayInstructions(window, 'Many randomly selected image stims will be\npresented in a grid format.\n\nHit any key on the keyboard afterwards to exit.');
     
-    % a list of image Data
-    imageData = cell(1,4);
-    imageData{1} = imread(char('stimuli/images/redBall.jpg'));
-    imageData{2} = imread(char('stimuli/images/blackSix.jpg'));
-    imageData{3} = imread(char('stimuli/images/blueTriangle.jpg'));
-    imageData{4} = imread(char('stimuli/images/silverInfinity.jpg'));
+    % DEFINE STIMULI
+    % create image stimuli objects (encapsulates data for image stimuli)
+    s1 = ImageStim('x0', 'stimuli/images/babyChicken.jpg', 0, 0 , 'baby chicken');
+    s2 = ImageStim('x1', 'stimuli/images/cross_hairs.jpg', 0, 0 , 'cross hairs');
+    s3 = ImageStim('x2', 'stimuli/images/armadillo-purse.jpg', 0, 0, 'armadillo purse');
+    s4 = ImageStim('x3', 'stimuli/images/heart.jpg', 0, 0, 'heart');
+    s5 = ImageStim('x4', 'stimuli/images/silverInfinity.jpg', 0, 0, 'infinity');
+    s6 = ImageStim('x6', 'stimuli/images/blackSix.jpg', 0, 0, 'six');
+    s7 = ImageStim('x7', 'stimuli/images/redCross.jpg', 0, 0, 'cross');
+    
+    imageStims = [s1 s2 s3 s4 s5 s6 s7];
     
     rows = 10;
-    columns = 10;
+    columns = 14;
     
     % we are adding a grid color (black) so we need one more spot in the
     % array for this image.
-    theImageData = cell(1, rows*columns+1);
-    
-    % this is our background image (to color the grid padding)
-    theImageData{1} = imread(char('stimuli/images/blackSquare.jpg'));
-    
-    % get some random image data to fill our grid
-    for i=2:(rows*columns+1)
-        theImageData{i} = imageData{randi(length(imageData))};
+    theImageStims = cell(1, rows*columns);
+        
+    % get some random image stims to fill our grid
+    for i=1:(rows*columns)
+        theImageStims{i} = imageStims(randi(length(imageStims)));
     end
-    
-    % this rect represents the full screen (for our background image)
-    fullScreen = [0;0;resolution.width; resolution.height];
    
     % this function call gets the grid rectangles needed to draw the grid
-    gridRects = getScreenGridRects(0, resolution.width, 0 , resolution.height, rows, columns, 3 , false);
-    
-    % make the background destRect (fullScreen) first so the background
-    % gets drawn first to the entire window
-    destinationRects = [fullScreen gridRects];
+    %
+    % NOTE: 20 is the paddingWidth, and true means return square shaped
+    % cells, (false would return rectangular shaped cells)
+    %
+    gridRects = getScreenGridRects(0, resolution.width, 0 , resolution.height, rows, columns, 10 , true);
     
     startTime = GetSecs();
     
     % now we can draw our grid of images...
-    displayMultipleImageDataAtDestRects(window, theImageData, destinationRects);
+    displayImageStimsAtDestRects(window, theImageStims, gridRects);
     
+    % calculate the time to draw the grid...
     endTime = GetSecs() - startTime;
     
+    % wait for a key press...
     KbWait();
     
     displayInstructions(window, ['Time to Draw: ' num2str(endTime) ' seconds']);
