@@ -17,8 +17,8 @@ function displayMultipleImageDataAtDestRects(window, imagesData, destinationRect
     end
     
     % the texture pointers
-    myTextures = [];
-    
+    myTextures = zeros(1, length(imagesData));
+        
     % for each imageFile, create textures
     for i=1:length(imagesData)
         % make texture image out of image matrix 'imdata'
