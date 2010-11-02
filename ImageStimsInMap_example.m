@@ -1,4 +1,5 @@
-% DisplayImageStims_example.m - Displays some imageStims...
+% DisplayImageStimsInMap_example.m - Displays some imageStims that are
+% stored in a Map object for organization and randomization with constraints.
 %
 % Author: Brian Armstrong
 %
@@ -12,6 +13,8 @@ fontSize = 30;
 fontStyle = 1;
 
 % here we are specifying what screen resolution we want
+
+imageDisplayTime = 1.0;
 screenResolution = [800 600];
 
 % a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
@@ -30,9 +33,17 @@ try
     %
     % function obj = ImageStim(keyCode, fileName, xPos, yPos, title)
     %
+    
+    % Set this stim as invalid (valid = false implies that this stim is filler)
     img1 = ImageStim('x0', 'stimuli/images/redBall.jpg', 150,70, 'Red Ball');
+    img1.valid = false;
+    
     img2 = ImageStim('x1', 'stimuli/images/babyChicken.jpg', 700,300, 'Baby Chicken');
+    
     img3 = ImageStim('x2', 'stimuli/images/redFinch.jpg', 150,550, 'Red Finch');
+    img3.valid = false;
+    
+    img4 = ImageStim('x3', 'stimuli/images/silverInfinity.jpg', 150,550, 'Silver Infinity');
         
     % NOTE:
     %
@@ -50,17 +61,50 @@ try
     imageStimsMap(img1.keyCode) = img1;
     imageStimsMap(img2.keyCode) = img2;
     imageStimsMap(img3.keyCode) = img3;
-    
-    % a cell array of keyCodes
-    exampleOrdering = { 'x0' , 'x2', 'x1', 'x2', 'x0' ,'x1'};
+    imageStimsMap(img4.keyCode) = img4;
 
+    % the ordering for the stims - a cell array of keyCodes.
+    % Each Stim appears 3 times, but we will randomize this ordering with
+    % the constraint that no more than 3 valid or invalid stims appear in a
+    % row and that no stim appears twice in a row.
+    exampleOrdering = { 'x0' , 'x1', 'x2', 'x3' , 'x0' , 'x1', 'x2', 'x3' , 'x0' , 'x1', 'x2', 'x3'};
+
+    % shuffle the ordering such that no more than 3 valid or invalid stims
+    % appear in a row. 
+    %
+    % NOTE: The argument 3 is optional here (the default is 3) but it could
+    %  be set to whatever number is desired...
+    
+    exampleOrdering = shuffleStimOrdering(imageStimsMap, exampleOrdering, 3);
+            
+    displayInstructions(window, 'Ready to display image stims in Random Ordering...');
+    
     % display them by the exampleOrdering for one second each
     for i=1:length(exampleOrdering)
-        % display the image stim, notice we get the imageStim out of the
-        % map by using a key in our exampleOrdering.
-        displayImageStimCentered(window, imageStimsMap(exampleOrdering{i}));
-        % wait 1 second
-        WaitSecs(1);
+        
+        % grab the current image stim
+        currentStim = imageStimsMap(exampleOrdering{i});
+                
+        %  determine if it is valid or not
+        if (currentStim.valid)
+            boolValue = 'valid';
+        else
+            boolValue = 'invalid';
+        end
+        
+        % draw the title of the stim and if it is valid or not for
+        % demonstration purposes. (this gets drawn to the screen when
+        % displayImageStimCentered flips the screen...)
+        drawTextAtPosition(window, [ currentStim.title ' : ' boolValue ], 200, 200);
+        
+        % display the image stim.
+        %
+        % NOTE: notice we get the imageStim out of the map by using a key in our exampleOrdering.
+
+        displayImageStim(window, currentStim);
+        
+        % wait imageDisplayTime seconds
+        WaitSecs(imageDisplayTime);
     end   
         
     % SHUTDOWN THE EXPERIMENT
