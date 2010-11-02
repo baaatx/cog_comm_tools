@@ -8,8 +8,9 @@
 %
 % Author: Brian Armstrong
 %
-function answer = multipleChoiceDialog(window, questionMessage , choiceList)
-    answer = '';
+function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage , choiceList)
+    
+    answer = 'notSelected';
     
     % start text that displays the question and choices
     formattedText = [questionMessage '\n\n'];
@@ -22,7 +23,9 @@ function answer = multipleChoiceDialog(window, questionMessage , choiceList)
     % display the text
     cog_comm_tools.drawTextAtPosition(window, formattedText, 200, 200);
     Screen('Flip',window);
-        
+    
+    % now the question is on the screen
+    startTime = GetSecs();    
     answerInvalid = true;
     
     % supress text from matlab window
@@ -37,9 +40,12 @@ function answer = multipleChoiceDialog(window, questionMessage , choiceList)
                 answer = choiceList(i).value;
             end
         end
+        % allow halt with ESC key
         cog_comm_tools.checkForEscapeKeyToHalt();
     end
     
-    % un-supress text from matlab window
-    ListenChar(1);
+    % calculate response time
+    responseTime = GetSecs() - startTime;
     
+    % un-supress text from matlab window
+    ListenChar(1);    
