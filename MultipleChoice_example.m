@@ -24,10 +24,9 @@ try
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
     % define the choice options
-    % Choice(keyString, keyValue, value)
+    % Choice(keyCode, value)
     %
-    %
-    %    NOTE: keyValue is which key they press to choose that option
+    %    NOTE: keyCode is which key they press to choose that option
     %          and it must represent a valid key on the keyboard.
     %          Normally just use the lowercase version of letters.
     %          (Whatever results from just pressing that key.)
@@ -43,10 +42,10 @@ try
     choiceList = [A B C D];
 
     % start the multiple Choice Dialog
-    answer = multipleChoiceDialog(window, 'Which fruit do you like the most?' , choiceList);
+    [answer, responseTime]  = multipleChoiceDialog(window, 'Which fruit do you like the most?' , choiceList);
     
     % tell them what they selected
-    displayInstructions(window, ['You selected ' answer], 1);
+    displayInstructions(window, ['You selected ' answer ' after ' num2str(responseTime) ' seconds.'], 1);
     
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();
