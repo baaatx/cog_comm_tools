@@ -28,11 +28,8 @@ try
     % Choice(keyCode, value)
     %
     %    NOTE: keyCode is which key they press to choose that option
-    %          and it must represent a valid key on the keyboard.
-    %          Normally just use the lowercase version of letters.
-    %          (Whatever results from just pressing that key.)
-    %          or 'ESCAPE', 'SPACE', etc.  If the key is invalid
-    %          you'll get an error message.
+    %          and it must represent a valid key on the joystick.
+    %          (X Y A B left right directional)
     %
     A = Choice('X', 'Smell');
     B = Choice('Y', 'Sight');
@@ -42,12 +39,13 @@ try
     % the choice list
     choiceList = [A B C D];
 
+    % must initializeEyelink to use the Joystick
     initializeEyeLink(window, resolution);
     
     % start the multiple Choice Dialog
     [answer , responseTime] = joystickMultipleChoiceDialog(window, 'Which sense if the most useful?' , choiceList);
     
-    % tell them what they selected
+    % tell them what they selected and how fast
     displayInstructions(window, ['You selected ' answer ' after ' num2str(responseTime) ' seconds.'], 1, 'joystick');
     
     % SHUTDOWN THE EXPERIMENT
