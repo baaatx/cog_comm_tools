@@ -22,7 +22,7 @@ fontSize = 30;
 fontStyle = 1;
 
 % define the screen resolution the experiment is going to run on. [x y]
-screenResolution = [800 600];
+screenResolution = [1152 864];
 
 % store start time
 startTime = GetSecs();
