@@ -15,7 +15,6 @@ soundCheckInstructions = 'We''ll begin with a sound check.\n\nRead the sentence 
 cog_comm_tools.displayInstructions(window, soundCheckInstructions);
 
 % define varibles
-spaceKey = KbName('space');
 readingDelay = 0.8;
 recordingLength = 5;
 soundCheckSentence = 'Say "The red fox ran into the woods."';
@@ -64,7 +63,7 @@ while (true)
     cog_comm_tools.displayInstructions(window, 'Experimenter: Does the sound check look okay? If so, hold the SPACEBAR to continue to the experiment. Press any other key to run the soundcheck again.', 1.0);
             
     % check for spaceKey Hold down
-    if (cog_comm_tools.checkForKeyPress(spaceKey))
+    if (cog_comm_tools.checkForKeyPress('space'))
         break;
     end
     

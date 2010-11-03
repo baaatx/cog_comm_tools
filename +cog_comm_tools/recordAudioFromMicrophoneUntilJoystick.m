@@ -1,4 +1,4 @@
-function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, bufferLength, fileName, voiceTrigger)
+function responseTime = recordAudioFromMicrophoneUntilJoystick(participantId, bufferLength, fileName, voiceTrigger)
 % 
 % Parameters:
 %
@@ -11,7 +11,7 @@ function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, bu
 % voiceTrigger (optional) = the amplitude below which is considered to be
 %                           silence. (between 0 and 1)
 %
-% returns the responceTime (time before amplitude voiceTrigger is acheived)
+% returns the responseTime (time before amplitude voiceTrigger is acheived)
 %
 % Author: Brian Armstrong, Dylan Bumford
 %
@@ -65,16 +65,8 @@ end
 % Record the response time
 responseTime = (GetSecs() - startsecs);
 
-proceed = false;
-
-dt = 0.10;
-
-while (proceed == false && (GetSecs() - startsecs < bufferLength))
-    if (cog_comm_tools.checkForKeyPress('space'))
-        proceed = true;
-    end
-    WaitSecs(dt);
-end
+% Wait for a button press on the joystick
+cog_comm_tools.joystickWaitForButton();    
 
 % Stop capture
 PsychPortAudio('Stop', pahandle);
