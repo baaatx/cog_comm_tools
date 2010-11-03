@@ -21,7 +21,7 @@ classdef AudioStim
        function obj = AudioStim(keyCode, wavFileName, title)
            % setting a title is optional
            if (nargin<3)
-               obj.title = 'untitled audio file';
+               obj.title = 'untitled audio stim';
            else
                obj.title = title;    
            end
