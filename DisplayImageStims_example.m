@@ -12,7 +12,7 @@ fontSize = 30;
 fontStyle = 1;
 
 % here we are specifying what screen resolution we want
-screenResolution = [800 600];
+screenResolution = [1152 864];
 
 % a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
 try
