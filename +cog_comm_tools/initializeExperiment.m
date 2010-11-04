@@ -18,3 +18,7 @@ function initializeExperiment()
     
     % Hide the Cursor
     HideCursor;  
+ 
+    % Explicitly seed MATLABs RandStream to the clock for unique random
+    % streams...
+    RandStream.setDefaultStream(RandStream('mt19937ar','seed',sum(100*clock)));
