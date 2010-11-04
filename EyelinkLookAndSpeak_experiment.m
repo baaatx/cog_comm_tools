@@ -48,15 +48,20 @@ try
     numTrials = 4;
     
     % DEFINE IMAGE STIMS
+    
+    % first trial
     x1 = ImageStim('x1', 'stimuli/images/panda.jpg', 200, 200 , 'panda');
     x2 = ImageStim('x2', 'stimuli/images/heart.jpg', 900, 700 , 'heart');
     
+    % second trial
     x3 = ImageStim('x3', 'stimuli/images/babyChicken.jpg', 250, 400, 'Baby Chicken');
     x4 = ImageStim('x4', 'stimuli/images/armadillo-purse.jpg', 825, 220, 'armadillo-purse');
     
+    % third trial
     x5 = ImageStim('x5', 'stimuli/images/pinkSquare.jpg', 300, 300, 'pink square');
     x6 = ImageStim('x6', 'stimuli/images/silverInfinity.jpg', 900, 440, 'silver infinity');
         
+    % fourth trial
     x7 = ImageStim('x7', 'stimuli/images/orangeHexagon.jpg', 200, 400, 'orange hexagon');
     x8 = ImageStim('x8', 'stimuli/images/redCross.jpg', 800, 400, 'red cross');
     
@@ -77,7 +82,7 @@ try
 
     % DEFINE SOME ADDITIONAL REQUIRED 'PER TRIAL' DATA
     
-    % desired ID for each trial
+    % desired string IDs for each trial (could be textual)
     trialIds = {'1', '2', '3', '4'};
     
     % stims used in each trial
