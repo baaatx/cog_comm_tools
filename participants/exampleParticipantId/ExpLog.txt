@@ -1,2 +1,0 @@
-partId	experId	timestmp	
-exampleParticipantId	testId	October 12, 2010 12:47:38.173 PM	
