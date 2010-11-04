@@ -42,6 +42,11 @@ try
     % init Eyelink default values
     el = EyelinkInitDefaults(window);
     
+    % PREPARE DATA FOR EXPERIMENT
+    
+    % the number of trials to run...    
+    numTrials = 4;
+    
     % DEFINE IMAGE STIMS
     x1 = ImageStim('x1', 'stimuli/images/panda.jpg', 200, 200 , 'panda');
     x2 = ImageStim('x2', 'stimuli/images/heart.jpg', 900, 700 , 'heart');
@@ -70,7 +75,7 @@ try
     imageStimsMap(x7.keyCode) = x7;
     imageStimsMap(x8.keyCode) = x8;
 
-    % DEFINE SOME additional per TRIAL DATA
+    % DEFINE SOME ADDITIONAL REQUIRED 'PER TRIAL' DATA
     
     % desired ID for each trial
     trialIds = {'1', '2', '3', '4'};
@@ -83,7 +88,7 @@ try
     
     % text used in each trial
     trialText = {'three dimensional' , 'an animal' , 'biggest', 'medical'};              
-              
+    
     % define area of interest file (used in every trial in this example)
     areaOfInterestFile='leftRight.ias';
 
@@ -108,32 +113,41 @@ try
     % clear the window
     clearWindow(window);
     
-    % PERFORM TRIALS
+    % DISPLAY TRIAL INSTRUCTIONS
     displayInstructions(window, 'Please pick up the joystick.', 0.2, 'joystick');
     displayInstructions(window, 'Text will appear in the center of the screen, along with images displayed on the left or right side of the screen.\n\n Find the image that is the best match for the text, and then say the best description you can think of for the chosen image.  When you are finished speaking, press any button on the joystick.', 2, 'joystick');
     displayInstructions(window, 'Start each trial by looking at the crosshairs in the center of the screen...\n\nDo you understand the instructions?', 2, 'joystick');
     
+    % must open a file to record Eye Tracker Data into... We will put all
+    % trial data in one file for this example...
     Eyelink('OpenFile','iaTest.edf')
-        
-    numTrials = 4;
+    
+    % the trial counter...
     currentTrial = 1;
     
     while(currentTrial <= numTrials)
+
+        % SETUP...
+        
+        %Get the stims we need for this trial...
+        leftImageStim = imageStimsMap(trialStims{currentTrial}{1});
+        rightImageStim = imageStimsMap(trialStims{currentTrial}{2});
+        
+        % allow the participant to start when they are ready...
         displayInstructions(window, 'Prepare for next trial...', 0.2, 'joystick');
         
-        % show fixation point
+        % RUN THE TRIAL...
+        
+        % show fixation point and wait for dt seconds...
         displayCrossHairsCentered(window);
         WaitSecs(dt);
         
         % start recording to the EDF file
         Eyelink('StartRecording');
     
-        % let eyelink record some samples before syncing up the time...
+        % wait and let eyelink record some samples before syncing up the
+        % time to ensure we start recording.
         WaitSecs(dt);
-        
-        %Get the stims we need for this trial...
-        leftImageStim = imageStimsMap(trialStims{currentTrial}{1});
-        rightImageStim = imageStimsMap(trialStims{currentTrial}{2});
         
         % Set this trial Id
         EyelinkSetTrialId(trialIds{currentTrial});
@@ -153,29 +167,42 @@ try
         % Sync time (set zero time point)
         EyelinkSyncTime();
         
-        % record in EDF when display stim was on screen
+        % record in EDF for Data Viewer when display stim appeared on screen
         EyelinkDisplayOn();
         
         % now the images and text are on the screen...
-        %
-        % record audio for up to 4 seconds - until they press a button on
-        % the joystick.
+                
+        % send a message that the mic is on for Eyelink Data Viewer...
         EyelinkMicOn();
+        
+        % record audio for up to recordingLength seconds - or until they press a button on
+        % the joystick.
         responseTime = recordAudioFromMicrophoneUntilJoystick(participantId, recordLength, ['trial' num2str(currentTrial)]);
+        
+        % send a message that the mic is off for Eyelink Data Viewer...
         EyelinkMicOff();        
         
+        % clear the screen of stimuli with the crosshairs...
         displayCrossHairsCentered(window);
+        
+        % send a message that the stim display is off
         EyelinkDisplayOff();
+
+        % END OF TRIAL...
+        
+        % end trial in Eyelink Data
+        Eyelink('Message', 'TRIAL OK');        
+        Eyelink('StopRecording');
+        
+        % LOGGING...
         
         % log the data -  response time
         myLog.add(num2str(responseTime));
         
         % end the log row since the trial is over...
         myLog.nextRow();
-
-        % end trial in Eyelink Data
-        Eyelink('Message', 'TRIAL OK');        
-        Eyelink('StopRecording');
+        
+        % CLEAN UP...
         
         % brief inter-trial pause
         WaitSecs(dt);
@@ -186,7 +213,8 @@ try
 
     displayInstructions(window, 'Example Experiment Completed...', 0.2, 'joystick');
     
-    % Save the recorded eyelink EDF file on the display pc
+    % Save the recorded eyelink EDF file on the display pc in the
+    % participant's Eyelink folder...
     EyelinkSaveFile('iaTest.edf', participantId);
         
     % SHUTDOWN THE EXPERIMENT
