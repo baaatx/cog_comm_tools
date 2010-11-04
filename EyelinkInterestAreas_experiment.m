@@ -115,6 +115,11 @@ try
     currentTrial = 1;
     
     while(currentTrial <= numTrials)
+
+        % get image stims ready
+        leftImageStim = imageStimsMap(trialStims{currentTrial}{1});
+        rightImageStim = imageStimsMap(trialStims{currentTrial}{2});
+        
         displayInstructions(window, 'Prepare for next trial...', 0.5, 'joystick');
         
         % show fixation point
@@ -122,13 +127,10 @@ try
         WaitSecs(dt);
         
         % start recording to the EDF file
-        Eyelink('StartRecording');
+        EyelinkStartRecording();
     
         % let eyelink record some samples before syncing up the time...
         WaitSecs(dt);
-        
-        leftImageStim = imageStimsMap(trialStims{currentTrial}{1});
-        rightImageStim = imageStimsMap(trialStims{currentTrial}{2});
         
         % Set this trial Id
         EyelinkSetTrialId(trialIds{currentTrial});
@@ -151,7 +153,7 @@ try
         EyelinkSyncTime();
         
         % record in EDF when display stim was on screen
-        Eyelink('Message', 'DISPLAYON');
+        EyelinkDisplayOn();
 
         % wait for left or right joystick press.
         [answer, responseTime] = joystickLeftRightDialog();
@@ -164,8 +166,8 @@ try
         myLog.nextRow();
 
         % end trial in Eyelink Data
-        Eyelink('Message', 'TRIAL OK');        
-        Eyelink('StopRecording');
+        EyelinkTrialOk();        
+        EyelinkStopRecording();
         
         % increment the trial counter...
         currentTrial = currentTrial + 1;
