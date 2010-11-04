@@ -17,6 +17,7 @@ screenResolution = [1152 864];
 
 % declare experimental constants
 dt = 1.2;
+recordLength = 4;
 
 % a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
 try
@@ -108,7 +109,7 @@ try
     clearWindow(window);
     
     % PERFORM TRIALS
-    displayInstructions(window, 'Please pick up the joystick.', 0.5, 'joystick');
+    displayInstructions(window, 'Please pick up the joystick.', 0.2, 'joystick');
     displayInstructions(window, 'Text will appear in the center of the screen, along with images displayed on the left or right side of the screen.\n\n Find the image that is the best match for the text, and then say the best description you can think of for the chosen image.  When you are finished speaking, press any button on the joystick.', 2, 'joystick');
     displayInstructions(window, 'Start each trial by looking at the crosshairs in the center of the screen...\n\nDo you understand the instructions?', 2, 'joystick');
     
@@ -118,7 +119,7 @@ try
     currentTrial = 1;
     
     while(currentTrial <= numTrials)
-        displayInstructions(window, 'Prepare for next trial...', 0.5, 'joystick');
+        displayInstructions(window, 'Prepare for next trial...', 0.2, 'joystick');
         
         % show fixation point
         displayCrossHairsCentered(window);
@@ -130,6 +131,7 @@ try
         % let eyelink record some samples before syncing up the time...
         WaitSecs(dt);
         
+        %Get the stims we need for this trial...
         leftImageStim = imageStimsMap(trialStims{currentTrial}{1});
         rightImageStim = imageStimsMap(trialStims{currentTrial}{2});
         
@@ -152,14 +154,19 @@ try
         EyelinkSyncTime();
         
         % record in EDF when display stim was on screen
-        Eyelink('Message', 'DISPLAY ON');
-
+        EyelinkDisplayOn();
+        
         % now the images and text are on the screen...
         %
         % record audio for up to 4 seconds - until they press a button on
         % the joystick.
-        responseTime = recordAudioFromMicrophoneUntilJoystick(participantId, 4, ['trial' num2str(currentTrial)]);
-                
+        EyelinkMicOn();
+        responseTime = recordAudioFromMicrophoneUntilJoystick(participantId, recordLength, ['trial' num2str(currentTrial)]);
+        EyelinkMicOff();        
+        
+        displayCrossHairsCentered(window);
+        EyelinkDisplayOff();
+        
         % log the data -  response time
         myLog.add(num2str(responseTime));
         
@@ -170,11 +177,14 @@ try
         Eyelink('Message', 'TRIAL OK');        
         Eyelink('StopRecording');
         
+        % brief inter-trial pause
+        WaitSecs(dt);
+        
         % increment the trial counter...
         currentTrial = currentTrial + 1;
     end
 
-    displayInstructions(window, 'Example Experiment Completed...', 1, 'joystick');
+    displayInstructions(window, 'Example Experiment Completed...', 0.2, 'joystick');
     
     % Save the recorded eyelink EDF file on the display pc
     EyelinkSaveFile('iaTest.edf', participantId);
