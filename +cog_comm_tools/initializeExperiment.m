@@ -3,6 +3,7 @@
 % This function should be called at the begining of any new experiment.
 %
 % Author: Brian Armstrong
+%
 function initializeExperiment()
     % clear any lingering text from the MATLab console.
     clc;
@@ -20,5 +21,5 @@ function initializeExperiment()
     HideCursor;  
  
     % Explicitly seed MATLABs RandStream to the clock for unique random
-    % streams...
+    % streams for each MATLAB session...
     RandStream.setDefaultStream(RandStream('mt19937ar','seed',sum(100*clock)));
