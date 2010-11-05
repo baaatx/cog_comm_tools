@@ -29,8 +29,8 @@ try
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
         
     % initilze the participant
-    %participantId = initializeParticipant(window);
-    participantId = 'exampleParticipantId';
+    participantId = initializeParticipant(window);
+    %participantId = 'exampleParticipantId';
     
     % Things to do before eyelink calibration is called.
     ListenChar(2);
@@ -102,15 +102,15 @@ try
     myLog = TDFLog(['participants/' participantId '/eyelinkIATest.txt']);
     
     % run a sound check since we are recording Audio
-    %fullSoundCheck(window, participantId);
+    fullSoundCheck(window, participantId);
     
     % Calibrate the eye tracker
     displayInstructions(window, 'Now we will calibrate the EyeTracker.');
-    %EyelinkDoTrackerSetup(el);
+    EyelinkDoTrackerSetup(el);
     
     % do a final check of calibration using driftcorrection
     displayInstructions(window, 'Now we will calibrate the EyeTracker\n\n(Drift Correction)');
-    %EyelinkDoDriftCorrection(el);
+    EyelinkDoDriftCorrection(el);
 
      % re-initilize the window because calibration changes its settings...
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
@@ -131,7 +131,9 @@ try
     currentTrial = 1;
     
     while(currentTrial <= numTrials)
-
+        % a change to halt
+        checkForEscapeKeyToHalt();
+        
         % SETUP...
         
         %Get the stims we need for this trial...
@@ -148,11 +150,14 @@ try
         WaitSecs(dt);
         
         % start recording to the EDF file
-        Eyelink('StartRecording');
+        EyelinkStartRecording();
     
         % wait and let eyelink record some samples before syncing up the
         % time to ensure we start recording.
         WaitSecs(dt);
+        
+        % Sync time (set zero time point)
+        EyelinkSyncTime();
         
         % Set this trial Id
         EyelinkSetTrialId(trialIds{currentTrial});
@@ -168,9 +173,6 @@ try
         
         % this call refreshes the screen with the draw commands above.
         drawWindow(window);
-
-        % Sync time (set zero time point)
-        EyelinkSyncTime();
         
         % record in EDF for Data Viewer when display stim appeared on screen
         EyelinkDisplayOn();
@@ -196,8 +198,8 @@ try
         % END OF TRIAL...
         
         % end trial in Eyelink Data
-        Eyelink('Message', 'TRIAL OK');        
-        Eyelink('StopRecording');
+        EyelinkTrialOk();        
+        EyelinkStopRecording();
         
         % LOGGING...
         
@@ -214,6 +216,9 @@ try
         
         % increment the trial counter...
         currentTrial = currentTrial + 1;
+        
+        % a change to halt
+        checkForEscapeKeyToHalt();
     end
 
     displayInstructions(window, 'Example Experiment Completed...', 0.2, 'joystick');
