@@ -15,6 +15,9 @@ FlushEvents('keyDown');
 % Supress text to MATLAB windows
 ListenChar(2);
 
+% Add the message to question
+question = [question '\n\n(press enter key when finished)'];
+
 % display the message for the first time...
 cog_comm_tools.displayTextAtPosition(window, question, 200, 200);
 
@@ -39,7 +42,6 @@ while true
             % contatinate the char to the string...
             string = [string char];
     end
-
     cog_comm_tools.drawTextAtPosition(window, question, 200, 200);
     cog_comm_tools.drawTextCentered(window, string);
     Screen('Flip', window);
