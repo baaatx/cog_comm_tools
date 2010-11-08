@@ -1,6 +1,10 @@
-% Draws image data in 'imageStim' to window centered,  BUT DOES NOT FLIP SCREEN.
+% Draws image data in 'imageStim' to window centered.
 %
-% Remember: TOP LEFT CORNER OF SCREEN is x=0, y=0.
+% window - the window pointer
+%
+% imageStim - an imageStim object
+%
+%
 %
 % Author: Brian Armstrong
 %

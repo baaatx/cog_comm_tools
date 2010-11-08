@@ -1,6 +1,9 @@
-% Wrapper that Displays image file 'imageFileName' centered on the screen.
+% Wrapper that displays image file 'imageFileName' centered on the screen.
 %
-% (just calls with empty destRect)
+% window - the window pointer
+%
+% imageFileName - the name of a valid image file
+%
 %
 % Author: Brian Armstrong
 %

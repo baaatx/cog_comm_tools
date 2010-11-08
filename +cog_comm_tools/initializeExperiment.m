@@ -2,6 +2,7 @@
 %
 % This function should be called at the begining of any new experiment.
 %
+%
 % Author: Brian Armstrong
 %
 function initializeExperiment()

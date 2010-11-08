@@ -1,11 +1,20 @@
 % Function that displays the instructions in 'str' on the screen. 
-% Wait 'delay' long before allowing to continue by pressing any key.
+% Wait 'delay' long before allowing to continue. You can allow the user
+% to continue by either the mouse, the keyboard, or the eyelink joystick. 
 %
-% You can allow the user to continue by either the mouse, the keyboard, or the eyelink joystick. 
+% window - the window pointer
+%
+% instructionsText - the instructions text string  
+%
+% delay (optional) - how long in seconds to wait before allowing them to continue
+%
+% continueType (optional) - string specifiying how to let the participant continue.
+% Can be 'mouse' or 'joystick', default is 'keyboard'
+%
 %
 % Author: Brian Armstrong
 %
-function displayInstructions(window, str, delay, continueType)
+function displayInstructions(window, instructionsText, delay, continueType)
     if (nargin < 3)
         % default delay before allowing them to continue is a third of a
         % second...
@@ -21,16 +30,16 @@ function displayInstructions(window, str, delay, continueType)
     FlushEvents('keyDown');
 
     if (strcmp(continueType, 'mouse'))
-        str = [str '\n\n\n(Click Any Button on Mouse To Continue)'];
+        instructionsText = [instructionsText '\n\n\n(Click Any Button on Mouse To Continue)'];
     end
     
     if (strcmp(continueType, 'joystick'))
-        str = [str '\n\n\n(Press Any Joystick Button To Continue)'];
+        instructionsText = [instructionsText '\n\n\n(Press Any Joystick Button To Continue)'];
     else 
-        str = [str '\n\n\n(Press Any Key To Continue)'];
+        instructionsText = [instructionsText '\n\n\n(Press Any Key To Continue)'];
     end
     
-    DrawFormattedText(window, [str], 150, 'center', 0, 55, [], [],1.5);
+    DrawFormattedText(window, instructionsText, 150, 'center', 0, 55, [], [],1.5);
     Screen('Flip',window);
     WaitSecs(delay);
 

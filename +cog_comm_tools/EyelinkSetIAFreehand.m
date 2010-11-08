@@ -1,10 +1,15 @@
 % Wrapper for setting an Area of Interest FREEHAND in the EDF file (while
 % recording).
 %
+% IAID - the unique numeric ID for this interest area (integer)
+%
+% IAlabel - the textual label for this interest area (string)
+%
 % freehandPoints = even length list of coordinates interpreted as 
 % [x1 y1 x2 y2 ... xn yn]
 %
-% Note: Make sure your points list defines an actual polygon.
+% NOTE: Make sure your points list defines an actual polygon.
+%
 %
 % Author: Brian Armstrong
 %

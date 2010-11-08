@@ -1,6 +1,21 @@
 % Ask the participant a question and saves/appends the question and answer to questionFile in the
 % 'participants/participantsId/debriefing' directory.
 %
+% NOTE: You may just want to use getStringInputWithQuestion() if you just
+% want to get a string answer to a question from the participant.
+%
+%
+% window - the window pointer
+%
+% questionFile - the file to save to
+%
+% questionCode - the key code for the question
+%
+% questionText - the text of the question
+%
+% participantId - the unique participantId for the current participant
+%
+%
 % Author: Brian Armstrong
 %
 function askQuestionAndSaveAnswer(window, questionFile, questionCode, questionText, participantId)

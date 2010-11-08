@@ -1,5 +1,6 @@
 % Checks the participants folder for a list of all participants
 %
+%
 % Author: Brian Armstrong
 %
 function listOfParticipants = listParticipantFolders()

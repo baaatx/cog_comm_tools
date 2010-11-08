@@ -1,9 +1,8 @@
-% Shut Down Experiment
-%
-% This function should be called at the very end of any new experiment, and
+% Shut Down Experiment: This function should be called at the very end of any new experiment, and
 % also in the catch section that follows the main try block.
 %
-% Add any additional requirements at shutdown to this function.
+% (Add any additional requirements at shutdown to this function.)
+%
 %
 % Author: Brian Armstrong
 %
@@ -27,5 +26,4 @@ function shutDownExperiment()
     ShowCursor;
     
     % make sure MATLAB window gets key presses after we close
-    ListenChar();
-    
+    ListenChar();    

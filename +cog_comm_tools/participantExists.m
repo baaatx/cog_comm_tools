@@ -1,5 +1,8 @@
 % Check if there is a participant folder for this participantId
 %
+% participantId - the current participantId
+%
+%
 % Author: Brian Armstrong
 %
 function exists = participantExists(participantId)

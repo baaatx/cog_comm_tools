@@ -1,5 +1,8 @@
 % Randomly Shuffles the elements of a cell Array in place (constant space, linear time).
 %
+% cellArray - the cell array to shuffle (randomize order)
+%
+%
 % Author: Brian Armstrong
 %
 function cellArray = shuffleCellArray(cellArray)

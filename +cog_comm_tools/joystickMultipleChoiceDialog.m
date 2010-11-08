@@ -8,6 +8,7 @@
 % keys in joystickGetPressedButtons as the 'keyCode' for your choice object
 % to use this function)
 %
+%
 % Author: Brian Armstrong
 %
 function [answer, responseTime] = joystickMultipleChoiceDialog(window, questionMessage , choiceList)

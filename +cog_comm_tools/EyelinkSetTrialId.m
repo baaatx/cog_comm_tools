@@ -1,7 +1,10 @@
 % Wrapper for setting the Eyelink Trial ID.
 %
-% Note: You should call this at the start of every trial in experiments
+% trialId - ID for current trial (string)
+%
+% NOTE: You should call this at the start of every trial in experiments
 % using the Eyelink equipment.
+%
 %
 % Author: Brian Armstrong
 %

@@ -1,6 +1,11 @@
-% Fits an innerDestRect into a destRect without changing the width to height ratio.
+% Fits an innerDestRect into a destRect without changing the width to
+% height ratio. newDestRect should fit 'inside' of destRect without
+% warping.
 %
-% newDestRect should fit 'inside' of destRect without warping.
+% destRect - the outer destRect (to fit to)
+%
+% innerDestRect - the destRect to draw inside destRect
+%
 %
 % Author: Brian Armstrong
 %

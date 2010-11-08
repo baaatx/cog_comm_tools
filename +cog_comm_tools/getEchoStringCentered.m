@@ -1,3 +1,7 @@
+%
+% Use getStringInputWithQuestion instead of this function...
+%
+
 function string = getEchoStringCentered(windowPtr, msg, x, y, textColor, bgColor)
 % string = GetEchoString(window, msg, x, y, [textColor], [bgColor])
 % 

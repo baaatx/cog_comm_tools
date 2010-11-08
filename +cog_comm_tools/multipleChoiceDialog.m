@@ -6,6 +6,7 @@
 %
 % choiceList - the list of Choice objects
 %
+%
 % Author: Brian Armstrong
 %
 function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage , choiceList)

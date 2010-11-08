@@ -1,5 +1,8 @@
 % Randomly Shuffles the elements of an Array in place (constant space, linear time).
 %
+% array - the array (vector) to shuffle (randomize order)
+%
+%
 % Author: Brian Armstrong
 %
 function array = shuffleArray(array)

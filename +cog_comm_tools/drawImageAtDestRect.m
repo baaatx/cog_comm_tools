@@ -1,6 +1,14 @@
-% Draws image file on the screen at position
-% destinationRect. BUT DOES NOT FLIP SCREEN.
-
+% Draws image file on the screen at position destinationRect. 
+%
+% window - the window pointer
+%
+% imageFileName - the image to draw
+%
+% destinationRect - the destRect to draw to.
+%
+%
+% Author: Brian Armstrong
+%
 function drawImageAtDestRect(window, imageFileName, destinationRect)
     % read stimulus image into matlab matrix 'imdata':
     imdata=imread(char(imageFileName));

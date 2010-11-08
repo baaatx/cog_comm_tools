@@ -4,6 +4,7 @@
 % it continues. In the case they press both buttons at exactly the same
 % cycle, it defaults to the left button.
 %
+%
 % Author: Brian Armstrong
 %
 function [answer, responseTime] = joystickLeftRightDialog()

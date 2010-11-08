@@ -2,6 +2,7 @@
 %
 % Returns the button states of the controller and the response time.
 %
+%
 % Author: Brian Armstrong
 %
 function [buttonState, responseTime] = joystickWaitForButton()

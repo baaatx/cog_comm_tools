@@ -5,6 +5,10 @@
 %
 % orderList - cell Array of stim key codes
 %
+% maxInOrder - the max number of invalid (or valid) stim objects that can
+% appear in a row.
+%
+%
 % Author: Brian Armstrong
 %
 function meetsConstraint = stimOrderMeetsConstraint(stimMap, orderList, maxInOrder)

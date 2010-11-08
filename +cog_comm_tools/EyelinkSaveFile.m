@@ -1,12 +1,17 @@
 % Wrapper to save the eyelink file to a participant's folder
 %
+% fileName - the fileName of the new EDF file to create and save to...
+%
+% participantId - the current participantId
+%
+%
 % Author: Brian Armstrong
 %
-function status = EyelinkSaveFile(filename, participantId)
+function status = EyelinkSaveFile(fileName, participantId)
     % send command
-    status = Eyelink('ReceiveFile', [] , ['participants/' participantId '/eyelink/' filename]);
+    status = Eyelink('ReceiveFile', [] , ['participants/' participantId '/eyelink/' fileName]);
     
     % handle error
     if (status < 0)
-        error (['There was an error receiving file ' filename ' for ' participantId ]);
+        error (['There was an error receiving file ' fileName ' for ' participantId ]);
     end    

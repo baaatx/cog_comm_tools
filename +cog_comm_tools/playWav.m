@@ -1,6 +1,7 @@
-% Plays a WAV file.
+% Plays a WAV file. Returns the fileTime (how long the played file is in seconds)
 %
-% Returns the fileTime (how long the played file is in seconds)
+% wavFileName - the WAV file to play
+%
 %
 % Author: Brian Armstrong
 %

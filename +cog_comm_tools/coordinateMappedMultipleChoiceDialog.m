@@ -4,7 +4,9 @@
 % window - the window pointer
 %
 % imageMapList - rects that define choices
-% imageMapValues - values for those choices
+%
+% imageMapValues - the values for those choices
+%
 %
 % Author: Brian Armstrong
 %

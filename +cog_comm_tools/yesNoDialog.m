@@ -1,5 +1,10 @@
 % Wrapper for a yesNoDialog
 %
+% window - the window pointer
+% 
+% questionMessage - the string of the question message to display
+%
+%
 % Author: Brian Armstrong
 %
 function answer = yesNoDialog(window, questionMessage)

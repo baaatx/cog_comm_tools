@@ -1,11 +1,13 @@
 % Displays image files 'imageFileNames' to destinationRects on the screen.
 %
-%  TOP LEFT CORNER OF SCREEN is x=0, y=0.
+% window - the window pointer
 %
-%  destRect = [0,0,maxX,maxY] would draw on the entire screen...
+% imageFileNames - a cell array of imageFileNames
 %
-%  WARNING: This function can be time consuming for large amount of image
-%  data.
+% destinationRects - the destinationRects to display each file to
+% 
+% WARNING: This function can be time consuming for large amount of image
+% data.
 %
 % Author: Brian Armstrong
 %

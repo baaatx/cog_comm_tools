@@ -1,6 +1,4 @@
-% Checks for a press of a defined Key.
-%
-% Checks to see if a key 'key' was pressed.
+% Checks for a press of a key with 'keyCode' on the keyboard.
 %
 % keyCode - 'ESCAPE' , 'a', '1', etc.
 %

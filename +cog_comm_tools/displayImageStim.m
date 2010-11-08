@@ -1,6 +1,9 @@
 % Display image data in 'imageStim' to window.
 %
-% Remember: TOP LEFT CORNER OF SCREEN is x=0, y=0.
+% window - the window pointer
+%
+% imageStim - an imageStim object
+%
 %
 % Author: Brian Armstrong
 %

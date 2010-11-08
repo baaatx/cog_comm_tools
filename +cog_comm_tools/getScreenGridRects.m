@@ -8,6 +8,23 @@
 % displaying multiple images (or mapping a single image) into rows and
 % columns.
 %
+% minX - smallest x value of the screen to use
+%
+% maxX - largest x value of the screen to use
+%
+% minY - smallest y value of the screen to use
+%
+% maxY - largest y value of the screen to use
+%
+% row - the number of rows
+%
+% columns - the number of columns
+%
+% paddingWidth - the number of pixels to pad between each row and column
+%
+% forceSquare - to force grid to be squares, set this boolean to true
+%
+%
 % Author: Brian Armstrong
 %
 function gridRects = getScreenGridRects(minX, maxX, minY, maxY, rows, columns, paddingWidth, forceSquare)

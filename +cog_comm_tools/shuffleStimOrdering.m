@@ -10,10 +10,12 @@
 % in a row in the ordering.
 %
 % maxTries - (optional) max number of times the function will try to randomize the
-% ordering and obtain a correct answer. 
+% ordering and obtain a correct answer. You may need to increase this for
+% large ordering lists in order to obtain a truely randomized order.
 %
-% NOTE: If it is impossible to properly order the stims, this function will
-% not provide a valid ordering,
+% NOTE: If it is impossible (or improbable) to properly order the stims, this function will
+% not provide a valid ordering and will error out.
+%
 %
 % Author: Brian Armstrong
 %

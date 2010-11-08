@@ -4,6 +4,7 @@
 % NOTE: This only returns one string. (Use when you expect a single button
 % press.)
 %
+%
 % Author: Brian Armstrong
 %
 function button = joystickGetPressedButton()

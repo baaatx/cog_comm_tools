@@ -1,20 +1,20 @@
-function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, bufferLength, fileName, voiceTrigger)
-% 
-% Parameters:
+% Function for recording audio from the microphone until a button the space
+% key is pressed on the keyboard (or the buffer runs out of space). Returns the response time it takes to acheive an amplitude of
+% 'voiceTrigger' 
 %
 % participantId = unique participantId
 %
-% recordingLength = how long to record for
+% bufferLength = how long to record for
 %
 % fileName = full path filename for saved file
 %
 % voiceTrigger (optional) = the amplitude below which is considered to be
 %                           silence. (between 0 and 1)
 %
-% returns the responceTime (time before amplitude voiceTrigger is acheived)
 %
 % Author: Brian Armstrong, Dylan Bumford
 %
+function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, bufferLength, fileName, voiceTrigger)
 
 % voiceTrigger is optional
 if (nargin <4)
@@ -28,7 +28,7 @@ end
 freq = 44100;
 pahandle = PsychPortAudio('Open', [], 2, 0, freq, 1);
 
-% Preallocate an internal audio recording  buffer with a capacity of 10 seconds:
+% Preallocate an internal audio recording  buffer with a capacity of bufferLength seconds:
 PsychPortAudio('GetAudioData', pahandle, bufferLength);
 
 % Start audio capture immediately and wait for the capture to start.

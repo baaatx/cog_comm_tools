@@ -2,7 +2,7 @@
 % experiment.
 %
 % Author: Brian Armstrong
-
+%
 function checkForEscapeKeyToHalt()
     escape = 'ESCAPE';
     if cog_comm_tools.checkForKeyPress(escape)

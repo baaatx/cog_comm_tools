@@ -1,13 +1,13 @@
 % Function to initialize the PTB window used for an experiment.
 %
-%
-% Parameters:
-%
 % fontName   = Name of font to use.
 %
 % fontSize   = Font Size.
 %
 % fontStyle  = Font Style.
+%
+% desiredRes = resolution to try to set screen to
+%
 %
 % Author: Brian Armstrong
 %

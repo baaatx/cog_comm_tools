@@ -1,8 +1,11 @@
 % Function saves a WAV file with 'wavFileName' into jpg specified by
-% 'jpgFileName'.
-%
-% Use this for visualizing a wave file.
+% 'jpgFileName'. Use this for visualizing a wave file.
 % (Or use as a template for writing your own similar function.)
+%
+% wavFileName - the input WAV file to draw
+%
+% jpgFileName - the output JPG file to save
+%
 %
 % Author: Brian Armstrong
 %

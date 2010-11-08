@@ -1,5 +1,8 @@
 % Wrapper that Displays cross hairs centered.
 %
+% window - the window pointer
+%
+%
 % Author: Brian Armstrong
 %
 function displayCrossHairsCentered(window)

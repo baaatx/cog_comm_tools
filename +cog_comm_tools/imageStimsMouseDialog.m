@@ -3,6 +3,9 @@
 %
 % window - the window pointer
 %
+% imageStims - an array of imageStim objects
+%
+%
 % Author: Brian Armstrong
 %
 function [answer, responseTime] = imageStimsMouseDialog(window, imageStims)

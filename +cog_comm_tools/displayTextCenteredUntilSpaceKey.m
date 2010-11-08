@@ -1,4 +1,10 @@
-% Wrapper for displaying text centered on the screen with delay.
+% Wrapper for displaying text centered on the screen until the space key is
+% pressed on the keyboard.
+%
+% window - the window pointer
+%
+% text - the text string to display
+%
 %
 % Author: Brian Armstrong
 %

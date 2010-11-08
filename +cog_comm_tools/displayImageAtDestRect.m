@@ -1,10 +1,15 @@
 % Displays image file 'imageFileName' on the screen at position
 % destinationRect.
 %
-%  TOP LEFT CORNER OF SCREEN is x=0, y=0.
+% window - the window pointer
 %
-%  destRect = [0,0,maxX,maxY] would draw on the entire screen...
-%  if (destRect == []) then should center on the screen.
+% imagefileName - file name for a valid image file
+%
+% destinationRect - the destRect where the image data should be displayed
+%
+% NOTE: destRect = [0,0,maxX,maxY] would draw on the entire screen...
+% if (destRect == []) then should center on the screen.
+%
 %
 % Author: Brian Armstrong
 function displayImageAtDestRect(window, imageFileName, destinationRect)

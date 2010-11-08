@@ -1,12 +1,14 @@
-% 
 % Prompt a participant to enter keyboard input by displaying a question.
 % Waits until a carriage return (enter) or CTRL-C...
-%
 % Based on getEchoStringCentered() in PTB.
+%
+% window - the window pointer
+%
+% question - the test string of the question to ask
+%
 %
 % Author: Brian Armstrong
 %
-
 function string = getStringInputWithQuestion(window, question)
 
 % flush out any lingering text in buffer

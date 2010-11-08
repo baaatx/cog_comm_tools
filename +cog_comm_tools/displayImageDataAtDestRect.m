@@ -1,9 +1,16 @@
-% Displays image data 'imageData' on the screen at position
+% Displays image data 'imageData' on the screen to the destRect
 % destinationRect.
 %
-%  TOP LEFT CORNER OF SCREEN is x=0, y=0.
+% window - the window pointer
 %
-%  destRect = [0,0,maxX,maxY] would draw on the entire screen...
+% imageData - the extracted data from an image
+%
+% destinationRect - the destRect to display to
+%
+% NOTE:  destRect = [0,0,maxX,maxY] would draw on the entire screen...
+%
+%
+% Author: Brian Armstrong
 %
 function displayImageDataAtDestRect(window, imageData, destinationRect)
     % make texture image out of image matrix 'imdata'

@@ -4,6 +4,9 @@
 % Creates the participants's data folder in the 'participants' folder, and creates
 % required subdirectories.
 %
+% window - the window pointer
+%
+%
 % Author: Brian Armstrong
 %
 function participantId = initializeParticipant(window)

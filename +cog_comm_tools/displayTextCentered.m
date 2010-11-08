@@ -1,5 +1,10 @@
 % Wrapper for displaying text centered on the screen.
 %
+% window - the window pointer
+%
+% text - the text string to display
+%
+%
 % Author: Brian Armstrong
 %
 function displayTextCentered(window, text)

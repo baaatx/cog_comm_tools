@@ -1,9 +1,14 @@
 % Draws image data 'imageData' on the screen at position
 % destinationRect. BUT DOES NOT FLIP SCREEN.
 %
-%  TOP LEFT CORNER OF SCREEN is x=0, y=0.
+% window - the window pointer
 %
-%  destRect = [0,0,maxX,maxY] would draw on the entire screen...
+% imageData - the extracted image data for an image file
+%
+% destinationRect - the destRect to draw to.
+%
+% 
+% Author: Brian Armstrong
 %
 function drawImageDataAtDestRect(window, imageData, destinationRect)
     % make texture image out of image matrix 'imageData'

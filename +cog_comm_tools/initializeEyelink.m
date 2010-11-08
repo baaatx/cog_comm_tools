@@ -1,5 +1,10 @@
 % Wrapper Function to initialize EyeLink Equipment.
 %
+% window - the window pointer
+%
+% resolution - the [maxX maxY] vector returned when initializing the window
+%
+%
 % Author: Brian Armstrong
 %
 function el = initializeEyelink(window, resolution)

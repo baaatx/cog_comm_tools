@@ -2,6 +2,9 @@
 % for an amount of time equal to the length of the wav data before
 % continuing.
 %
+% audioStim - an audioStim object
+%
+%
 % Author: Brian Armstrong
 %
 function playAudioStim(audioStim)

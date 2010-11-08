@@ -3,6 +3,7 @@
 %
 % NOTE: This returns multiple buttons, each element of the cell array...
 %
+%
 % Author: Brian Armstrong
 %
 function buttons = joystickGetPressedButtons()

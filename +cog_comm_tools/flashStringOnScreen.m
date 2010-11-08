@@ -3,11 +3,17 @@
 % displayed.
 %
 % window - the window pointer
-% str    - the string to display
+%
+% str - the string to display
+%
 % displayDelay - How long to display the string.
-% blankDelay   - How long to show a blank screen before and after
+%
+% blankDelay - How long to show a blank screen before and after
 % displaying the string.
-
+%
+%
+% Author: Brian Armstrong
+%
 function flashStringOnScreen(window, str , displayDelay, blankDelay)
     cog_comm_tools.displayTextCenteredAndWait(window, '', blankDelay);
     cog_comm_tools.displayTextCenteredAndWait(window, str, displayDelay);

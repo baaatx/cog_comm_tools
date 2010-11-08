@@ -1,5 +1,8 @@
 % Wrapper to send Eyelink equipment a command string.
 %
+% command - valid Eyelink text command string
+%
+%
 % Author: Brian Armstrong
 %
 function status = EyelinkCommand(command)

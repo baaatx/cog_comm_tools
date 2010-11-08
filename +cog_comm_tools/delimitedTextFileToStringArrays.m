@@ -1,5 +1,10 @@
 % Breaks a file into a cell array of data by a delimiter string.
 %
+% fileName - the name of the file
+%
+% delimiter - the delimiter string
+%
+%
 % Author: Brian Armstrong
 %
 function cellArray = delimitedTextFileToStringArrays(filename, delimiter)

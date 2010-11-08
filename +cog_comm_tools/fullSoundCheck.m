@@ -1,14 +1,16 @@
 % fullSoundCheck checks to make sure participant's voice is activating audio
-% recording at desired threshold.
-%
-% The soundCheck is recorded in a WAV file, and an image of the WAV is
+% recording at desired threshold. The soundCheck is recorded in a WAV file, and an image of the WAV is
 % presented so the experimenter can make sure audio recording is working
 % properly.
 %
 % window - pointer to a valid window
 %
 % participantId - the participant's unique id
-
+%
+%
+% Author: Brian Armstrong
+%
+%
 function fullSoundCheck(window , participantId)
 
 soundCheckInstructions = 'We''ll begin with a sound check.\n\nRead the sentence presented while speaking into the microphone.\n\nWhenever you''re ready the experimenter will press a\nbutton to begin the sound check.';

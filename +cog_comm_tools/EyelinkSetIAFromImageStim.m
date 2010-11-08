@@ -2,6 +2,13 @@
 % recording) for an imageStim (it uses the destRect information inside the
 % imageStim object.
 %
+% IAID - the unique numeric ID for this interest area (integer)
+%
+% IAlabel - the textual label for this interest area (string)
+%
+% imageStim - the imageStim to use for the destRect (an imageStim object)
+%
+%
 % Author: Brian Armstrong
 %
 function EyelinkSetIAFromImageStim(IAID, IAlabel, imageStim)

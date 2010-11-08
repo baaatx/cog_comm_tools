@@ -1,6 +1,14 @@
 % Displays image stims 'imageStims' to destinationRects on the screen.
 %
-%  WARNING: This function is time consuming for large numbers of images.
+% window - the window pointer
+%
+% imageStims - an array of imageStim objects
+%
+% destinationRects - the columns of destRects to which imageStims should be
+% drawn.
+%
+% WARNING: This function is time consuming for large numbers of images.
+%
 %
 % Author: Brian Armstrong
 %

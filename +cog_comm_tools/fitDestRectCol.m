@@ -1,6 +1,10 @@
 % Fits an innerDestRect column into a destRect column without changing the width to height ratio.
-%
 % newDestRectCol column should fit 'inside' of destRectCol without warping.
+%
+% destRectCol - the outer destRect col to fit to
+%
+% innerDestRectCol - the inner destRect to fit inside destRectCol
+% 
 %
 % Author: Brian Armstrong
 %

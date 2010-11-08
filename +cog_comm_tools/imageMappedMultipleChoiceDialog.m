@@ -4,7 +4,16 @@
 %
 % questionMessage - the message to display above the options.
 %
-% imageMapList - rects that define choices
+% mapImageFile - the image file for the imageMap (the area to click on)
+%
+% mapImageDestRect - where to draw the imageMap image.
+%
+% imageMapList - rects that define valid choices (inside of
+% mapImageDestRect)
+%
+% imageMapValues - the list of values to return for each of the destRects
+% in imageMapList
+%
 %
 % Author: Brian Armstrong
 %

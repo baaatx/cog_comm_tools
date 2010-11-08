@@ -1,5 +1,6 @@
 % Function that waits until the space key is pressed to proceed.
 %
+%
 % Author: Brian Armstrong
 %
 function waitUntilSpaceKey()
