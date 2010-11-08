@@ -25,9 +25,13 @@ try
     % assert that what we need is installed and working
     initializeExperiment();
     
+    % use the example participantId
     participantId = 'exampleParticipantId';
+    
+    % our input file name
     dataFileName = 'participants/exampleParticipantId/inputLines.txt';
     
+    % create a line-delimited-log in overwrite mode (optional 'true' means overwrite)
     myLog = LDFLog(dataFileName, true);
         
     % initilize the window, set font style, unify keyboard for various OS
