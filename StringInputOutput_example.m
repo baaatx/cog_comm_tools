@@ -25,9 +25,6 @@ try
     % assert that what we need is installed and working
     initializeExperiment();
     
-    % use the example participantId
-    participantId = 'exampleParticipantId';
-    
     % our input file name
     dataFileName = 'participants/exampleParticipantId/inputLines.txt';
     
@@ -36,6 +33,9 @@ try
         
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
+
+    % use the example participantId
+    participantId = 'exampleParticipantId';
     
     %
     % Now we prompt participant for some information, logging the answers to a
