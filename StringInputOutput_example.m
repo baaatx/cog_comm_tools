@@ -59,11 +59,11 @@ try
     % Now we are able to easily access the data that was original entered
     % by the participant...
     %
-    displayTextCentered(window, ['Fruit: ' myCellArrayOfStrings{1}]);
+    displayTextCentered(window, ['Fruit Response: ' myCellArrayOfStrings{1}]);
     WaitSecs(1);
-    displayTextCentered(window, ['Tree: ' myCellArrayOfStrings{2}]);
+    displayTextCentered(window, ['Tree Response: ' myCellArrayOfStrings{2}]);
     WaitSecs(1);
-    displayTextCentered(window, ['Plant: ' myCellArrayOfStrings{3}]);
+    displayTextCentered(window, ['Plant Response: ' myCellArrayOfStrings{3}]);
     WaitSecs(1);
                 
     % SHUTDOWN THE EXPERIMENT
