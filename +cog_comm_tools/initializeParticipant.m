@@ -9,17 +9,17 @@
 function participantId = initializeParticipant(window)
     
     % get RA info
-    experimenterId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Experimenter ID: ', 'center', 'center');
+    experimenterId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter Experimenter ID.');
 
     % get room ID
-    roomId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Lab Room ID: ', 'center', 'center');
+    roomId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter Lab Room ID.');
 
     % get unique participantId
-    participantId = cog_comm_tools.GetEchoStringCentered(window, 'Please enter Participant id: ', 'center', 'center');
+    participantId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter Participant ID.');
     
     while (cog_comm_tools.participantExists(participantId))
         if(~cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, are you sure\n\nyou want to overwrite their data?'))
-            participantId = cog_comm_tools.GetEchoStringCentered(window,'Participant ID already exists. Please enter another: ','center','center');
+            participantId = cog_comm_tools.getStringInputWithQuestion(window,'Participant ID already exists. Please enter another.');
         else
             break;
         end
