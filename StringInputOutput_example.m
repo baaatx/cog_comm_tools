@@ -41,6 +41,11 @@ try
     % Now we prompt participant for some information, logging the answers to a
     % file with a logger object...
     %
+    % NOTE: You could just store this information in a cell array of
+    % strings, but most likely you would want to log any input you collect
+    % from the participant.  We are storing it to a file here to
+    % demonstrate how to get the data back out of a file...
+    %
     myLog.add( getStringInputWithQuestion(window, 'Please type a kind of fruit...') ) ;
     myLog.add( getStringInputWithQuestion(window, 'Please type a kind of tree...') ) ;
     myLog.add( getStringInputWithQuestion(window, 'Please type of kind of plant...') ) ;
