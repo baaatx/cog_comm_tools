@@ -6,7 +6,7 @@
 % Author: Brian Armstrong
 %
 function fileHandle = openFileForReadAndWrite(fileName)
-    fileHandle = fopen(fileName, 'w+');
+    fileHandle = fopen(fileName, 'r+');
     if fileHandle==-1
         error(['Could not open file for read and write: ' fileName ]); 
     end   
