@@ -5,8 +5,8 @@
 %
 % Author: Brian Armstrong
 %
-function fileHandle = openFileForRead(filename)
-    fileHandle = fopen(fileName, 'rt');
+function fileHandle = openFileForRead(fileName)
+    fileHandle = fopen(fileName, 'r');
     if fileHandle==-1
         error(['Could not open file: ' fileName ]); 
     end
