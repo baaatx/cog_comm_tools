@@ -71,11 +71,8 @@ try
 
     % shuffle the ordering such that no more than 3 valid or invalid stims
     % appear in a row. 
-    %
-    % NOTE: The argument 3 is optional here (the default is 3) but it could
-    %  be set to whatever number is desired...
-    
-    exampleOrdering = shuffleStimOrdering(imageStimsMap, exampleOrdering, 3);
+        
+    exampleOrdering = shuffleStimOrdering(imageStimsMap, exampleOrdering);
             
     displayInstructions(window, 'Ready to display image stims in Random Ordering...');
     
@@ -95,13 +92,13 @@ try
         % draw the title of the stim and if it is valid or not for
         % demonstration purposes. (this gets drawn to the screen when
         % displayImageStimCentered flips the screen...)
-        drawTextAtPosition(window, [ currentStim.title ' : ' boolValue ], 200, 200);
+        %drawTextAtPosition(window, [ currentStim.title ' : ' boolValue ], 200, 200);
         
         % display the image stim.
         %
         % NOTE: notice we get the imageStim out of the map by using a key in our exampleOrdering.
 
-        displayImageStim(window, currentStim);
+        displayImageStimWithTitle(window, currentStim);
         
         % wait imageDisplayTime seconds
         WaitSecs(imageDisplayTime);
