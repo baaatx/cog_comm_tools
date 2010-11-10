@@ -28,8 +28,8 @@ try
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
         
     % initilze the participant
-    %participantId = initializeParticipant(window);
-    participantId = 'exampleParticipantId';
+    participantId = initializeParticipant(window);
+    %participantId = 'exampleParticipantId';
     
     % Things to do before eyelink calibration is called.
     ListenChar(2);
