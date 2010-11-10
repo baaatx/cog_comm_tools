@@ -6,7 +6,9 @@
 %
 % orderList - a cell array of keys that point to elements of stimMap
 %
-% maxInOrder - the maximum number of valid or invalid stims that can appear
+% lastStimCode - (optional) the code for the last stim used (in the last trial)
+%
+% maxInOrder - (optional) the maximum number of valid or invalid stims that can appear
 % in a row in the ordering.
 %
 % maxTries - (optional) max number of times the function will try to randomize the
@@ -19,15 +21,20 @@
 %
 % Author: Brian Armstrong
 %
-function orderList = shuffleStimOrdering(stimMap, orderList, maxInOrder, maxTries)
+function orderList = shuffleStimOrdering(stimMap, orderList, lastStimCode, maxInOrder, maxTries)
+
+    % lastStimCode defaults to ''
+    if (nargin < 3)
+        lastStimCode = '';
+    end
 
     % maxInOrder defaults to 3
-    if (nargin < 3)
+    if (nargin < 4)
         maxInOrder = 3;
     end
 
     % maxTries defaults to 300
-    if (nargin < 4)
+    if (nargin < 5)
         maxTries = 300;
     end
 
@@ -41,7 +48,7 @@ function orderList = shuffleStimOrdering(stimMap, orderList, maxInOrder, maxTrie
     % while the ordering is not meeting the constraints...
     while (~ready && maxTries>0)
         orderList = cog_comm_tools.shuffleCellArray(orderList);
-        if (cog_comm_tools.stimOrderMeetsConstraint(stimMap, orderList, maxInOrder))
+        if (cog_comm_tools.stimOrderMeetsConstraint(stimMap, orderList, maxInOrder, lastStimCode))
             ready = true;
         end
         maxTries = maxTries - 1;
