@@ -17,7 +17,7 @@ screenResolution = [1152 864];
 
 % declare experimental constants
 dt = 1.2;
-recordLength = 4;
+recordLength = 15;
 
 % a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
 try
@@ -29,8 +29,8 @@ try
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
         
     % initilze the participant
-    participantId = initializeParticipant(window);
-    %participantId = 'exampleParticipantId';
+    %participantId = initializeParticipant(window);
+    participantId = 'exampleParticipantId';
     
     % Things to do before eyelink calibration is called.
     ListenChar(2);
@@ -45,7 +45,7 @@ try
     % PREPARE DATA FOR EXPERIMENT
     
     % the number of trials to run...    
-    numTrials = 4;
+    numTrials = 2;
     
     % DEFINE IMAGE STIMS
     
@@ -102,7 +102,7 @@ try
     myLog = TDFLog(['participants/' participantId '/eyelinkIATest.txt']);
     
     % run a sound check since we are recording Audio
-    fullSoundCheck(window, participantId);
+    %fullSoundCheck(window, participantId);
     
     % Calibrate the eye tracker
     displayInstructions(window, 'Now we will calibrate the EyeTracker.');
@@ -155,12 +155,12 @@ try
         % wait and let eyelink record some samples before syncing up the
         % time to ensure we start recording.
         WaitSecs(dt);
+
+        % Set this trial Id
+        EyelinkSetTrialId(trialIds{currentTrial});
         
         % Sync time (set zero time point)
         EyelinkSyncTime();
-        
-        % Set this trial Id
-        EyelinkSetTrialId(trialIds{currentTrial});
         
         % set two areas of interest for the left and right images...
         EyelinkSetIAFromImageStim(1, 'leftImage', leftImageStim)
