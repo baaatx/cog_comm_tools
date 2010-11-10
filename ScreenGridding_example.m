@@ -28,6 +28,7 @@ try
     displayInstructions(window, 'Many randomly selected image stims will be\npresented in a grid format.\n\nHit any key on the keyboard afterwards to exit.');
     
     % DEFINE STIMULI
+    %
     % create image stimuli objects (encapsulates data for image stimuli)
     s1 = ImageStim('x0', 'stimuli/images/babyChicken.jpg', 0, 0 , 'baby chicken');
     s2 = ImageStim('x1', 'stimuli/images/cross_hairs.jpg', 0, 0 , 'cross hairs');
