@@ -5,14 +5,21 @@
 %
 % orderList - cell Array of stim key codes
 %
-% maxInOrder - the max number of invalid (or valid) stim objects that can
+% maxInOrder - (optional) the max number of invalid (or valid) stim objects that can
 % appear in a row.
 %
+% lastStimCode - (optional) the last stim (in the last trial) that was used... Used to
+% prevent the first stim from being the same as lastStimCode...
 %
 % Author: Brian Armstrong
 %
-function meetsConstraint = stimOrderMeetsConstraint(stimMap, orderList, maxInOrder)
-    
+function meetsConstraint = stimOrderMeetsConstraint(stimMap, orderList, maxInOrder, lastStimCode)
+
+    % lastStimCode is optional
+    if (nargin < 4)
+        lastStimCode = '';
+    end
+
     % make maxInOrder optional, and default to 3
     if (nargin < 3)
         maxInOrder = 3;
@@ -30,6 +37,13 @@ function meetsConstraint = stimOrderMeetsConstraint(stimMap, orderList, maxInOrd
         % if the same stim appears back to back, ordering is invalid so
         % return...
         if ( i>1 && strcmp(orderList{i},orderList{i-1}))
+            return;
+        end
+
+        % if the lastStimCode is equal to the first stim code, this
+        % ordering is invalid (back to back stims...)
+        
+        if ( i==1 && strcmp(orderList{1},lastStimCode))
             return;
         end
         
