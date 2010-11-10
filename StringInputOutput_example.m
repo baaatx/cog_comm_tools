@@ -6,7 +6,6 @@
 
 % import our lab's custom package so we can use its functions.
 import cog_comm_tools.*;
-import custom_tools.*;
 
 % font settings
 fontFace = 'Arial';
@@ -15,9 +14,6 @@ fontStyle = 1;
 
 % here we are specifying what screen resolution we want
 screenResolution = [1152 864];
-
-% declare experimental constants
-dt = 1.2;
 
 % a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
 try
