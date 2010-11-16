@@ -28,7 +28,4 @@ function [window, res] = initializeWindow(fontName, fontSize, fontStyle, desired
     % Select specific text font, style and size:
     Screen('TextFont',window, fontName);
     Screen('TextSize',window, fontSize);
-    Screen('TextStyle', window, fontStyle);
-    
-    % Enable unified mode of KbName, so KbName accepts identical key names on all operating systems:
-    KbName('UnifyKeyNames');
+    Screen('TextStyle', window, fontStyle);   
