@@ -20,6 +20,9 @@ function initializeExperiment()
     
     % Hide the Cursor
     HideCursor;  
+    
+    % Enable unified mode of KbName, so KbName accepts identical key names on all operating systems:
+    KbName('UnifyKeyNames');
  
     % Explicitly seed MATLABs RandStream to the clock for unique random
     % streams for each MATLAB session...
