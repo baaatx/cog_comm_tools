@@ -21,6 +21,9 @@ if (nargin <4)
     voiceTrigger = .01;
 end
 
+% amount of time to record after the participant presses a button
+stopDelay = 0.5;
+
 % Open the default audio device [], with mode 2 (== Only audio capture),
 % and a required latencyclass of zero 0 == no low-latency mode, as well as
 % a frequency of 44100 Hz and 2 sound channels for stereo capture.
@@ -29,7 +32,7 @@ freq = 44100;
 pahandle = PsychPortAudio('Open', [], 2, 0, freq, 1);
 
 % Preallocate an internal audio recording  buffer with a capacity of bufferLength seconds:
-PsychPortAudio('GetAudioData', pahandle, bufferLength);
+PsychPortAudio('GetAudioData', pahandle, (bufferLength+stopDelay));
 
 % Start audio capture immediately and wait for the capture to start.
 % We set the number of 'repetitions' to zero,
@@ -75,6 +78,9 @@ while (proceed == false && (GetSecs() - startsecs < bufferLength))
     end
     WaitSecs(dt);
 end
+
+% give them a chance to finish if they pressed the button too early...
+WaitSecs(stopDelay);
 
 % Stop capture
 PsychPortAudio('Stop', pahandle);
