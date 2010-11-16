@@ -14,7 +14,7 @@ path = pwd();
 filesCompressed = 0;
 
 % do windows version
-if (isWindows())
+if (IsWindows())
     
     % this is the lame mp3 program on our windows machines
     command = 'c:\Progra~1\lame\lame ' ;
@@ -26,7 +26,7 @@ if (isWindows())
 end
 
 % do MAC version
-if (isMac())
+if (ismac())
     
     % this is the lame mp3 program on our mac machines
     command = '/Applications/lame-3.98.4/frontend/lame';
