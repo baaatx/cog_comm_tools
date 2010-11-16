@@ -23,8 +23,14 @@ function el = initializeEyelink(window, resolution)
     % set the tracker ro use our screen's resolution
     status = cog_comm_tools.EyelinkSetResolution(resolution.width,resolution.height);
     
-    % make sure that we get gaze data from the Eyelink (from ETB)
-    Eyelink('Command', 'link_sample_data = LEFT,RIGHT,GAZE,AREA');
+    % set the data we want to record in the EDF file
+    Eyelink('Command', 'file_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON');
     
+    % Sets data in samples sent through link.
+    Eyelink('Command', 'link_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON');
+    
+    % Sets data in events sent through link. 
+    Eyelink('Command', 'link_event_data = GAZE,GAZERES,AREA,HREF,VELOCITY');
+        
     % init and return default values
     el = EyelinkInitDefaults(window);
