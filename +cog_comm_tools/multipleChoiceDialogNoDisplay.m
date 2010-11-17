@@ -3,13 +3,20 @@
 %
 % choiceList - the list of Choice objects
 %
-% timeOut - the max time allowed before timing out
+% timeOut - (optional) the max time allowed before timing out
 %
 %
 % Author: Brian Armstrong
 %
 function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, timeOut)
     
+    % timeOut is optional
+    if (nargin < 2)
+        useTimeOut = false;
+    else
+        useTimeOut = true;
+    end
+
     answer = 'noneSelected';
     answerInvalid = true;
     
@@ -20,7 +27,7 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
     startTime = GetSecs();
     
     % wait for a valid choice to be selected from the keyboard (or timeout)
-    while (answerInvalid  && ((GetSecs() - startTime) < timeOut))
+    while ( answerInvalid  && ( (useTimeOut && ((GetSecs() - startTime) < timeOut)) || ~useTimeOut) )
         for i=1:length(choiceList)
             if (cog_comm_tools.checkForKeyPress(choiceList(i).keyCode))
                 answerInvalid = false;
