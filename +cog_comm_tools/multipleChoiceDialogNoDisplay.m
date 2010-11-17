@@ -14,6 +14,9 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList)
     % supress text from matlab window
     ListenChar(2);
     
+    % store start time
+    startTime = GetSecs();
+    
     % wait for a valid choice to be selected from the keyboard
     while (answerInvalid)
         KbWait();
