@@ -3,12 +3,14 @@
 %
 % choiceList - the list of Choice objects
 %
+% timeOut - the max time allowed before timing out
+%
 %
 % Author: Brian Armstrong
 %
-function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList)
+function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, timeOut)
     
-    answer = 'notSelected';
+    answer = 'noneSelected';
     answerInvalid = true;
     
     % supress text from matlab window
@@ -17,9 +19,8 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList)
     % store start time
     startTime = GetSecs();
     
-    % wait for a valid choice to be selected from the keyboard
-    while (answerInvalid)
-        KbWait();
+    % wait for a valid choice to be selected from the keyboard (or timeout)
+    while (answerInvalid  && ((GetSecs() - startTime) < timeOut))
         for i=1:length(choiceList)
             if (cog_comm_tools.checkForKeyPress(choiceList(i).keyCode))
                 answerInvalid = false;
