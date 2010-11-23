@@ -55,7 +55,6 @@ try
     
     % do a final check of calibration using driftcorrection at the start of
     % each trial...
-    
     displayInstructions(window, 'Now we will calibrate the EyeTracker\n\n(Drift Correction)');
     EyelinkDoDriftCorrection(el);
             
@@ -73,8 +72,9 @@ try
     
     % The TRIALs
     %
-    % Just want to track the eyes while asking the participant to follow
-    % the crosshairs on the screen.
+    % Record eye tracking data while they listen to a sentnece and while they tell back
+    % the sentence they heard...
+    %
     currentTrial = 1;
     
     while (currentTrial <= length(stimOrder))
