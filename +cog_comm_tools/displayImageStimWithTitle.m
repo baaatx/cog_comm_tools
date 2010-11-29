@@ -8,6 +8,8 @@
 % Author: Brian Armstrong
 %
 function displayImageStimWithTitle(window, imageStim)
-    cog_comm_tools.drawImageDataAtDestRect(window, imageStim.imageData, imageStim.destRect);
-    DrawFormattedText(window, imageStim.title, (imageStim.xPos - imageStim.width/4), (imageStim.yPos + imageStim.height/2), 0);
-    Screen('Flip', window);
+    % draw the image stim to the screen with it's title
+    cog_comm_tools.drawImageStimWithTitle(window, imageStim, fontSize);
+    
+    % Draw the window buffer...
+    drawWindow(window);
