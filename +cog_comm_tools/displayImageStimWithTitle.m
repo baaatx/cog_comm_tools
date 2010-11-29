@@ -9,7 +9,7 @@
 %
 function displayImageStimWithTitle(window, imageStim)
     % draw the image stim to the screen with it's title
-    cog_comm_tools.drawImageStimWithTitle(window, imageStim, fontSize);
+    cog_comm_tools.drawImageStimWithTitle(window, imageStim);
     
     % Draw the window buffer...
-    drawWindow(window);
+    cog_comm_tools.drawWindow(window);
