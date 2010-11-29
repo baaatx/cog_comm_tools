@@ -27,7 +27,8 @@ classdef TDFLog
     end
 
     function nextRow(obj)
-        fprintf(obj.fileHandle,'%s\n' , '');
+        lineSep = cog_comm_tools.getLineSeperator();
+        fprintf(obj.fileHandle,['%s' lineSep] , '');
     end
    end % methods
 end % classdef
