@@ -9,6 +9,9 @@
 %
 function [answer, responseTime] = leftRightDialog(window, questionMessage)
     
+    % clear the window (to make transition cleaner)
+    cog_comm_tools.clearWindow(window);
+
     % get the resolution from window
     resolution=Screen('Resolution', window); 
 
