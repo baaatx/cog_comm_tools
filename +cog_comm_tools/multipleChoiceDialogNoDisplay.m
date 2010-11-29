@@ -37,9 +37,9 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
         % allow halt with ESC key
         cog_comm_tools.checkForEscapeKeyToHalt();
         
-        % wait thread for 1 millisecond (because this is a busy waiting
+        % wait thread for 1/10000 of a second (because this is a busy waiting
         % loop... Allow other threads to do work)
-        WaitSecs(0.001);
+        WaitSecs(0.0001);
     end
     
     % calculate response time
