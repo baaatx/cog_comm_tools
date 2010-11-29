@@ -11,13 +11,7 @@
 function bytesWritten = appendFileToFile(inputFileName, outputFileName)
 
 % set proper line seperator
-if (IsWindows())
-    % use windows style new line chars
-    lineSep = [13 10];    
-else
-    % use unix style new line char
-    lineSep = 10;
-end
+lineSep = cog_comm_tools.getLineSeperator();
 
 % the output file handle
 outFile = cog_comm_tools.openFileForAppend(outputFileName);
