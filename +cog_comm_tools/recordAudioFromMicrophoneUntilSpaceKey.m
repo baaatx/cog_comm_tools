@@ -4,7 +4,7 @@
 %
 % participantId = unique participantId
 %
-% bufferLength = how long to record for
+% audioBufferLength = how long to record for
 %
 % fileName = full path filename for saved file
 %
@@ -14,7 +14,7 @@
 %
 % Author: Brian Armstrong, Dylan Bumford
 %
-function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, bufferLength, fileName, voiceTrigger)
+function responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, audioBufferLength, fileName, voiceTrigger)
 
 % voiceTrigger is optional
 if (nargin <4)
@@ -31,8 +31,8 @@ stopDelay = 0.5;
 freq = 44100;
 pahandle = PsychPortAudio('Open', [], 2, 0, freq, 1);
 
-% Preallocate an internal audio recording  buffer with a capacity of bufferLength seconds:
-PsychPortAudio('GetAudioData', pahandle, (bufferLength+stopDelay));
+% Preallocate an internal audio recording  buffer with a capacity of audioBufferLength seconds:
+PsychPortAudio('GetAudioData', pahandle, (audioBufferLength+stopDelay));
 
 % Start audio capture immediately and wait for the capture to start.
 % We set the number of 'repetitions' to zero,
@@ -46,7 +46,7 @@ level = 0;
 recordedAudio = [];  
 
 % Repeat as long as below trigger-threshold:
-while (level < voiceTrigger && (GetSecs() - startsecs) < bufferLength)
+while (level < voiceTrigger && (GetSecs() - startsecs) < audioBufferLength)
     % Fetch current audiodata:
     audiodata = PsychPortAudio('GetAudioData', pahandle);
 
@@ -72,12 +72,18 @@ proceed = false;
 
 dt = 0.10;
 
-while (proceed == false && (GetSecs() - startsecs < bufferLength))
+% supress text from matlab window
+ListenChar(2);
+
+while (proceed == false && (GetSecs() - startsecs < audioBufferLength))
     if (cog_comm_tools.checkForKeyPress('space'))
         proceed = true;
     end
     WaitSecs(dt);
 end
+
+% un-supress text from matlab window
+ListenChar(1);
 
 % give them a chance to finish if they pressed the button too early...
 WaitSecs(stopDelay);

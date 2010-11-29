@@ -1,10 +1,11 @@
 % Function for recording audio from the microphone until a button is
-% pressed on the Eyelink Joystick (or the buffer runs out of space). Returns the response time it takes to acheive an amplitude of
-% 'voiceTrigger' 
+% pressed on the Eyelink Joystick (or the buffer runs out of space).
+% Returns the response time it takes to acheive a wave amplitude of at
+% least 'voiceTrigger' 
 %
 % participantId = unique participantId
 %
-% bufferLength = how long to record for
+% audioBufferLength = how long to record for
 %
 % fileName = full path filename for saved file
 %
@@ -14,7 +15,7 @@
 %
 % Author: Brian Armstrong, Dylan Bumford
 %
-function responseTime = recordAudioFromMicrophoneUntilJoystick(participantId, bufferLength, fileName, voiceTrigger)
+function responseTime = recordAudioFromMicrophoneUntilJoystick(participantId, audioBufferLength, fileName, voiceTrigger)
 
 % voiceTrigger is optional
 if (nargin <4)
@@ -31,8 +32,8 @@ stopDelay = 0.5;
 freq = 44100;
 pahandle = PsychPortAudio('Open', [], 2, 0, freq, 1);
 
-% Preallocate an internal audio recording  buffer with a capacity of bufferLength seconds:
-PsychPortAudio('GetAudioData', pahandle, (bufferLength+stopDelay));
+% Preallocate an internal audio recording  buffer with a capacity of audioBufferLength seconds:
+PsychPortAudio('GetAudioData', pahandle, (audioBufferLength+stopDelay));
 
 % Start audio capture immediately and wait for the capture to start.
 % We set the number of 'repetitions' to zero,
@@ -46,7 +47,7 @@ level = 0;
 recordedAudio = [];  
 
 % Repeat as long as below trigger-threshold:
-while (level < voiceTrigger && (GetSecs() - startsecs) < bufferLength)
+while (level < voiceTrigger && (GetSecs() - startsecs) < audioBufferLength)
     % Fetch current audiodata:
     audiodata = PsychPortAudio('GetAudioData', pahandle);
 
@@ -73,7 +74,6 @@ cog_comm_tools.joystickWaitForButton();
 
 % give them a chance to finish if they pressed the button too early...
 WaitSecs(stopDelay);
-
 
 % Stop capture
 PsychPortAudio('Stop', pahandle);

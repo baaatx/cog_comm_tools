@@ -4,7 +4,7 @@
 %
 % participantId = unique participantId
 %
-% bufferLength = how long to record for
+% audioBufferLength = how long to record for
 %
 % fileName = full path filename for saved file
 %
@@ -14,7 +14,7 @@
 %
 % Authors: Brian Armstrong, Dylan Bumford
 %
-function responseTime = recordAudioFromMicrophone(participantId, bufferLength, fileName, voiceTrigger)
+function responseTime = recordAudioFromMicrophone(participantId, audioBufferLength, fileName, voiceTrigger)
 
 % voiceTrigger is optional
 if (nargin <4)
@@ -28,8 +28,8 @@ end
 freq = 44100;
 pahandle = PsychPortAudio('Open', [], 2, 0, freq, 1);
 
-% Preallocate an internal audio recording  buffer with a capacity of bufferLength seconds:
-PsychPortAudio('GetAudioData', pahandle, bufferLength);
+% Preallocate an internal audio recording  buffer with a capacity of audioBufferLength seconds:
+PsychPortAudio('GetAudioData', pahandle, audioBufferLength);
 
 % Start audio capture immediately and wait for the capture to start.
 % We set the number of 'repetitions' to zero,
@@ -43,7 +43,7 @@ level = 0;
 recordedAudio = [];  
 
 % Repeat as long as below trigger-threshold:
-while (level < voiceTrigger && (GetSecs() - startsecs) < bufferLength)
+while (level < voiceTrigger && (GetSecs() - startsecs) < audioBufferLength)
     % Fetch current audiodata:
     audiodata = PsychPortAudio('GetAudioData', pahandle);
 
@@ -66,7 +66,7 @@ end
 responseTime = (GetSecs() - startsecs);
 
 % Wait for recordingLength to pass...
-WaitSecs(bufferLength-(GetSecs()-startsecs));
+WaitSecs(audioBufferLength-(GetSecs()-startsecs));
 
 % Stop capture
 PsychPortAudio('Stop', pahandle);
