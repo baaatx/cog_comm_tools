@@ -15,6 +15,8 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     
     % start text that displays the question and choices
     formattedText = [questionMessage '\n\n'];
+        
+    [xPad, yPad] = cog_comm_tools.getScreenPadding(window);
     
     % append the text that displays the choices
     for i=1:length(choiceList)
@@ -22,7 +24,7 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     end
     
     % display the text
-    cog_comm_tools.drawTextAtPosition(window, formattedText, 200, 200);
+    cog_comm_tools.drawTextAtPosition(window, formattedText, xPad, yPad);
     Screen('Flip',window);
     
     % now the question is on the screen
