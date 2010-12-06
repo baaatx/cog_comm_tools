@@ -13,7 +13,7 @@
 %
 function fullSoundCheck(window , participantId)
 
-soundCheckInstructions = 'We''ll begin with a sound check.\n\nRead the sentence presented while speaking into the microphone.\n\nWhenever you''re ready the experimenter will press a\nbutton to begin the sound check.';
+soundCheckInstructions = 'We''ll begin with a sound check.\n\nRead the sentence presented while speaking into the microphone.\n\nPress the spacebar key when you are finished talking.\n\nWhenever you''re ready the experimenter will press a\nbutton to begin the sound check.';
 cog_comm_tools.displayInstructions(window, soundCheckInstructions);
 
 % define varibles
@@ -28,6 +28,7 @@ upperBound = 0.71;
 
 % until we break out with space key, we keep running the sound check.
 while (true)
+    % allow for halt
     cog_comm_tools.checkForEscapeKeyToHalt();
 
     % present the sentence
@@ -41,7 +42,7 @@ while (true)
     DrawFormattedText(window, [recordingMessage '\n\n\n' soundCheckSentence], 'center', 'center', 0);
     Screen('Flip',window);
     
-    cog_comm_tools.recordAudioFromMicrophone(participantId, recordingLength, 'soundCheck');
+    cog_comm_tools.recordAudioFromMicrophoneUntilSpaceKey(participantId, recordingLength, 'soundCheck');
 
     DrawFormattedText(window, [doneRecordingMessage '\n\n\n' soundCheckSentence], 'center', 'center', 0);
     Screen('Flip',window);
