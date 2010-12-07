@@ -1,6 +1,6 @@
 % Function that displays the instructions in 'str' on the screen. 
 % Wait 'delay' long before allowing to continue. You can allow the user
-% to continue by either the mouse, the keyboard, or the eyelink joystick. 
+% to continue by either the 'mouse', the 'keyboard', or the eyelink 'joystick'. 
 %
 % window - the window pointer
 %
@@ -23,7 +23,6 @@ function displayInstructions(window, instructionsText, delay, continueType)
     
     if (nargin < 4)
         % default continueType is keyboard
-        % second...
         continueType = 'keyboard';
     end
     
@@ -31,9 +30,7 @@ function displayInstructions(window, instructionsText, delay, continueType)
 
     if (strcmp(continueType, 'mouse'))
         instructionsText = [instructionsText '\n\n\n(Click Any Button on Mouse To Continue)'];
-    end
-    
-    if (strcmp(continueType, 'joystick'))
+    elseif (strcmp(continueType, 'joystick'))
         instructionsText = [instructionsText '\n\n\n(Press Any Joystick Button To Continue)'];
     else 
         instructionsText = [instructionsText '\n\n\n(Press Any Key To Continue)'];
@@ -45,9 +42,7 @@ function displayInstructions(window, instructionsText, delay, continueType)
 
     if (strcmp(continueType, 'mouse'))
         GetClicks();
-    end
-    
-    if (strcmp(continueType, 'joystick'))
+    elseif (strcmp(continueType, 'joystick'))
         cog_comm_tools.joyStickWaitForButton();
     else 
         KbWait();
