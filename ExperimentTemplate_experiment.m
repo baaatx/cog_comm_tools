@@ -96,6 +96,8 @@ try
     % say goodbye
     displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
     
+    % possibly append results (log) to master file here.
+    
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();
     
