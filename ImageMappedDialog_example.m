@@ -23,6 +23,7 @@ try
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
         
+    
     % these are the values for the choices
     answers = {'one', 'two', 'three', 'four', 'five', 'six' , 'seven' , 'eight' , 'nine', 'ten'};
     
