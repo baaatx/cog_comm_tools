@@ -4,7 +4,7 @@
 % Author: Brian Armstrong
 %
 
-% import our lab's custom package so we can use its functions.
+% import cog_comm_tools MATLAB package so we can use its functions and classes.
 import cog_comm_tools.*;
 
 % font settings
@@ -12,22 +12,22 @@ fontFace = 'Arial';
 fontSize = 30;
 fontStyle = 1;
 
-% here we are specifying what screen resolution we want
+% specify the screen resolution
 screenResolution = [1152 864];
 
-% declare experimental constants
+% declare any experimental constants
 dt = 1.2;
 
-% a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
+% a try block 'tries' a block of code and if an exception occurs it will jump to the following catch block 
 try
     % SETUP EXPERIMENT
     % assert that what we need is installed and working
     initializeExperiment();
     
-    % initilize the window, set font style, unify keyboard for various OS
+    % initilize the window, set font style 
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
         
-    % initilze the participant
+    % initilze the participant information
     participantId = initializeParticipant(window);
     %participantId = 'exampleParticipantId';
     
