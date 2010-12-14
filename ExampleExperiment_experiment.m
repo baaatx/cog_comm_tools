@@ -1,6 +1,14 @@
 % import our lab's custom package so we can use its functions.
 import cog_comm_tools.*;
 
+% font settings
+fontFace = 'Arial';
+fontSize = 30;
+fontStyle = 1;
+
+% define the screen resolution the experiment is going to run on. [x y]
+screenResolution = [1152 864];
+
 % DEFINE EXPERIMENT CONSTANTS
 
 % amount of time images are displayed.
@@ -12,33 +20,21 @@ dt = 0.2;
 % how long to record for
 recordingLength = 2.00; 
 
-% font settings
-fontFace = 'Arial';
-fontSize = 30;
-fontStyle = 1;
-
-% define the screen resolution the experiment is going to run on. [x y]
-screenResolution = [1152 864];
-
-% a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
+% a try block 'tries' a block of code and if an exception occurs it will jump to the following catch block 
 try
     % SETUP EXPERIMENT
     % assert that what we need is installed and working
     initializeExperiment();
     
-    % initilize the window, set font style, unify keyboard for various OS -
-    % save the window pointer and the resolution structure
+    % initilize the window, set font style... save the window pointer and the resolution structure
     [window, resolution ] = initializeWindow(fontFace, fontSize, fontStyle, screenResolution );
 
     % store start time for start of experiment
     startTime = GetSecs();
     
     % initilze the participant
-    
     participantId = initializeParticipant(window);
     %participantId = 'exampleParticipantId';
-    
-    error(' ');
     
     % run the full sound check since we are recording audio from the
     % participant with a microphone
