@@ -18,7 +18,7 @@ screenResolution = [1152 864];
 % experimental constants
 pauseTime = 3.0;
 
-% a try block 'tries' a block of code and if an expection (error) occurs it will jump to the following catch block 
+% a try block 'tries' a block of code and if an exception (error) occurs it will jump to the following catch block 
 try
     % SETUP EXPERIMENT
     % assert that what we need is installed and working
