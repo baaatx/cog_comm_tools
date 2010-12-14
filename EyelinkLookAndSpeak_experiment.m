@@ -19,7 +19,7 @@ screenResolution = [1152 864];
 dt = 1.2;
 recordLength = 15;
 
-% a try block 'tries' a block of code and if an expection occurs it will jump to the following catch block 
+% a try block 'tries' a block of code and if an exception occurs it will jump to the following catch block 
 try
     % SETUP EXPERIMENT
     % assert that what we need is installed and working
