@@ -11,20 +11,34 @@
 %
 function participantId = initializeParticipant(window)
     
+
+
     % get RA info
-    experimenterId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter Experimenter ID.');
+    
+    experimenterId = '';
+
+    while(strcmp(experimenterId, ''))
+        experimenterId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter a valid Experimenter ID.');    
+    end
 
     % get room ID
-    roomId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter Lab Room ID.');
+    roomId = '';
+    while(strcmp(roomId, ''))
+        roomId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter a valid Lab Room ID.');
+    end
 
     % get unique participantId
-    participantId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter Participant ID.');
+    participantId = '';
     
-    while (cog_comm_tools.participantExists(participantId))
-        if(~cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, are you sure\n\nyou want to overwrite their data?'))
-            participantId = cog_comm_tools.getStringInputWithQuestion(window,'Participant ID already exists. Please enter another.');
-        else
-            break;
+    while (strcmp(participantId, '') || cog_comm_tools.participantExists(participantId))
+        % get string input
+        participantId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter a valid Participant ID.');
+       
+        % if they want to overwrite, break out of the loop
+        if (cog_comm_tools.participantExists(participantId))
+            if(cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, are you sure\n\nyou want to overwrite their data?'))
+                break;
+            end
         end
     end
     
@@ -35,6 +49,9 @@ function participantId = initializeParticipant(window)
     % if it does not exist.
     if (isdir(participantId) == 0)
         mkdir(participantId);
+        if (~isdir(participantId))
+            error(['Participant folder not created... Is ' participantId ' a valid folder name?']);
+        end
     end
     
     % now we need to create the appropriate sub-directories
