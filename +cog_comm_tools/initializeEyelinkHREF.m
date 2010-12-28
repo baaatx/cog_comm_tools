@@ -1,4 +1,4 @@
-% Wrapper Function to initialize EyeLink Equipment.
+% Wrapper Function to initialize EyeLink Equipment in HREF (head referenced) mode.
 %
 % window - the window pointer
 %
@@ -22,13 +22,12 @@ function el = initializeEyelinkHREF(window, resolution)
     
     % set the tracker ro use our screen's resolution
     status = cog_comm_tools.EyelinkSetResolution(resolution.width,resolution.height);
-    
-    
+        
     % set the data we want to record in the EDF file
-    Eyelink('Command', 'file_sample_data = HREF,PUPIL,AREA,BUTTON');
+    Eyelink('Command', 'file_sample_data = LEFT,RIGHT,HREF,AREA'); %,STATUS,HMARKER');
     
     % Sets data in samples sent through link.
-    Eyelink('Command', 'link_sample_data = HREF,PUPIL,AREA,BUTTON');
+    Eyelink('Command', 'link_sample_data = LEFT,RIGHT,HREF,AREA') %,STATUS,HMARKER');
     
     % Sets data in events sent through link. 
     Eyelink('Command', 'link_event_data = AREA,HREF,VELOCITY');
