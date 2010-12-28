@@ -24,13 +24,13 @@ function el = initializeEyelink(window, resolution)
     status = cog_comm_tools.EyelinkSetResolution(resolution.width,resolution.height);
     
     % set the data we want to record in the EDF file
-    Eyelink('Command', 'file_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON');
+    Eyelink('Command', 'file_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON,HMARKER');
     
     % Sets data in samples sent through link.
-    Eyelink('Command', 'link_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON');
+    Eyelink('Command', 'link_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON,HMARKER');
     
     % Sets data in events sent through link. 
-    Eyelink('Command', 'link_event_data = GAZE,GAZERES,AREA,HREF,VELOCITY');
+    Eyelink('Command', 'link_event_data = GAZE,GAZERES,AREA,HREF,VELOCITY,HMARKER');
         
     % init and return default values
     el = EyelinkInitDefaults(window);
