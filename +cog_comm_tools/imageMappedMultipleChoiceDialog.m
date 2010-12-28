@@ -1,4 +1,5 @@
-% A textual multiple choice dialog function that reports the chosen answer
+% A image mapped multiple choice dialog function that reports the chosen
+% answer.
 %
 % window - the window pointer
 %
@@ -6,7 +7,7 @@
 %
 % mapImageFile - the image file for the imageMap (the area to click on)
 %
-% mapImageDestRect - where to draw the imageMap image.
+% mapImageDestRect - (where to draw the imageMap image).
 %
 % imageMapList - rects that define valid choices (inside of
 % mapImageDestRect)
