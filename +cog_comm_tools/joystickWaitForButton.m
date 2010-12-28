@@ -6,9 +6,9 @@
 % Author: Brian Armstrong
 %
 function [buttonState, responseTime] = joystickWaitForButton()
- 
-    startTime = GetSecs();
+
     buttonState = 0;
+    startTime = GetSecs();
 
     % keep polling until any button is pressed.
     while (buttonState == 0)
