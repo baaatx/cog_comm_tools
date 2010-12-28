@@ -19,6 +19,7 @@ function displayImageDataAtDestRect(window, imageData, destinationRect)
     % Draw texture image to backbuffer. It will be automatically
     % centered in the middle of the display if you don't specify a
     % different destination:
+    
     Screen('DrawTexture', window, myTexture, [],  destinationRect);
 
     % Show stimulus on screen at next possible display refresh cycle
