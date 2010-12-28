@@ -37,13 +37,17 @@ function displayInstructions(window, instructionsText, delay, continueType)
     end
     
     DrawFormattedText(window, instructionsText, 150, 'center', 0, 55, [], [],1.5);
-    Screen('Flip',window);
+    cog_comm_tools.drawWindow(window);
     WaitSecs(delay);
 
     if (strcmp(continueType, 'mouse'))
         GetClicks();
     elseif (strcmp(continueType, 'joystick'))
         cog_comm_tools.joyStickWaitForButton();
-    else 
+    else
+        % supress text from matlab window
+        ListenChar(2);
         KbWait();
+        % un-supress text from matlab window
+        ListenChar(1);
     end
