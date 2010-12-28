@@ -17,4 +17,4 @@ function drawImageStimWithTitle(window, imageStim)
 
     % draw the title under the image (approx centered)
     xOffset = ((fontSize/2) * round(length(imageStim.title) / 2));
-    DrawFormattedText(window, imageStim.title, (imageStim.xPos - xOffset), (imageStim.yPos + imageStim.height/2), 0);
+    DrawFormattedText(window, imageStim.title, (imageStim.xPos - xOffset), imageStim.yPos + (imageStim.height/2) + 2, 0);
