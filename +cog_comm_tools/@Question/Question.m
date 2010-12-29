@@ -1,5 +1,6 @@
-% This is a class that represents a single textual question, used to
+% This is a class (struct) that represents a single textual question, used to
 % encapsulate a question's information (code, questionText, and answerText).
+%
 %
 % Author: Brian Armstrong
 %
