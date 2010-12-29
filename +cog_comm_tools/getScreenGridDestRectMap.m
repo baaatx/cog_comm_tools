@@ -36,7 +36,7 @@ function gridRectMap = getScreenGridDestRectMap(minX, maxX, minY, maxY, rows, co
         
     currentRow=1;
     
-    % put destRects into map with [x y] keys
+    % put destRects into map with corresponding 'row,col' string keys
     for x=1:rows
         for y=1:columns
             gridRectMap([num2str(x) ',' num2str(y)]) = gridRectRows(currentRow,:);
