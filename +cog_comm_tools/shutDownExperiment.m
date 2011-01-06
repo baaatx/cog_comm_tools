@@ -22,6 +22,9 @@ function shutDownExperiment()
     % close all open screens
     Screen('CloseAll');
     
+    % clear matlab data from memory
+    clear;
+        
     % reveal the cursor again (just in case of a crash)
     ShowCursor;
     
