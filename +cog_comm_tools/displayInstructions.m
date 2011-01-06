@@ -11,10 +11,24 @@
 % continueType (optional) - string specifiying how to let the participant continue.
 % Can be 'mouse' or 'joystick', default is 'keyboard'
 %
+% backgroundColor (optional) - the desired background color (RGB [red green
+% blue] value or single int for grayscale.
+%
+% fontColor (optional) - the desired font color (RGB [red green
+% blue] value or single int for grayscale.
+%
 %
 % Author: Brian Armstrong
 %
-function displayInstructions(window, instructionsText, delay, continueType)
+function displayInstructions(window, instructionsText, delay, continueType, backgroundColor, fontColor)
+    
+    % display start positions...
+    xPos = 50;
+    yPos = 50;
+    
+    % wrap new lines at 75 characters...
+    wrapAt = 75;
+    
     if (nargin < 3)
         % default delay before allowing them to continue is a third of a
         % second...
@@ -25,9 +39,21 @@ function displayInstructions(window, instructionsText, delay, continueType)
         % default continueType is keyboard
         continueType = 'keyboard';
     end
+
+    % default background color is white...
+    if (nargin < 5)
+        backgroundColor = [255 255 255];
+    end
     
+    % default font color is black
+    if (nargin < 6)
+        fontColor = [0 0 0];
+    end
+    
+    % flush lingering keypresses to avoid skipping over instructions...
     FlushEvents('keyDown');
 
+    % set message based on type of continue mode
     if (strcmp(continueType, 'mouse'))
         instructionsText = [instructionsText '\n\n\n(Click Any Button on Mouse To Continue)'];
     elseif (strcmp(continueType, 'joystick'))
@@ -36,8 +62,12 @@ function displayInstructions(window, instructionsText, delay, continueType)
         instructionsText = [instructionsText '\n\n\n(Press Any Key To Continue)'];
     end
     
-    DrawFormattedText(window, instructionsText, 150, 'center', 0, 55, [], [],1.5);
-    cog_comm_tools.drawWindow(window);
+    % display the text on the screen.
+    cog_comm_tools.displayTextAtPosition(window, instructionsText, xPos, yPos, backgroundColor, fontColor, wrapAt);
+    
+    %DrawFormattedText(window, instructionsText, 150, 'center', 0, 55, [], [],1.5);
+    %cog_comm_tools.drawWindow(window);
+
     WaitSecs(delay);
 
     if (strcmp(continueType, 'mouse'))
