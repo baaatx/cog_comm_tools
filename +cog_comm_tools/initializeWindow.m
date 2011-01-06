@@ -8,10 +8,17 @@
 %
 % desiredRes = (optional) resolution to attempt to set screen to...
 %
+% textColor = (optional) desired text color (font color)
+%
 %
 % Author: Brian Armstrong
 %
-function [window, resolution] = initializeWindow(fontName, fontSize, fontStyle, desiredRes)
+function [window, resolution] = initializeWindow(fontName, fontSize, fontStyle, desiredRes, textColor)
+    
+    % text color is optional... default is black (0)
+    if (nargin < 5)
+        textColor = 0;
+    end
     
     % Choosing the display with the highest display number is a best guess about where you want the stimulus displayed.
     screens=Screen('Screens');
@@ -30,8 +37,10 @@ function [window, resolution] = initializeWindow(fontName, fontSize, fontStyle, 
 
     % call back and check the resolution
     resolution=Screen('Resolution', window); 
-    
+        
     % set text font, style and size
+    Screen('TextColor', window, textColor);   
     Screen('TextFont',window, fontName);
     Screen('TextSize',window, fontSize);
     Screen('TextStyle', window, fontStyle);   
+    
