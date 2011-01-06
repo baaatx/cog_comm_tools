@@ -1,6 +1,7 @@
 % StringInputOutput_example.m - An example script showing how to prompt a
 % participant to enter textual data, and then access it later.
 %
+%
 % Author: Brian Armstrong
 %
 

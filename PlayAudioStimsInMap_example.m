@@ -60,6 +60,7 @@ try
     
     % display text before and after playback...
     displayTextCentered(window, ['Playing: ' currentStim.title '(' num2str(currentStim.audioLength) ' secs) ']);
+    
     % play the audio stim until it completes playback
     playAudioStim(currentStim);
     displayInstructions(window, ['Finished Playing: ' currentStim.title]);

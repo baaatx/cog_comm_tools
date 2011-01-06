@@ -1,5 +1,6 @@
 % ResponseTime_example.m - audio response time example
 %
+%
 % Author: Brian Armstrong
 %
 
@@ -10,6 +11,10 @@ import cog_comm_tools.*;
 fontFace = 'Arial';
 fontSize = 30;
 fontStyle = 1;
+
+% experimental constants
+recordingLength = 3;
+voiceTrigger = 0.01;
 
 % here we are specifying what screen resolution we want
 screenResolution = [800 600];
@@ -23,11 +28,8 @@ try
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
-    %participantId = initializeParticipant(window);
-    participantId = 'exampleParticipantId'; % use the default example participant
-    recordingLength = 3;
-    fileName = 'response_time_example_recording';
-    voiceTrigger = 0.01;
+    % use the default example participant
+    participantId = 'exampleParticipantId'; 
     
     % present some instructions
     displayInstructions(window, 'When you see ''Speak Now!''\nappear on the screen, speak as quickly\n as possible!\n\n(We will calculate your response time.)', 1);
@@ -40,10 +42,13 @@ try
     
     % display some text
     displayTextCentered(window, 'Speak Now!');
+
+    % set audio file name
+    fileName = 'response_time_example_recording';
     
     % record some audio from the mic
     responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, recordingLength, fileName, voiceTrigger);
-    
+        
     % tell them what happened.
     displayInstructions(window, ['Your Response Time was: ' num2str(responseTime) ' seconds'], 1);
     

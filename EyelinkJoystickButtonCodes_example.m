@@ -1,6 +1,7 @@
 % EyelinkJoystickButtonCodes_example.m - demonstrates how the Eyelink
 % Joystick state code works to represent which buttons are pushed.
 %
+%
 % Author: Brian Armstrong
 %
 
@@ -11,6 +12,8 @@ import cog_comm_tools.*;
 fontFace = 'Arial';
 fontSize = 30;
 fontStyle = 1;
+
+dt = 0.5;
 
 % here we are specifying what screen resolution we want
 screenResolution = [1152 864];
@@ -23,14 +26,10 @@ try
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
   
-    % stuff from example experiments to do
-    ListenChar(2);
-    commandwindow;
-    
     % To use the Eyelink Joystick, must connect to Eyelink...
     initializeEyelink(window, resolution);
  
-    displayInstructions(window, 'Please pick up the Joystick...', 1, 'joystick');
+    displayInstructions(window, 'Please pick up the Joystick...', dt, 'joystick');
     
     displayInstructions(window, 'Press Buttons on JoyStick to see the result of the Eyelink ''ButtonStates'' variable. The set bits in the resulting number represent which buttons\nare pressed down.\n\nYou will see this interactively...\n\nPress ESC on keyboard to quit when you are finished with the demo.', 1, 'joystick');
 
@@ -46,6 +45,10 @@ try
         if (checkForKeyPress('ESCAPE'))
             break;
         end
+        
+        % Note: busy loop... wait for a 1/10 a milisecond to allow other
+        % threads to process...
+        WaitSecs(0.0001);
     end
     
     % SHUTDOWN THE EXPERIMENT

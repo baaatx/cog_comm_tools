@@ -60,7 +60,7 @@ try
             
     % re-initialze the window for the experiment, since the calibration
     % takes it over and changes its properties.
-    [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
+    %[window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
     displayInstructions(window, 'Please Pick Up The Joystick', dt, 'joystick');
     
@@ -83,6 +83,8 @@ try
         
         myLog.add(participantId);
         myLog.add(audioStim.keyCode);
+        
+        EyelinkDoDriftCorrection(el);
         
         % play a beep
         Beeper();

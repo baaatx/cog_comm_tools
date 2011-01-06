@@ -1,3 +1,9 @@
+% ExampleExperiment_experiment.m - an example experiment using cog_comm_tools
+% which displays some images and records audio.
+%
+%
+% Author: Brian Armstrong
+%
 % import our lab's custom package so we can use its functions.
 import cog_comm_tools.*;
 
@@ -7,7 +13,7 @@ fontSize = 30;
 fontStyle = 1;
 
 % define the screen resolution the experiment is going to run on. [x y]
-screenResolution = [1152 864];
+screenResolution = [1024 768];
 
 % DEFINE EXPERIMENT CONSTANTS
 
@@ -18,7 +24,7 @@ imageDisplayTime = 2.0;
 dt = 0.2;
 
 % how long to record for
-recordingLength = 2.00; 
+audioRecordingLength = 2.00; 
 
 % a try block 'tries' a block of code and if an exception occurs it will jump to the following catch block 
 try
@@ -29,6 +35,9 @@ try
     % initilize the window, set font style... save the window pointer and the resolution structure
     [window, resolution ] = initializeWindow(fontFace, fontSize, fontStyle, screenResolution );
 
+    midX = round(resolution.width / 2);
+    midY = round(resolution.height / 2);
+        
     % store start time for start of experiment
     startTime = GetSecs();
     
@@ -53,13 +62,14 @@ try
 
     % DEFINE STIMULI
     % create image stimuli objects (encapsulates data for image stimuli)
-    s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', 0, 0 , 'ball');
-    s2 = ImageStim('x1', 'stimuli/images/blueTriangle.jpg', 0, 0 , 'triangle');
-    s3 = ImageStim('x2', 'stimuli/images/pinkSquare.jpg', 0, 0, 'square');
-    s4 = ImageStim('x3', 'stimuli/images/orangeHexagon.jpg', 0, 0, 'hexagon');
-    s5 = ImageStim('x4', 'stimuli/images/silverInfinity.jpg', 0, 0, 'infinity');
-    s6 = ImageStim('x6', 'stimuli/images/blackSix.jpg', 0, 0, 'six');
-    s7 = ImageStim('x7', 'stimuli/images/redCross.jpg', 0, 0, 'cross');
+    %
+    s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', midX, midY , 'ball');
+    s2 = ImageStim('x1', 'stimuli/images/blueTriangle.jpg', midX, midY , 'triangle');
+    s3 = ImageStim('x2', 'stimuli/images/pinkSquare.jpg', midX, midY, 'square');
+    s4 = ImageStim('x3', 'stimuli/images/orangeHexagon.jpg', midX, midY, 'hexagon');
+    s5 = ImageStim('x4', 'stimuli/images/silverInfinity.jpg', midX, midY, 'infinity');
+    s6 = ImageStim('x6', 'stimuli/images/blackSix.jpg', midX, midY, 'six');
+    s7 = ImageStim('x7', 'stimuli/images/redCross.jpg', midX, midY, 'cross');
     
     % the array of image stimuli objects
     imageStimList = [s1 s2 s3 s4 s5 s6];
@@ -81,15 +91,9 @@ try
         
         % logging
         myLog.add(imageKeyCode);
-
-        % flash to prompt for audio input
-        flashStringOnScreen(window, imageStim.keyCode, dt, dt);
                 
         % display it for 'imageDisplayTime' seconds.
-        drawImageStimCentered (window, imageStim);
-        
-        % update the screen
-        drawWindow(window);
+        displayImageStim (window, imageStim);
         
         % log display start time
         myLog.add(num2str(getSecs()-startTime));
@@ -105,10 +109,12 @@ try
         
         % record audio - the function returns the response time (to reach
         % minimum audio loudness (amplitude)
-        responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, recordingLength, imageKeyCode);
+        responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, audioRecordingLength, imageKeyCode);
 
+        % prompt the participant to stop speaking
         displayTextCentered(window, 'Stop Speaking!');
-        WaitSecs(0.2);
+        
+        WaitSecs(dt);
                 
         % clear the window (make blank and white)
         clearWindow(window);
@@ -124,7 +130,7 @@ try
     end
 
     % tell them it is almost over
-    displayInstructions(window, 'That completes the experiment! Thanks for your participation! Now we have a few quick exit questions for you to anwser. Your feedback is important to us.' , 1);
+    displayInstructions(window, 'That completes the experiment! Thanks for your participation! Now we have a few quick exit questions for you to anwser. Your feedback is important to us.');
     
     % DEBRIEFING
     questionFile = 'SeeImageQuestions';
@@ -135,7 +141,7 @@ try
     askQuestionAndSaveAnswer(window, questionFile, 'q2', questionText2, participantId );
     
     % say goodbye
-    displayInstructions(window, 'That is all! Thanks for your participation! ' , 1);
+    displayInstructions(window, 'That is all! Thanks for your participation! ');
     
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();

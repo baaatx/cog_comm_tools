@@ -16,8 +16,9 @@ fontSize = 30;
 fontStyle = 1;
 
 % define the screen resolution the experiment is going to run on. [x y]
+screenResolution = [1920 1080];
 %screenResolution = [1152 864];
-screenResolution = [800 600];
+%screenResolution = [800 600];
 
 % store start time
 startTime = GetSecs();
@@ -73,13 +74,13 @@ try
         displayImageStimAtPosition(window, imageStim, lastXPos, lastYPos);
 
         % check x bounds
-        if (lastXPos > resolution.width+round(imageStim.width/2) || lastXPos <= round(imageStim.width/2))
+        if (lastXPos > resolution.width-round(imageStim.width/2) || lastXPos <= round(imageStim.width/2))
             % change the direction
             dx = dx * -1;
         end
         
         % check y bounds
-        if (lastYPos > resolution.height+round(imageStim.height/2) || lastYPos <= round(imageStim.height/2))
+        if (lastYPos > resolution.height-round(imageStim.height/2) || lastYPos <= round(imageStim.height/2))
             % change the direction
             dy = dy * -1;
         end

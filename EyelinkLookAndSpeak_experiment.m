@@ -1,5 +1,5 @@
 % EyelinkLookAndSpeak_example.m - An example experiment using Eyelink, areas of
-% interest, Joystick input, audio input and output.
+% interest, Joystick input, audio input and text output.
 %
 % Author: Brian Armstrong
 %
@@ -45,7 +45,7 @@ try
     % PREPARE DATA FOR EXPERIMENT
     
     % the number of trials to run...    
-    numTrials = 2;
+    numTrials = 4;
     
     % DEFINE IMAGE STIMS
     
@@ -113,7 +113,7 @@ try
     EyelinkDoDriftCorrection(el);
 
      % re-initilize the window because calibration changes its settings...
-    [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
+    %[window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
     % clear the window
     clearWindow(window);
@@ -125,7 +125,7 @@ try
     
     % must open a file to record Eye Tracker Data into... We will put all
     % trial data in one file for this example...
-    Eyelink('OpenFile','iaTest.edf')
+    Eyelink('OpenFile','lasTest.edf')
     
     % the trial counter...
     currentTrial = 1;
@@ -135,6 +135,7 @@ try
         checkForEscapeKeyToHalt();
         
         % SETUP...
+        EyelinkDoDriftCorrection(el);
         
         %Get the stims we need for this trial...
         leftImageStim = imageStimsMap(trialStims{currentTrial}{1});
@@ -225,7 +226,7 @@ try
     
     % Save the recorded eyelink EDF file on the display pc in the
     % participant's Eyelink folder...
-    EyelinkSaveFile('iaTest.edf', participantId);
+    EyelinkSaveFile('lasTest.edf', participantId);
         
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();

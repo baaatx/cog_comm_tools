@@ -22,7 +22,6 @@ try
     
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
-        
     
     % these are the values for the choices
     answers = {'one', 'two', 'three', 'four', 'five', 'six' , 'seven' , 'eight' , 'nine', 'ten'};
@@ -38,7 +37,7 @@ try
     answer = imageMappedMultipleChoiceDialog(window, 'Click on that spectrum...\n\n Far left is ''one'' \n\n Far right is ''ten''...', 'stimuli/images/spectrum.jpg' , [0 400 800 600] , mapRects, answers);
     
     % let them know what they selected
-    displayInstructions(window, ['You selected: ' answer], 1);
+    displayInstructions(window, ['You selected: ' answer]);
     
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();

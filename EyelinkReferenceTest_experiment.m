@@ -1,4 +1,4 @@
-% EyelinkTestExperiment_experiment.m - A simple test experiment for learning how to work with the Eyelink
+% EyelinkTestExperiment_experiment.m - A test experiment for learning how to work with the Eyelink
 % equipment.
 %
 % Make sure the Eyelink host computer is turned on and running the eyelink
@@ -17,11 +17,11 @@ fontStyle = 1;
 
 % constants
 waitTime = 2.00;
-dt = 0.5;
-screenPadding = 20;
+dt = 0.02;
 
 % here we are specifying what screen resolution we want
-screenResolution = [1152 864];
+%screenResolution = [1152 864];
+%screenResolution = [115200 86400];
 
 % a try block 'tries' a block of code and if an exception occurs it will jump to the following catch block 
 try
@@ -35,24 +35,26 @@ try
     participantId = 'exampleParticipantId';
     
     % this call initializes and makes a connection to the Eyelink Host
-    % Computer... returns the eyelink defaults we need for calibration
-    el = initializeEyelink(window, resolution);
-    
-    % display some instructions... 
-    displayInstructions(window, 'Please pick up the joystick.',dt,'joystick');
-    
+    % Computer... returns the eyelink defaults we need for calibration,
+    % etc...
+    el = initializeEyelinkHREF(window, resolution);
+
     % Calibrate the eye tracker
-    displayInstructions(window, 'Now we will calibrate the EyeTracker.',dt,'joystick');
+    displayInstructions(window, 'Now we will calibrate the EyeTracker.\n During Calibration, you want to look into the\ncenter of the circle that appears on the screen.\n\n If nothing happens after looking at it for\n a few seconds, press the ENTER key.');
+    
     EyelinkDoTrackerSetup(el);
     
     % do a final check of calibration using driftcorrection
-    displayInstructions(window, 'Now we perform a quick Drift Correction.', dt, 'joystick');
+    displayInstructions(window, 'Now we will calibrate the EyeTracker\n\n(Drift Correction)');
     EyelinkDoDriftCorrection(el);
+            
+    % re-initialze the window for the experiment, since the calibration
+    % takes it over and changes its properties.
+    [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
-    displayInstructions(window, 'You will see cross-hairs appear at different\n\npositions on the screen.\n\nJust look at the cross-hairs as they move around. ', dt, 'joystick');
+    displayInstructions(window, 'Roll your head around, but stay fixated on cross-hairs. ');
     clearWindow(window);
-    
-    EyelinkOpenFile('elTest.edf');
+    Eyelink('OpenFile','refTest.edf')
     
     % The TRIAL
     %
@@ -60,50 +62,56 @@ try
     % the crosshairs on the screen.
     
     % the call that starts recording data...
-    EyelinkStartRecording();
+
+    Eyelink('Command', 'simulate_head_camera = OFF');
+    Eyelink('Command', 'marker_control = OFF');
+    Eyelink('StartRecording');
     
     % give the Eyelink Equipment a chance to start recording
     WaitSecs(dt);
-    
-    % draw the cross hairs on various positions on the screen, and log
-    % the times when presented. Wait between each draw.
-    
-    % display the cross hair for the first time...
-    displayCrossHairsCentered(window);
-    
+        
     % mark zero-plot time in data file
-    EyelinkSyncTime();
+    Eyelink('Message', 'SYNCTIME');
+    
     WaitSecs(waitTime);
+            
+    displayCrossHairsCentered(window);
+    
+    WaitSecs(2.00);
+    
+    EyelinkMicOn();
+    
+    WaitSecs(2.00);
+    
+    EyelinkMicOff();
 
-    % display the CrossHairs in various positions with delays in between...
-    displayCrossHairs(window, screenPadding, screenPadding);
-    WaitSecs(waitTime);
+    WaitSecs(2.00);
+    
+    EyelinkMicOn();
+    
+    WaitSecs(2.00);
+    
+    EyelinkMicOff();
+    
+    WaitSecs(2.00);
+    
+    EyelinkMicOn();
+    
+    WaitSecs(2.00);
+    
+    EyelinkMicOff();
         
-    displayCrossHairs(window,  resolution.width-screenPadding,  resolution.height-screenPadding);
-    WaitSecs(waitTime);
-        
-    displayCrossHairsCentered(window);
-    WaitSecs(waitTime);
+    Eyelink('StopRecording');
+    Eyelink('Command', 'marker_control = ON');
     
-    displayCrossHairs(window,  resolution.width-screenPadding,  screenPadding);
-    WaitSecs(waitTime);
+    beep();
     
-    displayCrossHairs(window,  screenPadding, resolution.height-screenPadding);
-    WaitSecs(waitTime);    
-    
-    displayCrossHairsCentered(window);
-    WaitSecs(waitTime);
-    
-    % send eyelink host machine command to stop recording...
-    EyelinkStopRecording();
-    
-    % blank out the screen...
     clearWindow(window);
     
-    % transfer the file to the display machine...
-    EyelinkSaveFile('elTest.edf', participantId);
+    EyelinkSaveFile('refTest.edf', participantId);
     
     % end of the TRIAL
+    
     displayInstructions(window, 'Experiment Completed... ');
     
     % SHUTDOWN THE EXPERIMENT

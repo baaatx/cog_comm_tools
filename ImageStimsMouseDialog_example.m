@@ -21,8 +21,6 @@ try
     % assert that what we need is installed and working
     initializeExperiment();
     
-    
-    
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
 

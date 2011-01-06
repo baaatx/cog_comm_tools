@@ -82,13 +82,15 @@ try
     
     % text used in each trial
     trialText = {'three dimensional' , 'an animal' , 'biggest', 'medical'};              
-              
-    % define area of interest file (used in every trial in this example)
-    areaOfInterestFile='leftRight.ias';
+        
+
 
     % RUN THE EXPERIMENT
     % Start a logger
     myLog = TDFLog(['participants/' participantId '/eyelinkIATest.txt']);
+    
+    % set calibration colors to white on black
+    el = EyelinkSetCalibrationColors(el);
     
     % Calibrate the eye tracker
     displayInstructions(window, 'Now we will calibrate the EyeTracker.');

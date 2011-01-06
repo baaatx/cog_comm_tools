@@ -1,4 +1,5 @@
-% DisplayImageStims_example.m - Displays some imageStims...
+% DisplayImageStims_example.m - Displays some imageStims in a list using functions in cog_comm_tools.
+%
 %
 % Author: Brian Armstrong
 %
@@ -39,7 +40,7 @@ try
     
     % draw and display them (with one function call)
     drawImageStimsWithTitle(window, imageStims);
-    Screen('Flip', window);
+    drawWindow(window);
     
     % wait 3 seconds
     WaitSecs(3);
