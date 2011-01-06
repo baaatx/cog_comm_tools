@@ -8,8 +8,17 @@
 %
 % y - the y position to display to
 %
+% fontColor - (optional) a color vector... overrides the default font color
+%
 %
 % Author: Brian Armstrong
 %
-function drawTextAtPosition(window, text, x, y)
-    DrawFormattedText(window, text, x, y, 0);
+function drawTextAtPosition(window, text, x, y, fontColor)
+
+    % font color is optional, defaults to initializes textColor value...
+    if (nargin < 5)
+        fontColor = Screen('TextColor', window);
+    end
+    
+    % use PTB function to draw the text...
+    DrawFormattedText(window, text, x, y, fontColor);
