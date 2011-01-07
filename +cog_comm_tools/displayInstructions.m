@@ -26,8 +26,8 @@ function displayInstructions(window, instructionsText, delay, continueType, back
     xPos = 50;
     yPos = 50;
     
-    % wrap new lines at 75 characters...
-    wrapAt = 75;
+    % get the line wrap value
+    wrapAt = cog_comm_tools.getWrapAt(window);
     
     if (nargin < 3)
         % default delay before allowing them to continue is a third of a
@@ -45,9 +45,9 @@ function displayInstructions(window, instructionsText, delay, continueType, back
         backgroundColor = [255 255 255];
     end
     
-    % default font color is black
+    % default font color is the Screen's font color
     if (nargin < 6)
-        fontColor = [0 0 0];
+        fontColor = Screen('TextColor', window);
     end
     
     % flush lingering keypresses to avoid skipping over instructions...
