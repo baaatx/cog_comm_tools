@@ -42,5 +42,4 @@ function [window, resolution] = initializeWindow(fontName, fontSize, fontStyle, 
     Screen('TextColor', window, textColor);   
     Screen('TextFont',window, fontName);
     Screen('TextSize',window, fontSize);
-    Screen('TextStyle', window, fontStyle);   
-    
+    Screen('TextStyle', window, fontStyle);    
