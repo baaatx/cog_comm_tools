@@ -20,8 +20,8 @@
 % Author: Brian Armstrong
 %
 function displayTextAtPosition(window, text, x, y, backgroundColor, fontColor, wrapAt, vSpacing)
-    
-    % if a background color is passed in, fill the background before
+
+   % if a background color is passed in, fill the background before
     % drawing text...
     if (nargin > 4)
         cog_comm_tools.fillWindow(window, backgroundColor);
@@ -34,16 +34,16 @@ function displayTextAtPosition(window, text, x, y, backgroundColor, fontColor, w
     
     % wrap at (break into newlines) is optional
     if (nargin < 7)
-        wrapAt = 50;
+        wrapAt = cog_comm_tools.getWrapAt(window);
     end
     
     % vertical Spacking is optional 
     if (nargin < 8)
         vSpacing = 1.5;
     end
-            
+
     % draw the text to the screen...
-    DrawFormattedText(window, text, x, y, fontColor, wrapAt, [], [], vSpacing);
+    cog_comm_tools.drawTextAtPosition(window, text, x, y, fontColor, wrapAt, vSpacing)
     
     % display the screen's buffer
     cog_comm_tools.displayWindow(window);
