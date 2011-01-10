@@ -32,7 +32,7 @@ try
     
     % notice we don't supply any optional arguments. See the code for
     % displayInstructions to see all the paramenters.
-    displayInstructions(window, 'These Instructions are in red because we set the default fontColor for window to red.');
+    displayInstructions(window, 'These Instructions are in red because we set the default fontColor for window to red. If no background color is specified, the background will be the complement color of the text color.');
     
     % notice you need to supply more optional arguments (delay and continue
     % type) in order to pass in the background color and font color.
@@ -50,11 +50,14 @@ try
     
     displayInstructions(window, 'Now we see the text is red again because we used the PTB Screen command to set the color to red...\n\nNotice we used getRGBColor which will give you the color matrix for several basic colors (as strings like ''blue'' or ''maroon'')...\n\n If you want a specific color you can specify its RGB value as a 1x3 matrix such as\n\nwhite = [255 255 255]\n\nfor white.');
     
+    displayInstructions(window, 'You can use getColorComplement to get the ''opposite'' color, which can be handy for picking a background color. (Note: Gray does not have an opposite color in this since.)', 1, 'keyboard', getColorComplement(getRGBColor('teal')), getRGBColor('teal'));
+    
     % fill the window with maroon before drawing any text...
     fillWindow(window, getRGBColor('maroon'));
     
     % this is a draw function, which just draws to the video buffer but
     % doesn't display the updated buffer to the screen...
+    Screen('TextColor', window, getRGBColor('lightgray'));
     drawTextAtPosition(window, 'Here is some drawn text at (50,50). Notice the background is maroon, because we filled the window with maroon before drawing the text...\n\nWhen drawing images and text to the screen, you just need to fill the window with an image or a color to have a ''background''...\n\n(press any key)' , 50, 50);
     
     % this call puts the screen buffer (what we draw to) onto the screen...
@@ -77,6 +80,18 @@ try
     % a fading in function
     fadeBlackToWhite(window);
     
+    % set the font color to cobalt blue
+    Screen('TextColor', window, getRGBColor('orange'));
+        
+    displayInstructions(window, 'You can set the background color when using multiple choice dialogs by simply calling fillWindow just before you call the dialog function...', 1, 'keyboard', getRGBColor('black'));
+    
+    % Setup multiple choice question choices...
+    choiceList = [Choice('a', '1') Choice('b', '2')];
+    
+    % start the multiple Choice Dialog
+    fillWindow(window, getRGBColor('black'));
+    [answer, responseTime]  = multipleChoiceDialog(window, 'Which number is bigger (example question)?' , choiceList);
+        
     displayInstructions(window, 'See, adding color to your experiment is easy...');
     
     % SHUTDOWN THE EXPERIMENT
