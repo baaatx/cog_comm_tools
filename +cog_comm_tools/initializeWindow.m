@@ -1,10 +1,10 @@
 % Function to initialize the PTB window used for an experiment.
 %
-% fontName   = Name of font to use.
+% fontName   = Name of font to use. (Use a well known font)
 %
-% fontSize   = Font Size.
+% fontSize   = Font Size. (point)
 %
-% fontStyle  = Font Style.
+% fontStyle  = Font Style (0=normal,1=bold,2=italic,4=underline,8=outline,32=condense,64=extend.)
 %
 % desiredRes = (optional) resolution to attempt to set screen to...
 %
