@@ -40,9 +40,9 @@ function displayInstructions(window, instructionsText, delay, continueType, back
         continueType = 'keyboard';
     end
 
-    % default background color is white...
+    % default background color is complement of text color...
     if (nargin < 5)
-        backgroundColor = [255 255 255];
+        backgroundColor = cog_comm_tools.getColorComplement(Screen('TextColor', window));
     end
     
     % default font color is the Screen's font color
