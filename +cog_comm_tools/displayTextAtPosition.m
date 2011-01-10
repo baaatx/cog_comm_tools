@@ -37,7 +37,7 @@ function displayTextAtPosition(window, text, x, y, backgroundColor, fontColor, w
         wrapAt = cog_comm_tools.getWrapAt(window);
     end
     
-    % vertical Spacking is optional 
+    % vertical spacing is optional 
     if (nargin < 8)
         vSpacing = 1.5;
     end
