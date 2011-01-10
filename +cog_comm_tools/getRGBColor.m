@@ -1,5 +1,5 @@
 % Returns an RGB [red green blue] value for a string representation of
-% some basic colors.
+% some basic named colors.
 %
 % colorString - ('red' 'green' 'blue' 'white' 'black', etc)
 %
@@ -9,7 +9,7 @@
 
 function RGBColor = getRGBColor(colorString)
     
-    % convert to lower case
+    % convert color string to lower case
     colorString = lower(colorString);
 
     % return correct 1x3 matrix of RGB values for each supported color
@@ -17,17 +17,23 @@ function RGBColor = getRGBColor(colorString)
         case {'white'}
             RGBColor = [255 255 255];
         case {'lightgray', 'lightgrey'}
-            RGBColor = [55 55 55];            
+            RGBColor = [200 200 200];            
         case {'gray', 'grey'}
             RGBColor = [128 128 128];
+        case {'khaki'}
+            RGBColor = [240 230 140];
         case {'blue'}
-            RGBColor = [0 0 255];            
+            RGBColor = [0 0 255];    
+        case {'skyblue'}
+            RGBColor = [135 206 235];    
         case {'yellow'}
             RGBColor = [255 255 0];                        
         case {'cobalt'}
             RGBColor = [61 89 171];                        
         case {'green'}
             RGBColor = [0 255 0];                        
+        case {'forestgreen'}
+            RGBColor = [34 139 34];                        
         case {'red'}
             RGBColor = [255 0 0];            
         case {'purple', 'violet'}
@@ -43,5 +49,5 @@ function RGBColor = getRGBColor(colorString)
         case {'black'}
             RGBColor = [0 0 0];            
         otherwise
-            error([colorString ' is not a known color']);
+            error([colorString ' is not a known color, (it could be added to this function if needed... see code for supported colors)']);
     end
