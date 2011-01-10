@@ -9,10 +9,13 @@
 %
 function contains = cellArrayContains(cellArray, stringValue)
 
+% the return flag
 contains = false;
 
+% look at each element of the array and compare...
 for i=1:length(cellArray)
     if (strcmp(cellArray{i}, stringValue));
         contains = true;
+        break;
     end
 end
