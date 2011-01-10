@@ -54,8 +54,6 @@ try
     % Note:true here indicates to force as square cells.
     gridDestRects = getScreenGridDestRectRows(0, resolution.width, 0 , resolution.height, rows, columns, paddingWidth , true);
    
-    disp (gridDestRects(1,:));
-    
     % sets and fits the cooresponding imageStim with its destRect (here a
     % position in the grid...
     imageStims = setAndFitImageStimDestRects(imageStims, gridDestRects);
