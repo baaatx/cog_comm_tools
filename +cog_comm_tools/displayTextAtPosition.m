@@ -21,10 +21,9 @@
 %
 function displayTextAtPosition(window, text, x, y, backgroundColor, fontColor, wrapAt, vSpacing)
 
-   % if a background color is passed in, fill the background before
-    % drawing text...
-    if (nargin > 4)
-        cog_comm_tools.fillWindow(window, backgroundColor);
+   % default background color is opposite of the set text color.
+    if (nargin < 5)
+        backgroundColor = cog_comm_tools.getColorComplement(Screen('TextColor',window));
     end
 
     % font color is optional, defaults to the initialized color value...
@@ -41,7 +40,10 @@ function displayTextAtPosition(window, text, x, y, backgroundColor, fontColor, w
     if (nargin < 8)
         vSpacing = 1.5;
     end
-
+    
+    % color the background...
+    cog_comm_tools.fillwindow(window, backgroundColor);
+    
     % draw the text to the screen...
     cog_comm_tools.drawTextAtPosition(window, text, x, y, fontColor, wrapAt, vSpacing)
     
