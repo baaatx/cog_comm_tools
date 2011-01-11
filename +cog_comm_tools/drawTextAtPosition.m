@@ -21,6 +21,9 @@
 %
 function drawTextAtPosition(window, text, x, y, fontColor, wrapAt, vSpacing)
 
+    % save old font color...
+    oldFontColor = Screen('TextColor', window);
+
     % font color is optional, defaults to the initialized color value...
     if (nargin < 5)
         fontColor = Screen('TextColor', window);
@@ -38,3 +41,6 @@ function drawTextAtPosition(window, text, x, y, fontColor, wrapAt, vSpacing)
             
     % draw the text to the screen...
     DrawFormattedText(window, text, x, y, fontColor, wrapAt, [], [], vSpacing);
+    
+    % reapply the old font color...
+    Screen('TextColor', window, oldFontColor);
