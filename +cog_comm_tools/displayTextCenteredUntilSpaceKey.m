@@ -5,10 +5,18 @@
 %
 % text - the text string to display
 %
+% fontColor - (optional) the RGB color to use for the font
+%
 %
 % Author: Brian Armstrong
 %
-function displayTextCenteredUntilSpaceKey(window, text)
-    DrawFormattedText(window, text, 'center', 'center', 0);
-    Screen('Flip', window);
+function displayTextCenteredUntilSpaceKey(window, text, fontColor)
+    
+    % font color is optional, defaults to the initialized color value...
+    if (nargin < 3)
+        fontColor = Screen('TextColor', window);
+    end
+
+    cog_comm_tools.drawTextCentered(window, text, fontColor);
+    cog_comm_tools.displayWindow();
     cog_comm_tools.waitUntilKeyPressed('space');
