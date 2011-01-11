@@ -20,6 +20,9 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
     answer = 'noneSelected';
     answerInvalid = true;
     
+    % flush out any lingering text in buffer
+    FlushEvents('keyDown');
+        
     % supress text from matlab window
     ListenChar(2);
     
@@ -47,3 +50,6 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
     
     % un-supress text from matlab window
     ListenChar(1);
+    
+    % flush out any lingering text in buffer
+    FlushEvents('keyDown');    
