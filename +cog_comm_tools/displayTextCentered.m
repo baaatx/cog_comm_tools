@@ -15,5 +15,7 @@ function displayTextCentered(window, text, fontColor)
         fontColor = Screen('TextColor', window);
     end
 
-    cog_comm_tools.drawTextCentered(window, text, fontColor);
-    cog_comm_tools.displayWindow(window);
+    % default background color is opposing font color...
+    backgroundColor = cog_comm_tools.getColorComplement(fontColor);
+    
+    cog_comm_tools.displayTextAtPosition(window, text, 'center', 'center', backgroundColor, fontColor);    
