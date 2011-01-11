@@ -20,7 +20,12 @@
 %
 function askQuestionAndSaveAnswer(window, questionFile, questionCode, questionText, participantId)
     % get the answer
-    answer = cog_comm_tools.GetEchoStringCentered(window, ['\n\n' questionText '\n\n' 'Please Type Your Answer, ending with ENTER:\n\n'] , 'center', 'center');
+    answer = '';
+    
+    % while the string is empty, try to get a string...
+    while(strcmp(answer, ''))
+        answer = cog_comm_tools.getStringInputWithQuestion(window, ['\n\n' questionText '\n\n' 'Please Type Your Answer, ending with ENTER:\n\n']);
+    end
 
     % write it to file, tab delimited
     outputFile = cog_comm_tools.openFileForAppend(['participants/' participantId '/debriefing/' questionFile '.txt']);
