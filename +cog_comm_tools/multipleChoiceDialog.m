@@ -31,6 +31,9 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     startTime = GetSecs();    
     answerInvalid = true;
     
+    % flush out any lingering text in buffer
+    FlushEvents('keyDown');
+    
     % supress text from matlab window
     ListenChar(2);
     
@@ -52,3 +55,7 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     
     % un-supress text from matlab window
     ListenChar(1);    
+    
+    % flush out any lingering text in buffer
+    FlushEvents('keyDown'); 
+    
