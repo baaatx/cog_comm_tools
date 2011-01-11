@@ -4,12 +4,16 @@
 %
 % window - the window pointer
 %
-% question - the test string of the question to ask
+% question - the text string of the question to ask
 %
 %
 % Author: Brian Armstrong
 %
 function string = getStringInputWithQuestion(window, question)
+
+% use font color, and set background to opposing color...
+fontColor = Screen('TextColor',window);
+backgroundColor = cog_comm_tools.getColorComplement(fontColor);
 
 % flush out any lingering text in buffer
 FlushEvents('keyDown');
@@ -44,9 +48,12 @@ while true
             % contatinate the char to the string...
             string = [string char];
     end
+    
+    % update the screen
+    cog_comm_tools.fillWindow(window, backgroundColor);
     cog_comm_tools.drawTextAtPosition(window, question, 200, 200);
     cog_comm_tools.drawTextCentered(window, string);
-    Screen('Flip', window);
+    cog_comm_tools.displayWindow(window);
 end
 
 % flush out any lingering text in buffer
