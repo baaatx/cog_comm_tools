@@ -48,7 +48,7 @@ try
     % initializeWindow)
     Screen('TextColor', window, getRGBColor('red'));
     
-    displayInstructions(window, 'Now we see the text is red again because we used the PTB Screen command to set the color to red...\n\nNotice we used getRGBColor which will give you the color matrix for several basic colors (as strings like ''blue'' or ''maroon'')...\n\n If you want a specific color you can specify its RGB value as a 1x3 matrix such as\n\nwhite = [255 255 255]\n\nfor white.');
+    displayInstructions(window, 'Now we see the text is red again because we used the PTB Screen command to set the color to red...\n\nNotice we used getRGBColor which will give you the color matrix for several basic colors (as strings like ''blue'' or ''maroon'')...\n\n If you want a specific color you can specify its RGB value as a 1x3 matrix such as\n\nwhite = [255 255 255]\n\nfor white.  Each value is 0-255 (8bit) unsigned integer.');
     
     displayInstructions(window, 'You can use getColorComplement to get the ''opposite'' color, which can be handy for picking a background color. (Note: Gray does not have an opposite color in this since.)', 1, 'keyboard', getColorComplement(getRGBColor('teal')), getRGBColor('teal'));
     
