@@ -1,24 +1,26 @@
-The cog_comm_tools MATLab package is currently maintained by Brian Armstrong. (baa.atx@gmail.com)
+This is the folder for the cog_comm_tools MATLAB package.
 
-This MATLAb package requires Psychophysics Toolbox (http://psychtoolbox.org/)
+(See README.txt in the parent folder for more details.)
 
-To import this library, type:
+This MATLAb package requires Psychophysics Toolbox (http://psychtoolbox.org/) and the Eyelink Display PC software (to use the Eyelink Toolbox wrapper functionality.)
+
+
+To import this MATLAB package, type:
 
 
 
 import cog_comm_tools.*;
 
 
+(See examples in parent folder.)
 
-at the top of your MATLab experiment script.
 
 Contributing Programmers:
 
-Brian Armstrong <baa.atx@gmail.com>
-Dylan Bumford <dbumford@gmail.com>
+Brian A. Armstrong <baa.atx@gmail.com>
 
 
-These tools expect a directory structure for your experiment folder.  An example of this structure is the root 
-folder for this package on the git repository.
+These tools expect a folder/subfolder structure for your your MATLAB experiment code folder.
 
+(An example of this structure is the parent folder.)
 
