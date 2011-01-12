@@ -26,3 +26,6 @@ function waitUntilNoKeysPressed(timeOut)
         [ keyIsDown, seconds, keyCode ] = KbCheck();
         WaitSecs(0.0001);
     end   
+    
+    % get rid of any lingering keyDown events...
+    FlushEvents('keyDown');
