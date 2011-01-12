@@ -38,7 +38,7 @@ try
     % type) in order to pass in the background color and font color.
     displayInstructions(window, 'But we can also specify what colors to use when displaying instructions.\n\nHere we set font color to gray and fill with a black background...', 1, 'keyboard', getRGBColor('black'), getRGBColor('gray'));
     
-    displayTextAtPosition(window, 'Here is some text displayed on its own at (50,50). It is gray because the last time we drew text was with gray...\n\n(So if you draw text in different colors, you might want to reset the font color to your original color...\n\n(Press any Key)', 50, 50);
+    displayTextAtPosition(window, 'Here is some text displayed on its own at (50,50). \n\n(Press any Key)', 50, 50);
     
     % wait a second, then wait for keyboard input
     WaitSecs(1);
@@ -46,9 +46,9 @@ try
     
     % set the font color back to red (this is done during
     % initializeWindow)
-    Screen('TextColor', window, getRGBColor('red'));
+    Screen('TextColor', window, getRGBColor('purple'));
     
-    displayInstructions(window, 'Now we see the text is red again because we used the PTB Screen command to set the color to red...\n\nNotice we used getRGBColor which will give you the color matrix for several basic colors (as strings like ''blue'' or ''maroon'')...\n\n If you want a specific color you can specify its RGB value as a 1x3 matrix such as\n\nwhite = [255 255 255]\n\nfor white.  Each value is 0-255 (8bit) unsigned integer.');
+    displayInstructions(window, 'Now we see the text is now purple because we used the PTB Screen command to set the color to purple...\n\nNotice we used getRGBColor which will give you the color matrix for several basic colors (as strings like ''blue'' or ''maroon'')...\n\n If you want a specific color you can specify its RGB value as a 1x3 matrix such as\n\nwhite = [255 255 255]\n\nfor white.  Each value is 0-255 (8bit) unsigned integer. in [red green blue] format...');
     
     displayInstructions(window, 'You can use getColorComplement to get the ''opposite'' color, which can be handy for picking a background color. (Note: Gray does not have an opposite color in this since.)', 1, 'keyboard', getColorComplement(getRGBColor('teal')), getRGBColor('teal'));
     
