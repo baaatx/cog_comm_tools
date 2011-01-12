@@ -24,7 +24,7 @@ function askQuestionAndSaveAnswer(window, questionFile, questionCode, questionTe
     
     % while the string is empty, try to get a string...
     while(strcmp(answer, ''))
-        answer = cog_comm_tools.getStringInputWithQuestion(window, ['\n\n' questionText '\n\n' 'Please Type Your Answer, ending with ENTER:\n\n']);
+        answer = cog_comm_tools.getStringInputWithQuestion(window, questionText);
     end
 
     % write it to file, tab delimited
