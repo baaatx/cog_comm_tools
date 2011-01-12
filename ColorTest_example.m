@@ -14,7 +14,9 @@ fontSize = 30;
 fontStyle = 1;
 fontColor = getRGBColor('white');
 
-incValue = 10;
+% you can increase the increment value to make the test cycle through colors
+% more  quickly.
+incValue = 1;
 
 % here we are specifying what screen resolution we want(uncomment an
 % option, or specify a valid resolution for the machine you are working on)
@@ -36,20 +38,19 @@ try
     % notice we don't supply any optional arguments. See the code for
     % displayInstructions to see all the paramenters.
 
-    displayInstructions(window, 'This is a color test. Hit ESC to exit once the test begins...');
+    displayInstructions(window, 'This is a color test. You can pause on a certain color by pressing space. (Resume by pressing space again.)  Hit ESC to exit once the test begins...');
     
-    % keep going until exit
+    % keep going until halt with ESC 
     while(true)
-        
-        red = 0;
-        green = 0;
-        blue = 0;        
-        
-        % cycle through all the colors by fifteen
-        for red=0:15:255
-            for green=0:15:255
-                for blue=0:15:255
 
+        % cycle through all the colors by fifteen
+        for red=0:incValue:255
+            for green=0:incValue:255
+                for blue=0:incValue:255
+                
+                    % allow for pause...
+                    checkForSpaceKeyToPause();
+                    
                     % string of the color...
                     colorString = ['[' num2str(red) ' ' num2str(green) ' ' num2str(blue) ']'];
                     
