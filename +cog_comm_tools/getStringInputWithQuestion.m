@@ -11,6 +11,10 @@
 %
 function string = getStringInputWithQuestion(window, question)
 
+% starting position for drawing text
+startXPos = 50;
+startYPos = 50;
+
 % use font color, and set background to opposing color...
 fontColor = Screen('TextColor',window);
 backgroundColor = cog_comm_tools.getColorComplement(fontColor);
@@ -25,7 +29,7 @@ ListenChar(2);
 question = [question '\n\n(press enter key when finished)'];
 
 % display the message for the first time...
-cog_comm_tools.displayTextAtPosition(window, question, 200, 200);
+cog_comm_tools.displayTextAtPosition(window, question, startXPos, startYPos);
 
 string = '';
 
@@ -51,7 +55,7 @@ while true
     
     % update the screen
     cog_comm_tools.fillWindow(window, backgroundColor);
-    cog_comm_tools.drawTextAtPosition(window, question, 200, 200);
+    cog_comm_tools.drawTextAtPosition(window, question, startXPos, startYPos);
     cog_comm_tools.drawTextCentered(window, string);
     cog_comm_tools.displayWindow(window);
 end
