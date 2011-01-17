@@ -1,9 +1,19 @@
-% This is a class that represents a single audio stimulus used in an
+% This is a handle class that represents a single audio stimulus used in an
 % experiment.
+%
+% Constructor Parameters:
+%
+% keyCode - (string) keyCode for the stim
+%
+% wavFileName - (string) full path fileName to wave file to create an
+% Audiostim from.
+%
+% title - (optional) a title for the AudioStim.
+%
 %
 % Author: Brian Armstrong
 %
-classdef AudioStim
+classdef AudioStim < handle
    properties (SetAccess = private, GetAccess = public)
       keyCode
       wavFileName
@@ -32,7 +42,11 @@ classdef AudioStim
            % initialize stim object
            obj.keyCode = keyCode;
            obj.wavFileName = wavFileName;
+           
+           % get the wave data
            [obj.audioSamples, obj.audioFileSize] = wavread(wavFileName);
+           
+           % store the audio length...
            obj.audioLength = (length(obj.audioSamples)) / obj.audioFileSize;
        end
    end
