@@ -12,7 +12,6 @@
 % Author: Brian Armstrong
 %
 function waitUntilKeyPressed(keyCode)
-    keyValue = KbName(keyCode);
     proceed = false;
     
     % supress text from matlab window
@@ -21,15 +20,13 @@ function waitUntilKeyPressed(keyCode)
     % continue until 'key' is pressed...
     while (proceed == false)
         KbWait();
-        if (cog_comm_tools.checkForKeyPress(keyValue))
+        if (cog_comm_tools.checkForKeyPress(keyCode))
             proceed = true;
         end
     end
-    
-    % get rid of any lingering keyDown events...
-    FlushEvents('keyDown');
         
     % un-supress text from matlab window
     ListenChar(1);
     
-    
+    % get rid of any lingering keyDown events...
+    FlushEvents('keyDown');    
