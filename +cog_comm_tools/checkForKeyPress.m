@@ -15,5 +15,5 @@ function isPressed = checkForKeyPress(keyCode)
     [ keyIsDown, seconds, keyCode ] = KbCheck();
     
     if (keyIsDown && keyCode(key))
-            isPressed = true;
-    end   
+        isPressed = true;
+    end  
