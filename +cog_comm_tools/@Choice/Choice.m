@@ -1,5 +1,13 @@
 % This is a class that represents a single choice in a textual multiple
-% choice dialog.  For Use with the multipleChoiceDialog function.
+% choice dialog.  For Use with the multipleChoiceDialog and similar functions.
+%
+% Constructor Parameters:
+%
+% keyCode - the keyCode (or buttonName) associated with this choice.
+%
+% value - the value of this choice (what gets returned if they select this
+% choice)
+%
 %
 % Author: Brian Armstrong
 %
