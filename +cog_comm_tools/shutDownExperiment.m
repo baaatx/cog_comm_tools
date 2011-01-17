@@ -7,6 +7,9 @@
 % Author: Brian Armstrong
 %
 function shutDownExperiment()
+    % make sure MATLAB window gets key presses after we close
+    ListenChar();   
+
     % is eyelink Equipment Connected?
     if (Eyelink('IsConnected'))
         % is Eyelink Equipment Recording?
@@ -28,5 +31,4 @@ function shutDownExperiment()
     % reveal the cursor again (just in case of a crash)
     ShowCursor;
     
-    % make sure MATLAB window gets key presses after we close
-    ListenChar();    
+ 
