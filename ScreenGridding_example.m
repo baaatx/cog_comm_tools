@@ -42,14 +42,11 @@ try
     
     rows = 10;
     columns = 14;
-    
-    % we are adding a grid color (black) so we need one more spot in the
-    % array for this image.
-    theImageStims = cell(1, rows*columns);
         
-    % get some random image stims to fill our grid
+    % get some random image stims to fill our grid and store them in an
+    % array...
     for i=1:(rows*columns)
-        theImageStims{i} = imageStims(randi(length(imageStims)));
+        theImageStims(i) = imageStims(randi(length(imageStims)));
     end
    
     % this function call gets the grid rectangles needed to draw the grid
