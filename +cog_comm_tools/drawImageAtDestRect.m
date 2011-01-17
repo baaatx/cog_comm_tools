@@ -2,7 +2,7 @@
 %
 % window - the window pointer
 %
-% imageFileName - the image to draw
+% imageFileName - the full path filename of the image to draw
 %
 % destinationRect - the destRect to draw to.
 %
@@ -10,6 +10,11 @@
 % Author: Brian Armstrong
 %
 function drawImageAtDestRect(window, imageFileName, destinationRect)
+    % check for arguments
+    if (nargin ~= 3)
+        error ('incorrect arguments for drawImageAtDestRect');
+    end
+
     % read stimulus image into matlab matrix 'imdata':
     imdata=imread(char(imageFileName));
 
