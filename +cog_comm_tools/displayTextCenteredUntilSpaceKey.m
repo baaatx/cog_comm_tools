@@ -18,5 +18,5 @@ function displayTextCenteredUntilSpaceKey(window, text, fontColor)
     end
 
     cog_comm_tools.drawTextCentered(window, text, fontColor);
-    cog_comm_tools.displayWindow();
+    cog_comm_tools.displayWindow(window);
     cog_comm_tools.waitUntilKeyPressed('space');
