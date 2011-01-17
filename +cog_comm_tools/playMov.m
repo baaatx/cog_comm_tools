@@ -9,7 +9,7 @@
 %
 function playMov(window, movFile)
  % open the movie file
- [ moviePtr duration fps width height count ]= Screen('OpenMovie', window, movFile);
+ [ moviePtr ,duration ,fps ,width ,height ,count ]= Screen('OpenMovie', window, movFile);
  
  % rate = 1 means normal speed playback
  rate = 1;
