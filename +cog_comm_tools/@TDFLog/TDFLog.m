@@ -1,18 +1,23 @@
-% This is a class that represents a Tab-Delimited Log file. To be used for
-% logging textual data during an experiment.
+% This is a handle class that represents a Tab-Delimited Log file. To be used for
+% logging textual data during an experiment. Use .add(msg) to add the next
+% item to the log, use .nextRow() to move to the next row of the log.
+%
+% Constructor Parameters:
+%
+% fileName - full path string of filename for your new log file
+%
+% overwrite - (optional) boolean for overwrite mode (otherwise append mode
+% is used). Set to true for overwrite mode.
+%
 %
 % Author: Brian Armstrong
 %
-classdef TDFLog
+classdef TDFLog < handle
    properties (SetAccess = private)
       fileName
       fileHandle
    end
    methods
-    %
-    % fileName = full path string of filename for your new log file
-    % overwrite = boolean for overwrite mode (otherwise append mode is
-    % used)
     function obj = TDFLog(fileName, overwrite)
         obj.fileName = fileName;
         if (nargin < 2 || overwrite ~= true)
@@ -32,4 +37,3 @@ classdef TDFLog
     end
    end % methods
 end % classdef
-
