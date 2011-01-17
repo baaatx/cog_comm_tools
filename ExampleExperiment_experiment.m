@@ -34,10 +34,7 @@ try
     
     % initilize the window, set font style... save the window pointer and the resolution structure
     [window, resolution ] = initializeWindow(fontFace, fontSize, fontStyle, screenResolution );
-
-    midX = round(resolution.width / 2);
-    midY = round(resolution.height / 2);
-        
+    
     % store start time for start of experiment
     startTime = GetSecs();
     
@@ -60,9 +57,18 @@ try
     % DISPLAY INSTRUCTIONS
     displayInstructions(window, 'You will see a series of images displayed on the screen.\n\nWhen you see ''Speak Now!'' flash on the screen, say the first word that comes to your mind.\n\nWhen you are finished speaking, press the space bar on the keyboard. This will continue until the experiment has completed.\n\n Do you have any questions?  ' , 1);
 
+    % we will initialize our stims to the screen midpoints
+    %(we will display them centered on the screen.)
+    
+    midX = round(resolution.width / 2);
+    midY = round(resolution.height / 2);
+    
     % DEFINE STIMULI
-    % create image stimuli objects (encapsulates data for image stimuli)
     %
+    % Here, we create image stimuli objects (encapsulates data for image
+    % stimuli)...
+    %
+        
     s1 = ImageStim('x0', 'stimuli/images/redBall.jpg', midX, midY , 'ball');
     s2 = ImageStim('x1', 'stimuli/images/blueTriangle.jpg', midX, midY , 'triangle');
     s3 = ImageStim('x2', 'stimuli/images/pinkSquare.jpg', midX, midY, 'square');
