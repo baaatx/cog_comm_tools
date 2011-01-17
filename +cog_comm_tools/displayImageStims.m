@@ -12,5 +12,6 @@ function displayImageStims(window, imageStims)
     for i=1:length(imageStims)
         cog_comm_tools.drawImageDataAtDestRect(window, imageStims(i).imageData, imageStims(i).destRect);
     end
+    
     % now that they have all been drawn, flip the screen.
-    Screen('Flip', window);
+    cog_comm_tools.displayWindow(window);

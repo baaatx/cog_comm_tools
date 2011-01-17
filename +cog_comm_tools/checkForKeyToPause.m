@@ -25,5 +25,4 @@ function checkForKeyToPause(keyCode)
         
          % wait until there are no keys pressed.
         cog_comm_tools.waitUntilNoKeysPressed();
-        
     end

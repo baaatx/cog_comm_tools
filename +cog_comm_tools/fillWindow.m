@@ -1,4 +1,4 @@
-% Wrapper to fill the entire window with a single color.
+% Wrapper to fill the entire window with a single color (to make a background color).
 %
 % window - the window to flip (draw buffer to screen)
 %

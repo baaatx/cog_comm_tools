@@ -6,7 +6,6 @@
 %
 % Author: Brian Armstrong
 %
-
 function RGBColor = getRGBColor(colorString)
     
     % convert color string to lower case
@@ -36,8 +35,10 @@ function RGBColor = getRGBColor(colorString)
             RGBColor = [34 139 34];                        
         case {'red'}
             RGBColor = [255 0 0];            
-        case {'purple', 'violet'}
-            RGBColor = [255 0 255];                      
+        case {'violet'}
+            RGBColor = [238 0 238];
+        case {'purple'}
+            RGBColor = [128 0 128];            
         case {'pink'}            
             RGBColor = [255	192	203];
         case {'teal'}            

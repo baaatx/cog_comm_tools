@@ -8,5 +8,5 @@
 %
 % Author: Brian Armstrong
 %
-function EyelinkSetTrialId(trialId)
-     Eyelink('Message', ['TRIALID ' trialId]);
+function status = EyelinkSetTrialId(trialId)
+     status = Eyelink('Message', 'TRIALID %s', trialId);    

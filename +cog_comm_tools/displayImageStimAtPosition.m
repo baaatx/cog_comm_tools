@@ -1,5 +1,7 @@
 % Allows display of an ImageStim object at an arbitrary position on the
-% screen.
+% screen. This function returns the destRect used for displaying the image at that
+% position.
+%
 %
 % Display image data in 'imageStim' to window at position (xPos , yPos).
 % 

@@ -1,5 +1,12 @@
-% Checks to see if a stim Ordering meets criteria based on maxInOrder (max
-% number of valid or invalid stims to appear in a row)
+% A function that checks to see if a stim Ordering meets criteria based on 
+% maxInOrder (max number of valid or invalid stims to appear in a row). 
+%
+% Note: This function will continue to randomize until the constraint is
+% met (make sure it is possible).
+%
+% Note: You may want to use this as a template to write your own custom
+% randomization functions based on a custom constraints.
+%
 %
 % stimMap - containser.Map() of stim objects
 %
@@ -10,6 +17,7 @@
 %
 % lastStimCode - (optional) the last stim (in the last trial) that was used... Used to
 % prevent the first stim from being the same as lastStimCode...
+%
 %
 % Author: Brian Armstrong
 %

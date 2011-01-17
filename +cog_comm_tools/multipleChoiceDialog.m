@@ -1,4 +1,5 @@
-% A textual multiple choice dialog function that reports the chosen answer
+% A textual multiple choice dialog function that returns the value of the
+% selected Choice.
 %
 % window - the window pointer
 %
@@ -25,7 +26,7 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     
     % display the text
     cog_comm_tools.drawTextAtPosition(window, formattedText, xPad, yPad);
-    Screen('Flip',window);
+    cog_comm_tools.displayWindow(window);
     
     % now the question is on the screen
     startTime = GetSecs();    
@@ -56,6 +57,5 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     % un-supress text from matlab window
     ListenChar(1);    
     
-    % flush out any lingering text in buffer
-    FlushEvents('keyDown'); 
-    
+    % make sure no keys are pressed down before continuing...
+    cog_comm_tools.waitUntilNoKeysPressed();    

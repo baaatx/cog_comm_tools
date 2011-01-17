@@ -8,7 +8,7 @@
 
 function [xPad, yPad] = getScreenPadding(window)
 
-resolution = Screen('Resolution', window);
+    resolution = Screen('Resolution', window);
 
-xPad = (resolution.width / 7);
-yPad = (resolution.height / 7);
+    xPad = round((resolution.width / 7));
+    yPad = round((resolution.height / 7));

@@ -1,15 +1,17 @@
-% Ask the participant a question and saves/appends the question and answer to questionFile in the
+% Function for asking the participant a question. Saves/appends the 
+% question and answer to questionFile in the 
 % 'participants/participantsId/debriefing' directory.
 %
 % NOTE: You may just want to use getStringInputWithQuestion() if you just
-% want to get a string answer to a question from the participant.
+% want to get a string answer to a question from the participant 
+% (without writing out a file).
 %
 %
 % window - the window pointer
 %
-% questionFile - the file to save to
+% questionFile - the file to save/append to
 %
-% questionCode - the key code for the question
+% questionCode - the code for the question
 %
 % questionText - the text of the question
 %

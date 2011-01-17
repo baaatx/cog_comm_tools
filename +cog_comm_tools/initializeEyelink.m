@@ -32,15 +32,41 @@ function el = initializeEyelink(window, resolution, enableDummyMode)
     
     % handle error
     if (result ~= 1)
-        error ('There was a failure initializing EyeLink');
+        error ('There was a failure initializing EyeLink...');
     end
     
     % set the tracker ro use our screen's resolution
     cog_comm_tools.EyelinkSetResolution(resolution.width,resolution.height);
     
-    % set the data we want to record in the EDF file
-    Eyelink('Command', 'file_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON,HMARKER');
+    %{
+    – GAZE screen xy (gaze) position
+    – GAZERES units-per-degree screen resolution
+    – HREF head-referenced eye position data
+    – PUPIL raw eye camera pupil coordinates
+    – AREA pupil area
+    – STATUS warning and error flags
+    – BUTTON button state and change flags
+    – INPUT input port data lines
+    – HTARGET Head target data. Reports target distance and X/Y position for EyeLink Remote eye tracker.
+    %}
     
+    % Sets data in samples written to EDF file.
+    Eyelink('Command', 'file_sample_data = GAZE,GAZERES,HREF,PUPIL,AREA,STATUS,BUTTON,HMARKER');
+    
+    %{
+    – GAZE screen xy (gaze) position
+    – GAZERES units-per-degree angular resolution
+    – HREF HREF gaze position
+    – AREA pupil area or diameter
+    – VELOCITY velocity of eye motion (avg, peak)
+    – STATUS warning and error flags for event
+    – FIXAVG include ONLY average data in ENDFIX events
+    – NOSTART start events have no data, just time stamp
+    %}
+    
+    % Sets data in events written to EDF file.
+    Eyelink('Command', 'file_event_data = GAZE,GAZERES,HREF,AREA,VELOCITY,STATUS,FIXAVG,NOSTART');
+        
     % Sets data in samples sent through link.
     Eyelink('Command', 'link_sample_data = PUPIL,GAZE,GAZERES,AREA,HREF,BUTTON,HMARKER');
     

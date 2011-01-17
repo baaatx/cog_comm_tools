@@ -1,6 +1,6 @@
 % Wrapper to fade the screen from white to black.
 %
-% window - the window to flip (draw buffer to screen)
+% window - the window pointer...
 %
 %
 % Author: Brian Armstrong

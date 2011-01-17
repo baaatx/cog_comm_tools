@@ -10,32 +10,32 @@
 %
 function bytesWritten = appendFileToFile(inputFileName, outputFileName)
 
-% set proper line seperator
-lineSep = cog_comm_tools.getLineSeperator();
+    % set proper line seperator
+    lineSep = cog_comm_tools.getLineSeperator();
 
-% the output file handle
-outFile = cog_comm_tools.openFileForAppend(outputFileName);
+    % the output file handle
+    outFile = cog_comm_tools.openFileForAppend(outputFileName);
 
-% the counter for the number of bytes we write out to the output file.
-bytesWritten = 0;
+    % the counter for the number of bytes we write out to the output file.
+    bytesWritten = 0;
 
-% get the input file and concatenate the entire file to the
-% output file...
-inFile = cog_comm_tools.openFileForRead(inputFileName);
-fileEnd = false;
-    
-% while there are lines to read, read them and concatenate them
-while(fileEnd == false)
-    theBytes = fread(inFile);
-    if (~isempty(theBytes))
-        bytesWritten = bytesWritten + fwrite(outFile, theBytes);
-    else
-        % else write 'new line' character(s)
-        bytesWritten = bytesWritten + fwrite(outFile, lineSep);
-        fileEnd = true;
+    % get the input file and concatenate the entire file to the
+    % output file...
+    inFile = cog_comm_tools.openFileForRead(inputFileName);
+    fileEnd = false;
+
+    % while there are lines to read, read them and concatenate them
+    while(fileEnd == false)
+        theBytes = fread(inFile);
+        if (~isempty(theBytes))
+            bytesWritten = bytesWritten + fwrite(outFile, theBytes);
+        else
+            % else write 'new line' character(s)
+            bytesWritten = bytesWritten + fwrite(outFile, lineSep);
+            fileEnd = true;
+        end
     end
-end
 
-% close the file handles
-fclose(inFile);
-fclose(outFile);
+    % close the file handles
+    fclose(inFile);
+    fclose(outFile);

@@ -2,7 +2,7 @@
 %
 % N - the number of rows and columns in the generated square
 %
-% Author: Brian Armstrong
+% Author: Jos van der Geest
 %
 function [M,R] = getBalancedLatinSquare(N)
 %

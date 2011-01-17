@@ -23,4 +23,4 @@ function displayImageDataAtDestRect(window, imageData, destinationRect)
     Screen('DrawTexture', window, myTexture, [],  destinationRect);
 
     % Show stimulus on screen at next possible display refresh cycle
-    Screen('Flip', window);
+    cog_comm_tools.displayWindow(window);

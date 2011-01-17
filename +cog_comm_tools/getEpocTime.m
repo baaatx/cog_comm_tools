@@ -1,4 +1,4 @@
-% Wrapper that returns the epoc time
+% Wrapper that returns the current epoc time.
 %
 %
 % Author: Brian Armstrong

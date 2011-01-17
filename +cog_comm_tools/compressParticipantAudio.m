@@ -1,7 +1,8 @@
-% Runs the external MP3 encoder on all audio files in the participants
+% Runs the external MP3 (LAME) encoder on all audio files in the participant's
 % folder. 
 %
-% NOTE: This may take a substantial amount of time to complete.
+% NOTE: This may take a substantial amount of time to complete if there is
+% a large number of files to compress.
 %
 %
 % Author: Brian Armstrong

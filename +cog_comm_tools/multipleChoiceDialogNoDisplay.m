@@ -51,5 +51,5 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
     % un-supress text from matlab window
     ListenChar(1);
     
-    % flush out any lingering text in buffer
-    FlushEvents('keyDown');    
+    % make sure no keys are pressed down before continuing...
+    cog_comm_tools.waitUntilNoKeysPressed();    

@@ -1,7 +1,7 @@
 % Function that gets a Latin Square.
 %
 %
-% Author: Brian Armstrong
+% Author: Jos van der Geest
 %
 function [M,R] = getLatinSquare(N)
 % Wrapper based on latsq.m as described below

@@ -1,5 +1,8 @@
-% A image mapped multiple choice dialog function that reports the chosen
-% answer.
+% A clickable image mapped multiple choice dialog function that returns the
+% answer that is clicked on...
+%
+% The mapImageFile is used as an image map, each destRect in imageMapList
+% is associated with the cooresponding element of imageMapValues.
 %
 % window - the window pointer
 %

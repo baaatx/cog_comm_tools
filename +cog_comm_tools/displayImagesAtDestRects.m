@@ -35,4 +35,4 @@ function displayImagesAtDestRects(window, imageFileNames, destinationRects)
     Screen('DrawTextures', window, myTextures, [],  destinationRects);
 
     % Show stimulus on screen at next possible display refresh cycle
-    Screen('Flip', window);
+    cog_comm_tools.displayWindow(window);

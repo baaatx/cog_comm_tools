@@ -1,6 +1,6 @@
 % Check if there is a participant folder for this participantId
 %
-% participantId - the current participantId
+% participantId - a participantId
 %
 %
 % Author: Brian Armstrong

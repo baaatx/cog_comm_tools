@@ -12,4 +12,4 @@ function displayImageStimWithTitle(window, imageStim)
     cog_comm_tools.drawImageStimWithTitle(window, imageStim);
     
     % Draw the window buffer...
-    cog_comm_tools.drawWindow(window);
+    cog_comm_tools.displayWindow(window);

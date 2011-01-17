@@ -1,6 +1,4 @@
-% Plays a WAV file. Returns the fileTime (how long the played file is in seconds)
-%
-% wavFileName - the WAV file to play
+% Gets (returns) the text file line seperator for this operating system.
 %
 %
 % Author: Brian Armstrong
