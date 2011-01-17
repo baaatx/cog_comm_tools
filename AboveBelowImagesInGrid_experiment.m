@@ -16,6 +16,9 @@ fontSize = 30;
 fontStyle = 1;
 fontColor = getRGBColor('white');
 
+backgroundColor = getRGBColor('black');
+
+%experimental constants...
 audioRecordingLength = 15.0;
 interTrialDelay = 1.0;
 
@@ -28,16 +31,27 @@ try
     % assert that what we need is installed and working
     initializeExperiment();
     
+    participantId = 'exampleParticipantId';
+    
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution, fontColor);
-
-    midX = round(resolution.width / 2);
-    midY = round(resolution.height / 2);
     
-    % three images
-    s1 = ImageStim('s1', 'stimuli/images/redBall.jpg', midX,midY, 'Red Ball');
-    s2 = ImageStim('s2', 'stimuli/images/babyChicken.jpg', midX,midY, 'Baby Chicken');
-    s3 = ImageStim('s3', 'stimuli/images/redFinch.jpg', midX,midY, 'Red Finch');
+    % We create three ImageStim objects, initialized to position (0,0) on the screen.
+    %
+    % Note: We don't really need to set an initial position in this case,
+    % because we are only presenting the images in grid positions.  
+    % But the constructor for an ImageStim object is shown for example. 
+    %
+     
+    % The initial position is the position the the ImageStim is displayed
+    % at when using display or drawImageStim().  You can reset the destRect of an
+    % ImageStim object after it is created... This is what we do in this
+    % example... Follow the code below and read the code for the functions
+    % used for more information...
+    
+    s1 = ImageStim('s1', 'stimuli/images/redBall.jpg', 0,0, 'Red Ball');
+    s2 = ImageStim('s2', 'stimuli/images/babyChicken.jpg', 0,0, 'Baby Chicken');
+    s3 = ImageStim('s3', 'stimuli/images/redFinch.jpg', 0,0, 'Red Finch');
             
     % put the image stims in a map.
     imageStimsMap = containers.Map();
@@ -47,6 +61,19 @@ try
     
     % give them some instructions
     displayInstructions(window, 'You will see three images displayed on the screen.  When you hear a beep, speak outload and describe the position of the leftmost image relative to the other two images.  When you are finished speaking, press the space key...');
+    
+    % Note: trialInfo is a cell array we define for the needs of our
+    % experiment.  For each trial, we need to know the position we want to
+    % put each image.  So we have this format. 
+    %
+    %     {stimKey1 , position1, stimKey2, position 2, ...} 
+    %
+    % for the cell array describing the trial.
+    %
+    % trialInfo is a cell array of cell arrays... (A cell array of arrays, 
+    % each of which describes that trial, based on its position in
+    % trialInfo...)
+    %
     
     % trials info contains three cell arrays, each cell array describes the
     % position of the images for that trial... (So in the first trial,
@@ -58,6 +85,12 @@ try
     % define the number of rows and columns in our grid...
     rows = 3;
     columns = 3;
+    
+    % paddingWidth is a parameter of getScreenGridDestRectMap... it is the
+    % number of pixels between each cell grid 
+    %
+    % Note: With a background color
+    % drawn first, this is the width of the border around each cell)
     paddingWidth = 10;    
     
     % Get the destRects (destination rectangles) for the grid. See the code
