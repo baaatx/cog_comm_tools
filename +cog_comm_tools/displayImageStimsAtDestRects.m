@@ -26,12 +26,12 @@ function displayImageStimsAtDestRects(window, imageStims, destinationRects)
     % for each imageFile, create textures
     for i=1:length(imageStims)
         % make texture image out of image matrix 'imdata'
-        myTextures(i)=Screen('MakeTexture', window, imageStims{i}.imageData);
+        myTextures(i)=Screen('MakeTexture', window, imageStims(i).imageData);
     end
     
     %  fit each image stim into each grid cell without warping
     for i=1:length(imageStims)
-        tmpDestRect = [imageStims{i}.destRect(1); imageStims{i}.destRect(2); imageStims{i}.destRect(3); imageStims{i}.destRect(4) ];
+        tmpDestRect = [imageStims(i).destRect(1); imageStims(i).destRect(2); imageStims(i).destRect(3); imageStims(i).destRect(4) ];
         destinationRects(:,i) = cog_comm_tools.fitDestRectCol(destinationRects(:,i), tmpDestRect);
     end
         
