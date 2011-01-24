@@ -17,9 +17,6 @@ screenResolution = [1920 1080];
 %screenResolution = [1152 864];
 %screenResolution = [800 600];
 
-% store start time
-startTime = GetSecs();
-
 % a try block 'tries' a block of code and if an exception occurs it will jump to the following catch block 
 try
     % SETUP EXPERIMENT
@@ -27,7 +24,7 @@ try
     % assert that what we need is installed and working
     initializeExperiment();
     
-    % initilize the window, set font style, unify keyboard for various OS -
+    % initilize the window, set font style, 
     % save the window pointer and the resolution structure
     [window, resolution ] = initializeWindow(fontFace, fontSize, fontStyle, screenResolution );
 
@@ -54,17 +51,17 @@ try
     % Set up choice list for multiple choice dialog.
     % Allow them to press 1-0 for values 1-10.
     
-    % Each Choice object is of type cog_comm_tools.Choice(keyCode, value)
-    one = cog_comm_tools.Choice('1',1);
-    two = cog_comm_tools.Choice('2',2);
-    three = cog_comm_tools.Choice('3',3);
-    four = cog_comm_tools.Choice('4',4);
-    five = cog_comm_tools.Choice('5',5);
-    six = cog_comm_tools.Choice('6',6);
-    seven = cog_comm_tools.Choice('7',7);
-    eight = cog_comm_tools.Choice('8',8);
-    nine = cog_comm_tools.Choice('9',9);
-    ten = cog_comm_tools.Choice('0',10);
+    % Each Choice object is of type Choice(keyCode, value)
+    one = Choice('1',1);
+    two = Choice('2',2);
+    three = Choice('3',3);
+    four = Choice('4',4);
+    five = Choice('5',5);
+    six = Choice('6',6);
+    seven = Choice('7',7);
+    eight = Choice('8',8);
+    nine = Choice('9',9);
+    ten = Choice('0',10);
         
     choiceList = [one two three four five six seven eight nine ten];
     
@@ -73,7 +70,7 @@ try
     % chosen.
     timeOutInSeconds = 15;
     
-    [answer, responseTime] = cog_comm_tools.multipleChoiceDialogNoDisplay(choiceList, timeOutInSeconds);
+    [answer, responseTime] = multipleChoiceDialogNoDisplay(choiceList, timeOutInSeconds);
     
     displayInstructions(window, ['You selected ' num2str(answer) ' after ' num2str(responseTime) ' seconds.']);
     
