@@ -1,5 +1,6 @@
 % A textual multiple choice dialog function that reports the chosen answer
-% (does not display anything)
+% (does not display anything). Waits until no keys are pressed before
+% starting the dialog.
 %
 % choiceList - the list of Choice objects
 %
@@ -9,7 +10,7 @@
 % Author: Brian Armstrong
 %
 function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, timeOut)
-    
+   
     % timeOut is optional
     if (nargin < 2)
         useTimeOut = false;
@@ -19,6 +20,9 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
 
     answer = 'noneSelected';
     answerInvalid = true;
+
+    % make sure no keys are pressed down before continuing...
+    cog_comm_tools.waitUntilNoKeysPressed(); 
     
     % flush out any lingering text in buffer
     FlushEvents('keyDown');
@@ -49,7 +53,5 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
     responseTime = GetSecs() - startTime;
     
     % un-supress text from matlab window
-    ListenChar(1);
-    
-    % make sure no keys are pressed down before continuing...
-    cog_comm_tools.waitUntilNoKeysPressed();    
+    ListenChar(1);   
+   
