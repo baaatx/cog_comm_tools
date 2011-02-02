@@ -1,5 +1,6 @@
 % A textual multiple choice dialog function that returns the value of the
-% selected Choice.
+% selected Choice. Waits until no keys are pressed before starting the
+% dialog.
 %
 % window - the window pointer
 %
@@ -11,7 +12,10 @@
 % Author: Brian Armstrong
 %
 function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage , choiceList)
-    
+        
+    % make sure no keys are pressed down before continuing...
+    cog_comm_tools.waitUntilNoKeysPressed();  
+
     answer = 'notSelected';
     
     % start text that displays the question and choices
@@ -55,7 +59,5 @@ function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage ,
     responseTime = GetSecs() - startTime;
     
     % un-supress text from matlab window
-    ListenChar(1);    
-    
-    % make sure no keys are pressed down before continuing...
-    cog_comm_tools.waitUntilNoKeysPressed();    
+    ListenChar(1);
+ 
