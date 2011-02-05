@@ -21,8 +21,8 @@ function [answer, responseTime ]= multipleChoiceDialogNoDisplay(choiceList, time
     answer = 'noneSelected';
     answerInvalid = true;
 
-    % make sure no keys are pressed down before continuing...
-    cog_comm_tools.waitUntilNoKeysPressed(); 
+    % we could make sure no keys are pressed down before continuing...
+    % cog_comm_tools.waitUntilNoKeysPressed(); 
     
     % flush out any lingering text in buffer
     FlushEvents('keyDown');
