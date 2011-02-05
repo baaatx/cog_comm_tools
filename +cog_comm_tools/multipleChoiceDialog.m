@@ -13,8 +13,8 @@
 %
 function [answer, responseTime ]= multipleChoiceDialog(window, questionMessage , choiceList)
         
-    % make sure no keys are pressed down before continuing...
-    cog_comm_tools.waitUntilNoKeysPressed();  
+    % we could make sure no keys are pressed down before continuing...
+    % cog_comm_tools.waitUntilNoKeysPressed();  
 
     answer = 'notSelected';
     
