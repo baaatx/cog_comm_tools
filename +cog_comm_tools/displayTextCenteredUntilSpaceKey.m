@@ -14,7 +14,8 @@ function displayTextCenteredUntilSpaceKey(window, text, fontColor)
     
     % font color is optional, defaults to the initialized color value...
     if (nargin < 3)
-        fontColor = Screen('TextColor', window);
+        currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+        fontColor = currentTextColor;
     end
 
     cog_comm_tools.drawTextCentered(window, text, fontColor);
