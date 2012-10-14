@@ -29,8 +29,8 @@ function [window, resolution] = initializeWindow(fontName, fontSize, fontStyle, 
         desiredRes = [1024 768];
     end
     
-    % set window to resolution 'nearest' to desired resolution
-    NearestResolution(screenNumber,desiredRes);
+    % (doesn't work after updates) set window to resolution 'nearest' to desired resolution
+    % NearestResolution(screenNumber,desiredRes);
     
     % Open window with default settings
     window=Screen('OpenWindow', screenNumber);
