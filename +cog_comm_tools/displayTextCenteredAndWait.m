@@ -11,10 +11,11 @@
 % Author: Brian Armstrong
 %
 function displayTextCenteredAndWait(window, text, displayTime, fontColor)
-    
+
     % font color is optional, defaults to the initialized color value...
     if (nargin < 4)
-        fontColor = Screen('TextColor', window);
+        currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+        fontColor = currentTextColor;
     end    
 
     cog_comm_tools.displayTextCentered(window, text, fontColor);
