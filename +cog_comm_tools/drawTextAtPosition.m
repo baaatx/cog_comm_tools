@@ -21,12 +21,12 @@
 %
 function drawTextAtPosition(window, text, x, y, fontColor, wrapAt, vSpacing)
 
-    % save old font color...
-    oldFontColor = Screen('TextColor', window);
+    % save current font color...
+    currentTextColor = cog_comm_tools.getCurrentTextColor(window);
 
     % font color is optional, defaults to the initialized color value...
     if (nargin < 5)
-        fontColor = Screen('TextColor', window);
+        fontColor = currentTextColor;
     end
     
     % wrap at (break into newlines) is optional
@@ -43,4 +43,4 @@ function drawTextAtPosition(window, text, x, y, fontColor, wrapAt, vSpacing)
     DrawFormattedText(window, text, x, y, fontColor, wrapAt, [], [], vSpacing);
     
     % reapply the old font color...
-    Screen('TextColor', window, oldFontColor);
+    Screen('TextColor', window, currentTextColor);
