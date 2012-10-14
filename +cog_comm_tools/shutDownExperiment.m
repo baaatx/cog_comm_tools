@@ -10,15 +10,6 @@ function shutDownExperiment()
     % make sure MATLAB window gets key presses after we close
     ListenChar();   
 
-    % is eyelink Equipment Connected?
-    if (Eyelink('IsConnected'))
-        % is Eyelink Equipment Recording?
-        if (Eyelink('CheckRecording'))
-            Eyelink('StopRecording');
-        end
-        Eyelink('ShutDown');
-    end
-    
     % close all open file handles
     fclose('all');
     
