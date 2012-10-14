@@ -40,7 +40,8 @@ try
     
     % draw and display them (with one function call)
     drawImageStimsWithTitle(window, imageStims);
-    drawWindow(window);
+
+    displayWindow(window);
     
     % wait 3 seconds
     WaitSecs(3);
