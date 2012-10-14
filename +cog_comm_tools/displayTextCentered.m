@@ -12,7 +12,8 @@ function displayTextCentered(window, text, fontColor)
 
     % font color is optional, defaults to the initialized color value...
     if (nargin < 3)
-        fontColor = Screen('TextColor', window);
+        currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+        fontColor = currentTextColor;
     end
 
     % default background color is opposing font color...
