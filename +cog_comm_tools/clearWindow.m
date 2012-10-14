@@ -9,7 +9,8 @@
 %
 function clearWindow(window)
     % background color is opposite of the set textColor
-    backgroundColor = getColorComplement(Screen('TextColor', window));
+    currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+    backgroundColor = cog_comm_tools.getColorComplement(currentTextColor);
     
     % fill and display the background color...
     cog_comm_tools.fillWindow(window, backgroundColor);
