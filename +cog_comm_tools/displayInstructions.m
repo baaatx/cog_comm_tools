@@ -26,6 +26,8 @@ function displayInstructions(window, instructionsText, delay, continueType, back
     xPos = 50;
     yPos = 50;
     
+    currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+    
     % get the line wrap value
     wrapAt = cog_comm_tools.getWrapAt(window);
     
@@ -42,12 +44,12 @@ function displayInstructions(window, instructionsText, delay, continueType, back
 
     % default background color is complement of text color...
     if (nargin < 5)
-        backgroundColor = cog_comm_tools.getColorComplement(Screen('TextColor', window));
+        backgroundColor = cog_comm_tools.getColorComplement(currentTextColor);
     end
     
     % default font color is the Screen's font color
     if (nargin < 6)
-        fontColor = Screen('TextColor', window);
+        fontColor = currentTextColor;
     end
     
     % flush lingering keypresses to avoid skipping over instructions...
