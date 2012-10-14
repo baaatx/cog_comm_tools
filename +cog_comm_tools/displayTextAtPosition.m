@@ -23,12 +23,14 @@ function displayTextAtPosition(window, text, x, y, backgroundColor, fontColor, w
 
    % default background color is opposite of the set text color.
     if (nargin < 5)
-        backgroundColor = cog_comm_tools.getColorComplement(Screen('TextColor',window));
+        currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+        backgroundColor = cog_comm_tools.getColorComplement(currentTextColor);
     end
 
     % font color is optional, defaults to the initialized color value...
     if (nargin < 6)
-        fontColor = Screen('TextColor', window);
+        currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+        fontColor = currentTextColor;
     end
     
     % wrap at (break into newlines) is optional
