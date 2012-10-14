@@ -13,7 +13,8 @@ function drawTextCentered(window, text, fontColor)
     
     % use default font color if no argument is passed...
     if (nargin < 3)
-        fontColor = Screen('TextColor', window);
+        currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+        fontColor = currentTextColor;
     end
         
     cog_comm_tools.drawTextAtPosition(window, text, 'center', 'center', fontColor);
