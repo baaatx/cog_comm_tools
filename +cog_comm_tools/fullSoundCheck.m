@@ -24,7 +24,8 @@ function fullSoundCheck(window , participantId)
     upperBound = 0.71;
 
     % set the background color to the opposite color of the text...
-    backgroundColor = cog_comm_tools.getColorComplement(Screen('TextColor', window));
+    currentTextColor = cog_comm_tools.getCurrentTextColor(window);
+    backgroundColor = cog_comm_tools.getColorComplement(currentTextColor);
 
     soundCheckInstructions = 'We''ll begin with a sound check.\n\nRead the sentence presented while speaking into the microphone.\n\nPress the spacebar key when you are finished talking.\n\nWhenever you''re ready the experimenter will press a\nbutton to begin the sound check.';
     cog_comm_tools.displayInstructions(window, soundCheckInstructions, readingDelay, 'keyboard', backgroundColor);
