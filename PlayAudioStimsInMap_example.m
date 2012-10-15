@@ -71,18 +71,20 @@ try
     % grab another audio stim
     currentStim = audioStimsMap('x1');
     % start audio playback and then continue with the script...
-    playAudioStimAndContinue(currentStim);
+    [portAudioHandle, startTime] = playAudioStimAndContinue(currentStim);
     
     % Now all these action will occur with the audio playback in the
     % background...
-    displayTextCentered(window, ['Started Playing: ' currentStim.title '(' num2str(currentStim.audioLength) ' secs)']);
+    displayTextCentered(window, ['Started Playing: ' currentStim.title '(' num2str(currentStim.audioLength) ' secs) at ' num2str(startTime)]);
     WaitSecs(pauseTime);
     displayTextCentered(window, 'But the experiment can continue going...');
     WaitSecs(pauseTime);
     displayTextCentered(window, 'while the audio is played back...');
     WaitSecs(pauseTime);
     displayInstructions(window, 'The second way is useful if you want to\npresent stimuli and record data while audio\nstims are being presented...');
-        
+    
+    stopAudioStimPlayback(portAudioHandle);
+    
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();
     

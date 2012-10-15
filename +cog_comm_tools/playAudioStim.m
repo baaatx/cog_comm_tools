@@ -7,9 +7,15 @@
 %
 % Author: Brian Armstrong
 %
-function playAudioStim(audioStim)
+function startTime = playAudioStim(audioStim)
     % play the wav data
-    sound (audioStim.audioSamples, audioStim.audioFileSize);
+    [portAudioHandle, startTime] = cog_comm_tools.playAudioStimAndContinue(audioStim);
     
     % wait
     WaitSecs(audioStim.audioLength);
+    
+    % Stop playback:
+    PsychPortAudio('Stop', portAudioHandle);
+
+    % Close the audio device:
+    PsychPortAudio('Close', portAudioHandle);

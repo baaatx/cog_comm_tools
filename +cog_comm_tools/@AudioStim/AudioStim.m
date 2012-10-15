@@ -18,7 +18,10 @@ classdef AudioStim < handle
       keyCode
       wavFileName
       audioSamples
-      audioFileSize
+      waveData
+      frequency
+      bitsPerSecond
+      numChannels
    end
    properties  (SetAccess = public, GetAccess = public)
       title
@@ -43,11 +46,18 @@ classdef AudioStim < handle
            obj.keyCode = keyCode;
            obj.wavFileName = wavFileName;
            
+           
            % get the wave data
-           [obj.audioSamples, obj.audioFileSize] = wavread(wavFileName);
+           [obj.audioSamples, obj.frequency, obj.bitsPerSecond] = wavread(wavFileName);
+           
+           % transpose the wave data for consumption by PTB audio port
+           obj.waveData = obj.audioSamples';
+           
+           % determine number of channels
+           obj.numChannels = size(obj.waveData,1);
            
            % store the audio length...
-           obj.audioLength = (length(obj.audioSamples)) / obj.audioFileSize;
+           obj.audioLength = (length(obj.audioSamples)) / obj.frequency;
        end
    end
 end % classdef
