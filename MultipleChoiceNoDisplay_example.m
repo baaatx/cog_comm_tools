@@ -40,7 +40,7 @@ try
     imageStim = ImageStim('x0', 'stimuli/images/redBall.jpg', midX, midY, 'red ball');
     
     % draw some test to the screen.
-    drawTextAtPosition('Press a number 1 2 3 4 5 6 7 8 9 (1)0 to rate how much you like this picture.', 20,20); 
+    drawTextAtPosition(window, 'Press a number 1 2 3 4 5 6 7 8 9 (1)0 to rate how much you like this picture.', 20,20); 
     
     % draw the image in its initial position
     drawImageStim(window, imageStim);
@@ -52,16 +52,16 @@ try
     % Allow them to press 1-0 for values 1-10.
     
     % Each Choice object is of type Choice(keyCode, value)
-    one = Choice('1',1);
-    two = Choice('2',2);
-    three = Choice('3',3);
-    four = Choice('4',4);
-    five = Choice('5',5);
-    six = Choice('6',6);
-    seven = Choice('7',7);
-    eight = Choice('8',8);
-    nine = Choice('9',9);
-    ten = Choice('0',10);
+    one = Choice('1!',1);
+    two = Choice('2@',2);
+    three = Choice('3#',3);
+    four = Choice('4$',4);
+    five = Choice('5%',5);
+    six = Choice('6^',6);
+    seven = Choice('7&',7);
+    eight = Choice('8*',8);
+    nine = Choice('9(',9);
+    ten = Choice('0)',10);
         
     choiceList = [one two three four five six seven eight nine ten];
     
