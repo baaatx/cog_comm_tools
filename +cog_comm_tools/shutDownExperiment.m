@@ -11,17 +11,17 @@ function shutDownExperiment()
     ListenChar();   
 
     % If Eyelink support is installed, is eyelink Equipment Connected?
-    try
-        if (Eyelink('IsConnected'))
-            % is Eyelink Equipment Recording?
-            if (Eyelink('CheckRecording'))
-                Eyelink('StopRecording');
-            end
-            Eyelink('ShutDown');
-        end
-    catch
-        disp('Note: Eyelink support not detected suring shutdown.');
-    end    
+    %try
+    %    if (Eyelink('IsConnected'))
+            % is Eyelink Equipment Recording? 
+    %        if (Eyelink('CheckRecording'))
+    %            Eyelink('StopRecording');
+    %        end
+    %        Eyelink('ShutDown');
+    %    end
+    %catch
+    %    disp('Note: Eyelink support not detected suring shutdown.');
+    %end    
         
     % close all open file handles
     fclose('all');
