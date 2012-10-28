@@ -5,7 +5,7 @@
 % of how to use audio and visual stimuli to create a model
 % for the participant to follow.
 %
-% Trying to get the particpant to four words at certains times based
+% Trying to get the particpant to say four words at certains times based
 % on the audio visual queue.
 % 
 %
@@ -24,7 +24,6 @@ fontSize = 30;
 fontStyle = 1;
 
 participantId = 'exampleParticipantId';
-fileName = 'pulsing_sync_test_file';
 
 % here we are specifying what screen resolution we want
 screenResolution = [1152 864];
