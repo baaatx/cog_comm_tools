@@ -1,4 +1,4 @@
-% MultipleChoiceNoDisplay_example.m - an example of how to perform a
+% MultipleChoiceNoDisplayWithAudio_example.m - an example of how to perform a
 % keyboard dialog with a custom display. Has Audio playing while
 % the user makes a selection.
 % 
