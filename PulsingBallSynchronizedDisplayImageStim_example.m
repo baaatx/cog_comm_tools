@@ -141,7 +141,7 @@ try
                 %elapsedTime = GetSecs() - loopStartTime;
                 %drawTextAtPosition(window, ['elapsedTime:' num2str(elapsedTime)], 20,20);
                 
-                drawImageStims(window, imageStims);
+                drawImageStims(window, syncImageStims);
 
                 % on the first 'beat' we display the masking image and play
                 % a beep to denote the 'beat'
