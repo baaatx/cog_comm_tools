@@ -6,8 +6,12 @@
 % Author: Brian Armstrong
 %
 function stopAudioStimPlayback(portAudioHandle)
-    % Stop playback:
-    PsychPortAudio('Stop', portAudioHandle);
 
-    % Close the audio device:
-    PsychPortAudio('Close', portAudioHandle);
+    % if the handle isn't empty, try to stop and close the audio
+    if (~isempty(portAudioHandle))
+        % Stop playback:
+        PsychPortAudio('Stop', portAudioHandle);
+
+        % Close the audio device:
+        PsychPortAudio('Close', portAudioHandle);
+    end
