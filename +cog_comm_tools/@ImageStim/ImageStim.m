@@ -24,6 +24,10 @@ classdef ImageStim < handle
    end
    properties  (SetAccess = public, GetAccess = public)
       title
+      metaDataA
+      metaDataB
+      metaDataC
+      metaDataD
       valid
       lastStartTime
       lastEndTime
@@ -34,6 +38,7 @@ classdef ImageStim < handle
       width
       height
       destRect
+      maskingImageStim
    end
    methods
        function obj = ImageStim(keyCode, fileName, xPos, yPos, title)
@@ -105,6 +110,30 @@ classdef ImageStim < handle
            minY = (yPos - (obj.height / 2));
            maxX = (xPos + (obj.width / 2));
            maxY = (yPos + (obj.height / 2));
+           obj.destRect = [minX minY maxX maxY];
+
+           % round to nearest integer values
+           obj.destRect = round(obj.destRect);
+       end
+       
+       % applies a change in pixels to both dimensions
+       % while keeping image porportions the same
+       function changeSize(obj, dSize)
+           
+           heightToWidthRatio = obj.height / obj.width;
+           widthToHeightRatio = obj.width / obj.height;
+
+           dx = dSize * widthToHeightRatio;
+           dy = dSize * heightToWidthRatio;
+           
+           obj.width = round(obj.width + dx);
+           obj.height = round(obj.height + dy);
+           
+           % alter coordinates for destRect
+           minX = (obj.xPos - (obj.width / 2));
+           minY = (obj.yPos - (obj.height / 2));
+           maxX = (obj.xPos + (obj.width / 2));
+           maxY = (obj.yPos + (obj.height / 2));
            obj.destRect = [minX minY maxX maxY];
 
            % round to nearest integer values
