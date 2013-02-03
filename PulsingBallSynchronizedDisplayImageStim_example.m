@@ -192,24 +192,16 @@ try
     shortBeepAudio.stop();
     shortBeepAudio.close();
 
-    displayTextCentered(window, ['loopEndTime: ' num2str(loopEndTime)]);
-    KbWait();
-    WaitSecs(0.2);
+    displayInstructions(window, ['loopEndTime: ' num2str(loopEndTime)]);
     
-    displayTextCentered(window, ['total wait time: ' num2str(cumulativeWaitingTime)]);
-    KbWait();
-    WaitSecs(0.2);
+    displayInstructions(window, ['total wait time: ' num2str(cumulativeWaitingTime)]);
     
-    displayTextCentered(window, ['total draw/play time: ' num2str(cumulativeDrawingTime)]);
-    KbWait();
-    WaitSecs(0.2);
-        
+    displayInstructions(window, ['total draw/play time: ' num2str(cumulativeDrawingTime)]);
+
     % this shows how the recording realtime data varies - we do our best to
     % collect the data as accurately as possible
-    displayTextCentered(window, ['missing time: ' num2str(loopEndTime - totalExpectedTime)]);
-    KbWait();
-    WaitSecs(0.2);    
-    
+    displayInstructions(window, ['missing time: ' num2str(loopEndTime - totalExpectedTime)]);
+
     
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();
