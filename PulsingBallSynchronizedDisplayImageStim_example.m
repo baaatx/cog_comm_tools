@@ -78,10 +78,12 @@ try
     
     % Our short beep to use as a metronome-like guide
     shortBeepAudio = AudioStim('shortBeep', 'stimuli/audio/short_beep.wav', 'Short Beep');
+    shortBeepAudio.open();
     
     %define audio overlay stimuli
     overlayAudio = AudioStim('fiveFriends', 'stimuli/audio/five_friends_fry_fish_140BPM.wav', 'Short Beep');
-
+    overlayAudio.open();
+    
     % put the image stims into a single list for use by our method
     syncImageStims = [ballA ballB ballC ballD];
 
@@ -102,10 +104,6 @@ try
     
     dt = secondsToDisplay / numSteps;
     
-    % this is the error correction factor we subtact as program latency
-    % so that we don't spend too much time waiting
-    waitErrorCorrection = 0.0139;
-    
     %change in size per step for the image when pulsing
     dSize = sizeChange / numSteps;
 
@@ -120,7 +118,7 @@ try
     displayInstructions(window, 'A audio synched visual queue will be presented as a model to follow in later trials.');
     
     % begin loop
-    [portAudioHandleOverlay, startTime] = playAudioStimAndContinue(overlayAudio);
+    overlayAudio.play();
 
     loopStartTime = GetSecs();
     imageIndex = 1;
@@ -146,15 +144,11 @@ try
                 % a beep to denote the 'beat'
                 if (step == 0 && phase == 0)
                     drawImageStim(window, imageToPulse.maskingImageStim);
-                    [portAudioHandle, startTime] = playAudioStimAndContinue(shortBeepAudio);
+                    shortBeepAudio.play();
                 end
 
 
                 displayWindow(window);
-
-                stopAudioStimPlayback(portAudioHandle);
-
-                portAudioHandle = [];
 
                 step = step + 1;
                 
@@ -162,7 +156,7 @@ try
 
                 cumulativeDrawingTime = cumulativeDrawingTime + timeToDraw;
                 
-                timeToWait = dt - timeToDraw - waitErrorCorrection;
+                timeToWait = dt - timeToDraw;
                 
                 cumulativeWaitingTime = cumulativeWaitingTime + timeToWait;
 
@@ -172,8 +166,10 @@ try
 
                 %disp (['step:' num2str(step) ' time to draw:' num2str(timeToDraw)]);
 
-                WaitSecs(timeToWait);
-
+                %WaitSecs(timeToWait);
+                wakeUpTime = startTime + dt;
+                wokeUpAt = WaitSecs('UntilTime', wakeUpTime);
+    
 
             end
             %change direction of pulse
@@ -184,14 +180,18 @@ try
         end
         %move onto next image
         imageIndex = imageIndex + 1;
+        
     end
-   
-    % stop the audio playback that we started previously
-    stopAudioStimPlayback(portAudioHandleOverlay);
    
     % show some data pertaining to this iteraction of the trial
     loopEndTime = GetSecs() - loopStartTime;
     
+    overlayAudio.stop();
+    overlayAudio.close();
+    
+    shortBeepAudio.stop();
+    shortBeepAudio.close();
+
     displayTextCentered(window, ['loopEndTime: ' num2str(loopEndTime)]);
     KbWait();
     WaitSecs(0.2);
