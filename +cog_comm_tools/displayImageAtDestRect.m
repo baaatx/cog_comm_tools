@@ -12,7 +12,7 @@
 %
 %
 % Author: Brian Armstrong
-function displayImageAtDestRect(window, imageFileName, destinationRect)
+function myTexture = displayImageAtDestRect(window, imageFileName, destinationRect)
     % read stimulus image into matlab matrix 'imdata':
     imdata=imread(char(imageFileName));
 
