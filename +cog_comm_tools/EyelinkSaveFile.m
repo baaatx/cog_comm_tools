@@ -7,9 +7,9 @@
 %
 % Author: Brian Armstrong
 %
-function status = EyelinkSaveFile(fileName, participantId)
+function status = EyelinkSaveFile(fileName, participantId, sessionId)
     % send command
-    status = Eyelink('ReceiveFile', [] , ['participants/' participantId '/eyelink/' fileName]);
+    status = Eyelink('ReceiveFile', [] , ['participants/' participantId filesep sessionId '/eyelink/' fileName]);
     
     % handle error
     if (status < 0)

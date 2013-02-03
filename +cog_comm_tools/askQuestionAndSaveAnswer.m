@@ -17,10 +17,11 @@
 %
 % participantId - the unique participantId for the current participant
 %
+% sessionId - current sessionId
 %
 % Author: Brian Armstrong
 %
-function askQuestionAndSaveAnswer(window, questionFile, questionCode, questionText, participantId)
+function askQuestionAndSaveAnswer(window, questionFile, questionCode, questionText, participantId, sessionId)
     % get the answer
     answer = '';
     
@@ -30,6 +31,6 @@ function askQuestionAndSaveAnswer(window, questionFile, questionCode, questionTe
     end
 
     % write it to file, tab delimited
-    outputFile = cog_comm_tools.openFileForAppend(['participants/' participantId '/debriefing/' questionFile '.txt']);
+    outputFile = cog_comm_tools.openFileForAppend(['participants/' participantId filesep sessionId '/debriefing/' questionFile '.txt']);
     fprintf(outputFile, [participantId '\t' questionCode '\t' questionText '\t' answer '\n']);
     fclose(outputFile);
