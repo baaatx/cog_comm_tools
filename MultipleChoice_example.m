@@ -37,7 +37,8 @@ try
     C = Choice('k', 'Kiwi');
     D = Choice('d', 'Durian');
     
-    % the choice list
+    % the choice list is an ordered list which contains all the possible choices in a multiple
+    % choice dialog will present as options.
     choiceList = [A B C D];
 
     % start the multiple Choice Dialog
