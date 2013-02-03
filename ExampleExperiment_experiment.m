@@ -39,15 +39,15 @@ try
     startTime = GetSecs();
     
     % initilze the participant
-    participantId = initializeParticipant(window);
+    [participantId, sessionId] = initializeParticipant(window);
     %participantId = 'exampleParticipantId';
     
     % run the full sound check since we are recording audio from the
     % participant with a microphone
-    fullSoundCheck(window, participantId);
+    fullSoundCheck(window, participantId, sessionId);
     
     % Setup our trials log.  
-    myLog = TDFLog(['participants/' participantId '/exampleTrialsLog.txt']);
+    myLog = TDFLog(['participants' filesep participantId filesep sessionId filesep 'exampleTrialsLog.txt']);
     myLog.add('ImgCode');
     myLog.add('StrTime');
     myLog.add('StpTime');
@@ -115,7 +115,7 @@ try
         
         % record audio - the function returns the response time (to reach
         % minimum audio loudness (amplitude)
-        responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, audioRecordingLength, imageKeyCode);
+        responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, sessionId, audioRecordingLength, imageKeyCode);
 
         % prompt the participant to stop speaking
         displayTextCentered(window, 'Stop Speaking!');
@@ -141,10 +141,10 @@ try
     % DEBRIEFING
     questionFile = 'SeeImageQuestions';
     questionText1 = 'Did You Enjoy Participating in This Experiment?';
-    askQuestionAndSaveAnswer(window, questionFile, 'q1', questionText1, participantId );
+    askQuestionAndSaveAnswer(window, questionFile, 'q1', questionText1, participantId, sessionId );
 
     questionText2 = 'Did you have to think much before speaking the first thing that came to your mind?';
-    askQuestionAndSaveAnswer(window, questionFile, 'q2', questionText2, participantId );
+    askQuestionAndSaveAnswer(window, questionFile, 'q2', questionText2, participantId, sessionId );
     
     % say goodbye
     displayInstructions(window, 'That is all! Thanks for your participation! ');
