@@ -7,7 +7,9 @@
 %
 % Author: Brian Armstrong
 %
-function drawImageStims(window, imageStims)
+function myTextures = drawImageStims(window, imageStims)
+    myTextures = [];
     for i=1:length(imageStims)
-        cog_comm_tools.drawImageDataAtDestRect(window, imageStims(i).imageData, imageStims(i).destRect);
+        myTexture = cog_comm_tools.drawImageDataAtDestRect(window, imageStims(i).imageData, imageStims(i).destRect);
+        myTextures = [myTextures myTexture];
     end
