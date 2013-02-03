@@ -1,5 +1,7 @@
 % This is a class that represents a single image stimulus used in an
-% experiment. 
+% experiment. Also - arbitrary properties can be added to and read
+% from each audio stim - so that arbitrary data - or even other stims can
+% be associated to this object.
 %
 %  ImageStim Constructor Parameters:
 %
@@ -21,6 +23,7 @@ classdef ImageStim < handle
       keyCode
       fileName
       imageData
+      propertiesMap
    end
    properties  (SetAccess = public, GetAccess = public)
       title
@@ -97,6 +100,16 @@ classdef ImageStim < handle
 
            % round to nearest integer values
            obj.destRect = round(obj.destRect);
+           
+           % create an internal map so other properties and objects can
+           % be associated with this object
+           obj.propertiesMap = containers.Map();
+       end
+       function setProperty(obj, key, value)
+        obj.propertiesMap(key) = value;
+       end
+       function value = getProperty(obj, key)
+        value = obj.propertiesMap(key);
        end
        
        function setPosition(obj, xPos, yPos)
