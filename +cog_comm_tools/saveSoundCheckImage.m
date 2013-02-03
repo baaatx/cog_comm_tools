@@ -6,6 +6,8 @@
 %
 % participantId - unique id of participant
 %
+% sessionId - unique session id for this run
+%
 % minY - minimum threadhold for sound wave amplitude
 %
 % maxY - maximum threadhold for sound wave amplitude
@@ -13,10 +15,10 @@
 %
 % Author: Brian Armstrong
 %
-function saveSoundCheckImage(participantId, minY, maxY)
+function saveSoundCheckImage(participantId, sessionId,  minY, maxY)
 
     % get data from wave file
-    [x,fs] = wavread(['participants/' participantId '/audio/soundCheck.wav']);
+    [x,fs] = wavread(['participants' filesep participantId filesep sessionId filesep 'audio' filesep 'soundCheck.wav']);
     
     % specify time 
     t = (1:length(x))/fs;
@@ -73,7 +75,7 @@ function saveSoundCheckImage(participantId, minY, maxY)
     text(0,-minY,'Lower Bound', 'HorizontalAlignment','left');
         
     % save the figure as a jpg file
-    saveas(h,['participants/' participantId '/images/soundCheckImage.jpg'],'jpg');
+    saveas(h,['participants' filesep participantId filesep sessionId filesep 'images' filesep 'soundCheckImage.jpg'],'jpg');
     
     % close the plot window (plotting causes this window to open)
     close

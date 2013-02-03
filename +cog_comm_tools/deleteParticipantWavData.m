@@ -2,12 +2,13 @@
 %
 % participantId - the participant's unique id
 %
+% sessionId - the session containing the data to delete
 %
 % Author: Brian Armstrong
 %
-function numFilesDeleted = deleteParticipantWavData(participantId)
+function numFilesDeleted = deleteParticipantWavData(participantId, sessionId)
 
-    path = ['participants/' participantId '/audio/'];
+    path = ['participants' filesep participantId filesep sessionId filesep 'audio' filesep];
 
     files = dir ([path '*.wav']);
 

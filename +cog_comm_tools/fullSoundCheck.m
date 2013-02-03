@@ -11,7 +11,7 @@
 % Author: Brian Armstrong
 %
 %
-function fullSoundCheck(window , participantId)
+function fullSoundCheck(window , participantId, sessionId)
     % define varibles
     readingDelay = 0.4;
     recordingLength = 5;
@@ -49,7 +49,7 @@ function fullSoundCheck(window , participantId)
         cog_comm_tools.displayWindow(window);
 
         % the audio recording call...
-        cog_comm_tools.recordAudioFromMicrophoneUntilSpaceKey(participantId, recordingLength, 'soundCheck');
+        cog_comm_tools.recordAudioFromMicrophoneUntilSpaceKey(participantId, sessionId, recordingLength, 'soundCheck');
 
         % let them know we stopped recording...
         cog_comm_tools.fillWindow(window, backgroundColor);
@@ -57,17 +57,17 @@ function fullSoundCheck(window , participantId)
         cog_comm_tools.displayWindow(window);
 
         % draw the image of the wave sound
-        cog_comm_tools.saveSoundCheckImage(participantId, lowerBound, upperBound);
+        cog_comm_tools.saveSoundCheckImage(participantId, sessionId, lowerBound, upperBound);
 
         % play the wav and store the fileTime
-        fileTime = cog_comm_tools.playWav(['participants/' participantId '/audio/soundCheck.wav']);
+        fileTime = cog_comm_tools.playWav(['participants' filesep participantId filesep sessionId filesep 'audio' filesep 'soundCheck.wav']);
 
         % allow for an escape key halt at this point
         cog_comm_tools.checkForEscapeKeyToHalt();
 
         % show the image of the sound
         cog_comm_tools.fillWindow(window, backgroundColor);
-        cog_comm_tools.DisplayImageCenteredAndWait(window, ['participants/' participantId '/images/soundCheckImage.jpg'], readingDelay);
+        cog_comm_tools.DisplayImageCenteredAndWait(window, ['participants' filesep participantId filesep sessionId filesep 'images' filesep 'soundCheckImage.jpg'], readingDelay);
 
         % wait until the experimenter presses a key to continue
         KbWait();
