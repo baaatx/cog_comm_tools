@@ -12,12 +12,12 @@
 %                           silence. (between 0 and 1)
 %
 %
-% Authors: Brian Armstrong, Dylan Bumford
+% Authors: Brian Armstrong
 %
-function responseTime = recordAudioFromMicrophone(participantId, audioBufferLength, fileName, voiceTrigger)
+function responseTime = recordAudioFromMicrophone(participantId, sessionId, audioBufferLength, fileName, voiceTrigger)
 
 % voiceTrigger is optional
-if (nargin <4)
+if (nargin <5)
     voiceTrigger = .01;
 end
 
@@ -79,4 +79,4 @@ recordedAudio = [recordedAudio audiodata];
 PsychPortAudio('Close', pahandle);
 
 % Store recorded sound to wavfile
-wavwrite(transpose(recordedAudio), 44100, 16, ['participants' '/' participantId '/' 'audio' '/' fileName '.wav']);
+wavwrite(transpose(recordedAudio), 44100, 16, ['participants' filesep participantId filesep sessionId filesep 'audio' filesep fileName '.wav']);
