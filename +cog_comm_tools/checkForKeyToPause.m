@@ -2,6 +2,7 @@
 % Once the experiment is paused, the experimenter can press the key again
 % to resume the experiment.
 %
+% keyCode - keycode string that represents the key - ex. 'c' for c
 %
 % Author: Brian Armstrong
 %
