@@ -9,7 +9,7 @@
 %
 % Author: Brian Armstrong
 %
-function drawImageAtDestRect(window, imageFileName, destinationRect)
+function myTexture = drawImageAtDestRect(window, imageFileName, destinationRect)
     % check for arguments
     if (nargin ~= 3)
         error ('incorrect arguments for drawImageAtDestRect');

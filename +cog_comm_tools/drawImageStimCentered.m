@@ -8,5 +8,5 @@
 %
 % Author: Brian Armstrong
 %
-function drawImageStimCentered(window, imageStim)
-    cog_comm_tools.drawImageDataAtDestRect(window, imageStim.imageData, []);
+function myTexture = drawImageStimCentered(window, imageStim)
+    myTexture = cog_comm_tools.drawImageDataAtDestRect(window, imageStim.imageData, []);

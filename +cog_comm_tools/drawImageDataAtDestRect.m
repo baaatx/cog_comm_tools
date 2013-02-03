@@ -10,7 +10,7 @@
 % 
 % Author: Brian Armstrong
 %
-function drawImageDataAtDestRect(window, imageData, destinationRect)
+function myTexture = drawImageDataAtDestRect(window, imageData, destinationRect)
     % make texture image out of image matrix 'imageData'
     myTexture=Screen('MakeTexture', window, imageData);
 

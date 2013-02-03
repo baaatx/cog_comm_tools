@@ -7,13 +7,13 @@
 %
 % Author: Brian Armstrong
 %
-function drawImageStimWithTitle(window, imageStim)
+function myTexture = drawImageStimWithTitle(window, imageStim)
 
     % get font size for window
     fontSize = cog_comm_tools.getCurrentTextSize(window);
     
     % draw the image stim data to the screen...
-    cog_comm_tools.drawImageDataAtDestRect(window, imageStim.imageData, imageStim.destRect);
+    myTexture = cog_comm_tools.drawImageDataAtDestRect(window, imageStim.imageData, imageStim.destRect);
     
     % draw the title under the image (approx centered)
     xOffset = ((fontSize/2) * round(length(imageStim.title) / 2));
