@@ -9,9 +9,7 @@
 %
 % Author: Brian Armstrong
 %
-function participantId = initializeParticipant(window)
-    
-
+function [participantId, sessionId] = initializeParticipant(window)
 
     % get RA info
     
@@ -36,10 +34,26 @@ function participantId = initializeParticipant(window)
        
         % if they want to overwrite, break out of the loop
         if (cog_comm_tools.participantExists(participantId))
-            if(cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, are you sure\n\nyou want to overwrite their data?'))
+            if(cog_comm_tools.yesNoDialog(window, 'Participant ID already exists, are you sure\n\nyou want to overwrite any simularly named files in their data folders?\n\n (This is okay if you are continuing to a new session with a previous subject.)'))
                 break;
             end
+            cog_comm_tools.checkForEscapeKeyToHalt();
         end
+    end
+    
+    % get session ID
+    sessionId = '';
+    while(strcmp(sessionId, '') || cog_comm_tools.participantSessionExists(participantId, sessionId))
+        sessionId = cog_comm_tools.getStringInputWithQuestion(window, 'Please enter a valid session ID.');
+    
+        % if they want to overwrite, break out of the loop
+        if (cog_comm_tools.participantSessionExists(participantId, sessionId))
+            if(cog_comm_tools.yesNoDialog(window, 'Session ID already exists, are you sure\n\nyou want to overwrite any simularly named files for that session?\n\n (This is probably okay if you starting a session over from the begining.)'))
+                break;
+            end
+            cog_comm_tools.checkForEscapeKeyToHalt();
+        end
+    
     end
     
     % change the current folder to the subjects folder
@@ -54,8 +68,20 @@ function participantId = initializeParticipant(window)
         end
     end
     
-    % now we need to create the appropriate sub-directories
+    % now we need to create the appropriate sub-directories under the
+    % sessionId subfolder
     cd (participantId);
+    
+    % make a new folder for this sessionId (in the 'participantId' folder) 
+    % if it does not exist.
+    if (isdir(sessionId) == 0)
+        mkdir(sessionId);
+        if (~isdir(sessionId))
+            error(['sessionId folder not created... Is ' sessionId ' a valid folder name?']);
+        end
+    end
+    
+    cd (sessionId);
     
     % make subdirectories (if they don't exist) for data that will be collected
     if (isdir('audio') == 0)
@@ -66,11 +92,11 @@ function participantId = initializeParticipant(window)
         mkdir('images')
     end
     
-    if (isdir('debriefing')==0)
+    if (isdir('debriefing') == 0)
         mkdir ('debriefing');
     end
     
-    if (isdir('eyelink')==0)
+    if (isdir('eyelink') == 0)
         mkdir ('eyelink');
     end
     
