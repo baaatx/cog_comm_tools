@@ -27,6 +27,10 @@ try
     
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
+
+    % set audio file name
+    fileName = 'response_time_example_recording';
+    
     
     % use the default example participant
     participantId = 'exampleParticipantId'; 
@@ -39,13 +43,17 @@ try
     
     % Wait a short random time
     WaitSecs(rand + randi(2));
+
+    %Beeper();
     
+    disp(GetSecs());
     % display some text
     displayTextCentered(window, 'Speak Now!');
 
-    % set audio file name
-    fileName = 'response_time_example_recording';
     
+    
+    
+    disp(GetSecs());
     % record some audio from the mic
     responseTime = recordAudioFromMicrophoneUntilSpaceKey(participantId, recordingLength, fileName, voiceTrigger);
         
