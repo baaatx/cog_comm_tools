@@ -29,6 +29,12 @@ try
     % initilize the window, set font style, unify keyboard for various OS
     [window, resolution] = initializeWindow( fontFace, fontSize, fontStyle, screenResolution);
     
+    drawTextCentered(window, 'testing text');
+    displayWindow(window);
+    
+    KbWait();
+    
+    
     % SHUTDOWN THE EXPERIMENT
     shutDownExperiment();
   
